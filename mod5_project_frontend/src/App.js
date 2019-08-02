@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import './App.css';
+import Phaser from 'phaser'
+import { IonPhaser } from '@ion-phaser/react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state = {
+    initialize: false,
+    game: {
+      width: "100%",
+      height: "100%",
+      type: Phaser.AUTO,
+      scene: {
+        init: function() {
+          this.cameras.main.setBackgroundColor('#000000')
+        },
+        create: function() {
+          console.log("create", this);
+            this.helloWorld = this.add.text(
+            this.cameras.main.centerX,
+            this.cameras.main.centerY,
+            "Hello World", {
+              font: "40px Arial",
+              fill: "#ffffff"
+            }
+          );
+          this.helloWorld.setOrigin(0.5);
+        },
+        update: function() {
+          this.helloWorld.angle += 1;
+        }
+      }
+    }
+  }
+
+  initializeGame = () => {
+    const { game } = this.state
+    // this.ionPhaser.game = game
+    this.setState({ initialize: true })
+
+    setTimeout(() => {
+      console.log(game.instance)
+    }, 3000)
+  }
+
+  render() {
+    const { initialize, game } = this.state
+    return (
+      <div className="App">
+        <header className="App-header">
+          { !initialize &&
+            <React.Fragment>
+              <div onClick={this.initializeGame} className="flex">
+                <a href="#1" className="bttn">Initialize</a>
+              </div>
+            </React.Fragment>
+          }
+          <IonPhaser game={game} initialize={initialize} />
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
