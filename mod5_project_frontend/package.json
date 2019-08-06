@@ -6,6 +6,7 @@
     "@ion-phaser/core": "^1.1.0",
     "@ion-phaser/react": "^1.1.0",
     "phaser": "^3.18.1",
+    "phaser-animated-tiles": "^2.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
