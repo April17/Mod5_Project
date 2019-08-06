@@ -10,7 +10,7 @@
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "chara_hero-atkup-1.png",
+					"filename": "chara_hero-atkup/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -28,14 +28,10 @@
 						"y": 1,
 						"w": 20,
 						"h": 29
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkdown-1.png",
+					"filename": "chara_hero-atkdown/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -53,14 +49,10 @@
 						"y": 1,
 						"w": 19,
 						"h": 29
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkup-2.png",
+					"filename": "chara_hero-atkup/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -78,64 +70,10 @@
 						"y": 1,
 						"w": 18,
 						"h": 29
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkright-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 48,
-						"h": 48
-					},
-					"spriteSourceSize": {
-						"x": 17,
-						"y": 15,
-						"w": 29,
-						"h": 18
-					},
-					"frame": {
-						"x": 1,
-						"y": 32,
-						"w": 29,
-						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "chara_hero-atkright-2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 48,
-						"h": 48
-					},
-					"spriteSourceSize": {
-						"x": 17,
-						"y": 15,
-						"w": 29,
-						"h": 18
-					},
-					"frame": {
-						"x": 32,
-						"y": 32,
-						"w": 29,
-						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "chara_hero-atkupleft-1.png",
+					"filename": "chara_hero-atkleft/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -150,17 +88,13 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 52,
+						"y": 32,
 						"w": 29,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkupleft-2.png",
+					"filename": "chara_hero-atkleft/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -175,17 +109,55 @@
 					},
 					"frame": {
 						"x": 32,
-						"y": 52,
+						"y": 32,
 						"w": 29,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkdown-2.png",
+					"filename": "chara_hero-atkright/001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 15,
+						"w": 29,
+						"h": 18
+					},
+					"frame": {
+						"x": 1,
+						"y": 52,
+						"w": 29,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chara_hero-atkright/002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 15,
+						"w": 29,
+						"h": 18
+					},
+					"frame": {
+						"x": 32,
+						"y": 52,
+						"w": 29,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chara_hero-atkdown/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -203,14 +175,10 @@
 						"y": 72,
 						"w": 18,
 						"h": 28
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitdown-1.png",
+					"filename": "chara_hero-hitdown/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -228,14 +196,10 @@
 						"y": 72,
 						"w": 19,
 						"h": 22
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitdown-2.png",
+					"filename": "chara_hero-hitdown/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -253,14 +217,10 @@
 						"y": 72,
 						"w": 19,
 						"h": 20
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-idel-4.png",
+					"filename": "chara_hero-idel/004.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -278,14 +238,10 @@
 						"y": 94,
 						"w": 15,
 						"h": 25
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-idel-5.png",
+					"filename": "chara_hero-idel/005.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -303,14 +259,10 @@
 						"y": 96,
 						"w": 15,
 						"h": 25
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-movedown-3.png",
+					"filename": "chara_hero-movedown/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -328,14 +280,10 @@
 						"y": 102,
 						"w": 18,
 						"h": 20
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitleft-1.png",
+					"filename": "chara_hero-hitleft/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -353,14 +301,10 @@
 						"y": 121,
 						"w": 19,
 						"h": 19
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkright-0.png",
+					"filename": "chara_hero-atkleft/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -368,7 +312,7 @@
 						"h": 48
 					},
 					"spriteSourceSize": {
-						"x": 15,
+						"x": 18,
 						"y": 17,
 						"w": 15,
 						"h": 16
@@ -378,14 +322,10 @@
 						"y": 123,
 						"w": 15,
 						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkdown-3.png",
+					"filename": "chara_hero-atkdown/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -403,14 +343,10 @@
 						"y": 124,
 						"w": 17,
 						"h": 21
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitleft-3.png",
+					"filename": "chara_hero-hitleft/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -428,14 +364,10 @@
 						"y": 141,
 						"w": 16,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkup-3.png",
+					"filename": "chara_hero-atkup/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -453,14 +385,10 @@
 						"y": 147,
 						"w": 17,
 						"h": 20
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitright-1.png",
+					"filename": "chara_hero-hitright/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -478,14 +406,10 @@
 						"y": 142,
 						"w": 19,
 						"h": 19
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitright-3.png",
+					"filename": "chara_hero-hitright/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -503,14 +427,10 @@
 						"y": 161,
 						"w": 16,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitup-0.png",
+					"filename": "chara_hero-hitup/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -528,14 +448,10 @@
 						"y": 169,
 						"w": 17,
 						"h": 19
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkright-3.png",
+					"filename": "chara_hero-atkleft/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -543,7 +459,7 @@
 						"h": 48
 					},
 					"spriteSourceSize": {
-						"x": 17,
+						"x": 11,
 						"y": 15,
 						"w": 20,
 						"h": 18
@@ -553,14 +469,10 @@
 						"y": 163,
 						"w": 20,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-idel-2.png",
+					"filename": "chara_hero-idel/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -578,14 +490,10 @@
 						"y": 181,
 						"w": 16,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-movedown-1.png",
+					"filename": "chara_hero-movedown/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -603,14 +511,10 @@
 						"y": 190,
 						"w": 17,
 						"h": 19
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkupleft-3.png",
+					"filename": "chara_hero-atkright/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -618,7 +522,7 @@
 						"h": 48
 					},
 					"spriteSourceSize": {
-						"x": 11,
+						"x": 17,
 						"y": 15,
 						"w": 20,
 						"h": 18
@@ -628,14 +532,10 @@
 						"y": 183,
 						"w": 20,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveleft-0.png",
+					"filename": "chara_hero-moveleft/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -653,14 +553,10 @@
 						"y": 201,
 						"w": 16,
 						"h": 17
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-movedown-2.png",
+					"filename": "chara_hero-movedown/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -678,14 +574,10 @@
 						"y": 211,
 						"w": 17,
 						"h": 19
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitup-2.png",
+					"filename": "chara_hero-hitup/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -703,14 +595,10 @@
 						"y": 203,
 						"w": 21,
 						"h": 17
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveright-0.png",
+					"filename": "chara_hero-moveright/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -728,14 +616,10 @@
 						"y": 220,
 						"w": 16,
 						"h": 17
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitup-3.png",
+					"filename": "chara_hero-hitup/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -753,14 +637,10 @@
 						"y": 232,
 						"w": 17,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-movedown-0.png",
+					"filename": "chara_hero-movedown/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -778,14 +658,10 @@
 						"y": 222,
 						"w": 18,
 						"h": 19
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkdown-0-.png",
+					"filename": "chara_hero-atkdown/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -803,14 +679,10 @@
 						"y": 239,
 						"w": 16,
 						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-idel-1.png",
+					"filename": "chara_hero-idel/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -828,14 +700,10 @@
 						"y": 252,
 						"w": 17,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitup-1.png",
+					"filename": "chara_hero-hitup/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -853,14 +721,10 @@
 						"y": 243,
 						"w": 21,
 						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitleft-0.png",
+					"filename": "chara_hero-hitleft/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -878,14 +742,10 @@
 						"y": 257,
 						"w": 16,
 						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveleft-1.png",
+					"filename": "chara_hero-moveleft/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -903,14 +763,10 @@
 						"y": 272,
 						"w": 17,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitdown-3.png",
+					"filename": "chara_hero-hitdown/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -928,14 +784,10 @@
 						"y": 261,
 						"w": 18,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitright-0.png",
+					"filename": "chara_hero-hitright/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -953,14 +805,10 @@
 						"y": 275,
 						"w": 16,
 						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveleft-3.png",
+					"filename": "chara_hero-moveleft/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -978,14 +826,10 @@
 						"y": 292,
 						"w": 17,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitleft-2.png",
+					"filename": "chara_hero-hitleft/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1003,14 +847,10 @@
 						"y": 281,
 						"w": 18,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkupleft-0.png",
+					"filename": "chara_hero-atkright/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1018,7 +858,7 @@
 						"h": 48
 					},
 					"spriteSourceSize": {
-						"x": 18,
+						"x": 15,
 						"y": 17,
 						"w": 15,
 						"h": 16
@@ -1028,14 +868,10 @@
 						"y": 293,
 						"w": 15,
 						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitright-2.png",
+					"filename": "chara_hero-hitright/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1053,14 +889,10 @@
 						"y": 301,
 						"w": 18,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-idel-0.png",
+					"filename": "chara_hero-idel/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1078,14 +910,10 @@
 						"y": 312,
 						"w": 18,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveup-3.png",
+					"filename": "chara_hero-moveup/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1103,14 +931,10 @@
 						"y": 321,
 						"w": 18,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-idel-3.png",
+					"filename": "chara_hero-idel/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1128,14 +952,10 @@
 						"y": 332,
 						"w": 18,
 						"h": 17
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveleft-2.png",
+					"filename": "chara_hero-moveleft/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1153,14 +973,10 @@
 						"y": 321,
 						"w": 18,
 						"h": 17
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveright-2.png",
+					"filename": "chara_hero-moveright/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1178,14 +994,10 @@
 						"y": 340,
 						"w": 18,
 						"h": 17
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveup-0.png",
+					"filename": "chara_hero-moveup/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1203,14 +1015,10 @@
 						"y": 341,
 						"w": 18,
 						"h": 17
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveright-1.png",
+					"filename": "chara_hero-moveright/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1228,14 +1036,10 @@
 						"y": 351,
 						"w": 17,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveright-3.png",
+					"filename": "chara_hero-moveright/003.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1253,14 +1057,10 @@
 						"y": 359,
 						"w": 17,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveup-1.png",
+					"filename": "chara_hero-moveup/001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1278,14 +1078,10 @@
 						"y": 360,
 						"w": 17,
 						"h": 18
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-moveup-2.png",
+					"filename": "chara_hero-moveup/002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1303,14 +1099,10 @@
 						"y": 371,
 						"w": 17,
 						"h": 17
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-hitdown-0.png",
+					"filename": "chara_hero-hitdown/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1328,14 +1120,10 @@
 						"y": 379,
 						"w": 18,
 						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
-					"filename": "chara_hero-atkup-0.png",
+					"filename": "chara_hero-atkup/000.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1353,10 +1141,6 @@
 						"y": 380,
 						"w": 17,
 						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				}
 			]
@@ -1365,6 +1149,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:99f684e2c54fb00cf42297b3da1c344f:90b7d68d219ce1f518c841c699dafc00:dc866b5e2ff0a1360e79139a0bd501b2$"
+		"smartupdate": "$TexturePacker:SmartUpdate:eae225740eb426d47d350eb7d4b932bb:7aaa41b65bd7acc87e1894d5e4ee8556:65451d5a86c4284ca04c3a9b0b0b9d9f$"
 	}
 }
