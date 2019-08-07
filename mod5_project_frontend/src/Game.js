@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import Phaser from 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
+import { Hero } from "./PhaserGameSource/Hero";
 import mapinfo from './assets/active_resources/World.json'
 import maptile from './assets/active_resources/ts_dungeon.png'
 import herotile from './assets/active_resources/chara_hero.png'
 
-let controls;
+// import { GamingScene } from "./GamingScene";
+
 let hero;
 let cursors;
 
@@ -20,8 +22,7 @@ class Game extends Component {
       physics: {
         default: "arcade",
         arcade: {
-          debug: true,
-          gravity: { y: 0 }
+          debug: true
         }
       },
       render: {
@@ -32,18 +33,15 @@ class Game extends Component {
           this.cameras.main.setBackgroundColor('#000000')
         },
         preload: function(){
-          console.log("this From Preload", this);
           this.load.image("ts-tiles", maptile);
           this.load.tilemapTiledJSON("map", mapinfo);
           this.load.spritesheet("hero", herotile, {frameHeight: 48, frameWidth: 48});
         },
         create: function() {
-          console.log("this From Create", this);
-
           ///////////// Map ///////////////////////
           const map = this.make.tilemap({ key: "map" });
           const tileset = map.addTilesetImage("ts_dungeon", "ts-tiles");
-          const bot_layer = map.createStaticLayer("bot_layer", tileset, 0, 0);
+          map.createStaticLayer("bot_layer", tileset, 0, 0);
           const world_layer = map.createStaticLayer("world_layer", tileset, 0, 0);
           const top_layer = map.createStaticLayer("top_layer", tileset, 0, 0);
           world_layer.setCollisionByProperty({ collides: true });
@@ -52,16 +50,7 @@ class Game extends Component {
           /////////// End Map /////////////////////
 
           /////////// Character ///////////////////
-          hero = Phaser.GameObjects.Sprite = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'hero').setSize(16, 16)
-          this.anims.create({
-            key: "idel",
-            frameRate: 5,
-            frames: this.anims.generateFrameNumbers("hero", {
-              start: 0,
-              end: 2
-            }),
-            repeat: -1
-          })
+          hero = new Hero(this, spawnPoint.x, spawnPoint.y, "hero").setSize(16, 16)
           this.anims.create({
             key: "vetory",
             frameRate: 5,
@@ -71,17 +60,64 @@ class Game extends Component {
             }),
             repeat: -1
           })
+          ///////// Idel //////////////
           this.anims.create({
-            key: "walk-left",
-            frameRate: 10,
+            key: "idel-down",
+            frameRate: 5,
             frames: this.anims.generateFrameNumbers("hero", {
-              start: 12,
-              end: 15
+              start: 0,
+              end: 2
             }),
             repeat: -1
           })
           this.anims.create({
-            key: "walk-right",
+            key: "idel-up",
+            frameRate: 5,
+            frames: this.anims.generateFrameNumbers("hero", {
+              start: 43,
+              end: 43
+            })
+          })
+          this.anims.create({
+            key: "idel-sideway",
+            frameRate: 5,
+            frames: this.anims.generateFrameNumbers("hero", {
+              start: 39,
+              end: 39
+            })
+          })
+          ///////// End Idel //////////////
+
+          ///////// Attack //////////////
+          this.anims.create({
+            key: "attack-sideway",
+            frameRate: 15,
+            frames: this.anims.generateFrameNumbers("hero", {
+              start:24,
+              end: 27
+            })
+          })
+          this.anims.create({
+            key: "attack-up",
+            frameRate: 15,
+            frames: this.anims.generateFrameNumbers("hero", {
+              start: 28,
+              end: 31
+            })
+          })
+          this.anims.create({
+            key: "attack-down",
+            frameRate: 15,
+            frames: this.anims.generateFrameNumbers("hero", {
+              start: 19,
+              end: 23
+            })
+          })
+          ///////// End Attack //////////////
+
+          ///////// Walk //////////////
+          this.anims.create({
+            key: "walk-sideway",
             frameRate: 10,
             frames: this.anims.generateFrameNumbers("hero", {
               start: 12,
@@ -107,59 +143,83 @@ class Game extends Component {
             }),
             repeat: -1
           })
+          ///////// End Walk //////////////
           window.hero = hero
           this.physics.add.collider(hero, world_layer);
           ////////// End Character ///////////////
 
-          /////////// Camera ///////////////////
+          /////////// Camera and Controls ///////////////////
           const camera = this.cameras.main;
           camera.startFollow(hero);
           camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
-          cursors = this.input.keyboard.addKeys("W, A, S, D");
-
+          cursors = this.input.keyboard.addKeys("W, A, S, D, J, K");
           this.scale.setZoom(3.5)
-          /////////// End Camera ///////////////////
+          /////////// End Camera and Controls ///////////////////
         },
         update: function(time, delta) {
           // console.log("hero x: ", hero.body.x);
           // console.log("hero y: ", hero.body.y);
 
+          ///// Hero Movement //////
           const speed = 100;
           const prevVelocity = hero.body.velocity.clone();
-
           hero.body.setVelocity(0);
-
-          if (cursors.A.isDown) {
-            hero.body.setVelocityX(-speed);
-          } else if (cursors.D.isDown) {
-            hero.body.setVelocityX(speed);
-          }
-
-          if (cursors.W.isDown) {
-            hero.body.setVelocityY(-speed);
-          } else if (cursors.S.isDown) {
-            hero.body.setVelocityY(speed);
-          }
-
           hero.body.velocity.normalize().scale(speed);
 
           if (cursors.A.isDown) {
+            hero.setSize(16, 16)
             hero.flipX = true
-            hero.anims.play("walk-left", true);
+            hero.anims.play("walk-sideway", true);
+            hero.body.setVelocityX(-speed);
           } else if (cursors.D.isDown) {
+            hero.setSize(16, 16)
             hero.flipX = false
-            hero.anims.play("walk-right", true);
+            hero.anims.play("walk-sideway", true);
+            hero.body.setVelocityX(speed);
           } else if (cursors.W.isDown) {
+            hero.setSize(16, 16)
             hero.flipX = false
             hero.anims.play("walk-up", true);
+            hero.body.setVelocityY(-speed);
           } else if (cursors.S.isDown) {
+            hero.setSize(16, 16)
             hero.flipX = false
             hero.anims.play("walk-down", true);
+            hero.body.setVelocityY(speed);
+          } else if (cursors.J.isDown) {
+            if (hero.body.facing === 13) {
+              hero.flipX = true
+              hero.anims.nextAnim = "idel-sideway"
+              hero.anims.play("attack-sideway", true).setSize(32, 16).setOffset(0, 16)
+            } else if (hero.body.facing === 14) {
+              hero.flipX = false
+              hero.anims.nextAnim = "idel-sideway"
+              hero.anims.play("attack-sideway", true).setSize(32, 16).setOffset(16, 16);
+            } else if (hero.body.facing === 11) {
+              hero.flipX = false
+              hero.anims.nextAnim = "idel-up"
+              hero.anims.play("attack-up", true).setSize(16, 32).setOffset(16, 0);
+            } else if (hero.body.facing === 12) {
+              hero.flipX = false
+              hero.anims.nextAnim = "idel-down"
+              hero.anims.play("attack-down", true).setSize(16, 32).setOffset(16, 16);
+            }
           } else {
-            hero.flipX = false
-            hero.anims.play("idel", true);
+            if (prevVelocity.x < 0) {
+              hero.flipX = true
+              hero.anims.play("idel-sideway", true);
+            } else if (prevVelocity.x > 0) {
+              hero.flipX = false
+              hero.anims.play("idel-sideway", true);
+            } else if (prevVelocity.y < 0) {
+              hero.flipX = false
+              hero.anims.play("idel-up", true);
+            } else if (prevVelocity.y > 0) {
+              hero.flipX = false
+              hero.anims.play("idel-down", true);
+            }
           }
+          /////  End Hero Movement //////
         }
       }
     }
@@ -177,7 +237,7 @@ class Game extends Component {
           { !initialize &&
             <React.Fragment>
               <div onClick={this.initializeGame} className="flex">
-                <a href="#1" className="bttn">Initialize</a>
+                <a href="#1" className="bttn">Play</a>
               </div>
             </React.Fragment>
           }
