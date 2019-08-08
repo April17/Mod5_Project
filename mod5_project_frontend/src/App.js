@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Switch, Route } from 'react-router-dom'
+import Pages from './pages'
 import './App.css';
-import Game from './Game'
+
 
 
 class App extends Component {
@@ -8,10 +10,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <Game />
-
-        </header>
+        <Switch>
+          <Route exact path="/game" component={Pages.GamePage} />
+        </Switch>
       </div>
     );
   }
