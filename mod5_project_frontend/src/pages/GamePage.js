@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Game from '../components/Game'
 import HeroStatus from '../components/HeroStatus'
+import  '../assets/style/GamePage.css'
 // import PhaserReactAdapter from '../components/PhaserReactAdapter'
 
 

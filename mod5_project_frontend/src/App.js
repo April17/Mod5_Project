@@ -12,6 +12,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/game" component={Pages.GamePage} />
+          <Route exact path="/"     component={Pages.FrontPage} />
         </Switch>
       </div>
     );
