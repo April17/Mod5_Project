@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import heroMoveReducer from "./heroMoveReducer"
+import heroStatusReducer from "./heroStatusReducer"
 
 
 export default combineReducers({
-  heroMoveReducer
+  status: heroStatusReducer
 });

@@ -7,7 +7,7 @@ export default (state = defaultState, action) => {
   // console.log('in root reducer', action);
 
   switch (action.type) {
-    case 'HERO_MOVE':
+    case 'HERO_STATUS':
       return action.payload
     default:
       return state

@@ -1,18 +1,12 @@
 import React, { Component } from 'react'
 import Phaser from 'phaser'
-import PhaserReactAdapter from './PhaserReactAdapter'
 import { IonPhaser } from '@ion-phaser/react'
 import { Hero } from "../phaser/Hero"
 import { connect } from "react-redux"
 import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
-import { updateHeroMove } from '../redux/adapters/heroMoveUpdate'
-
-//
-
-import { getInfo } from './PhaserReactAdapter'
-
+import { updateHeroStatus } from '../redux/adapters/heroStatusUpdate'
 
 // import { GamingScene } from "./GamingScene";
 
@@ -101,7 +95,7 @@ class Game extends Component {
             ///////// Attack //////////////
             this.anims.create({
               key: "attack-sideway",
-              frameRate: 15,
+              frameRate: 20,
               frames: this.anims.generateFrameNumbers("hero", {
                 start:24,
                 end: 27
@@ -109,7 +103,7 @@ class Game extends Component {
             })
             this.anims.create({
               key: "attack-up",
-              frameRate: 15,
+              frameRate: 20,
               frames: this.anims.generateFrameNumbers("hero", {
                 start: 28,
                 end: 31
@@ -117,7 +111,7 @@ class Game extends Component {
             })
             this.anims.create({
               key: "attack-down",
-              frameRate: 15,
+              frameRate: 20,
               frames: this.anims.generateFrameNumbers("hero", {
                 start: 19,
                 end: 23
@@ -167,10 +161,6 @@ class Game extends Component {
             /////////// End Camera and Controls ///////////////////
           },
           update: function(time, delta) {
-            // console.log("hero x: ", hero.body.x);
-            // console.log("hero y: ", hero.body.y);
-            // debugger
-
             ///// Hero Movement //////
             const speed = 100;
             const prevVelocity = hero.body.velocity.clone();
@@ -233,9 +223,8 @@ class Game extends Component {
             /////  End Hero Movement //////
 
             //// Redex /////////
-            that.props.updateHeroMove({ hp: hero.hp, atk: hero.atk, def: hero.def, x: hero.body.x.toFixed(0), y: hero.body.y.toFixed(0) })
+            that.props.updateHeroStatus({ hp: hero.hp, atk: hero.atk, def: hero.def, x: hero.body.x.toFixed(0), y: hero.body.y.toFixed(0) })
             //// End Redex /////////
-            // getInfo(hero.body.x,hero.body.y)
 
           }
         }
@@ -268,7 +257,7 @@ class Game extends Component {
 }
 
 const mapDispatchToProps = {
-  updateHeroMove
+  updateHeroStatus
 }
 
 export default connect(

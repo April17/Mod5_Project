@@ -44,7 +44,7 @@ class HeroStatus extends Component {
 
 const mapStateToProps = state => {
   return {
-    player: state.heroMoveReducer
+    player: state.status
   }
 }
 

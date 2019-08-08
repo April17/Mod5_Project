@@ -1,3 +1,3 @@
 export default {
-  updateHeroMoveAction: coords => ({ type: "HERO_MOVE", payload: coords })
+  updateHeroStatusAction: status => ({ type: "HERO_STATUS", payload: status })
 };
