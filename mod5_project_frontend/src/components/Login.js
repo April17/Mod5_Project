@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Form, Header, Segment } from 'semantic-ui-react'
 import { connect } from "react-redux"
+import { logIn } from '../redux/adapters/currentUserAdapters'
+
 
 class Login extends React.Component {
 
@@ -9,8 +11,17 @@ class Login extends React.Component {
     password: "",
   }
 
+  componentDidMount() {
+    if (localStorage.token) {
+      this.props.routingProps.history.push("/profile")
+    }
+  }
+
   handelSubmit = (event) => {
-    console.log(event.target);
+    this.props.logIn(this.state)
+      .then(()=> {
+          this.props.routingProps.history.push("/profile")
+        })
   }
 
   handleChange = (event) => {
@@ -53,7 +64,7 @@ class Login extends React.Component {
 }
 
 const mapDispatchToProps = {
-  getUserInfo: null
+  logIn: logIn
 }
 
 export default connect(

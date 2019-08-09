@@ -1,4 +1,8 @@
 .Game-Component {
-  width: 1120;
-  height: 635;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1120px;
+  height: 635px;
 }

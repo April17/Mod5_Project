@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-  def show
-    user_atm = User.find_by(id: params[:id])
-    render json: user_atm, include: "**"
+  skip_before_action :authorized
+
+  def profile
+    # user_atm = User.first
+    # debugger
+    user = User.find_by(username: user_atm)
+    render json: user, include: "**"
   end
 end

@@ -222,9 +222,9 @@ class Game extends Component {
             }
             /////  End Hero Movement //////
 
-            //// Redex /////////
+            //// Redux /////////
             that.props.updateHeroStatus({ hp: hero.hp, atk: hero.atk, def: hero.def, x: hero.body.x.toFixed(0), y: hero.body.y.toFixed(0) })
-            //// End Redex /////////
+            //// End Redux /////////
 
           }
         }
@@ -237,7 +237,6 @@ class Game extends Component {
   }
 
   render() {
-    // debugger
     const { initialize, game } = this.state
     return (
       <div className="Game">
