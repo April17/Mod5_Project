@@ -19,7 +19,7 @@ class HeroStatus extends Component {
         Hero Status Barrrrrr
         <div>
           <div>
-            Name: {this.state.name}
+            Name: {this.props.player.name}
           </div>
           <div>
             HP: {this.props.player.hp}

@@ -9,15 +9,15 @@ export default function withAuth(ComponentToBeWrapped) {
       if (!localStorage.token) {
         this.props.history.push("/");
       }
-      // try {
-      //   this.props.setCurrentUser().catch(e => {
-      //     this.props.history.push("/");
-      //   });
-      // } catch (e) {
-      //   if (e.message === "Please log in") {
-      //     this.props.history.push("/");
-      //   }
-      // }
+      try {
+        this.props.setCurrentUser().catch(e => {
+          this.props.history.push("/");
+        });
+      } catch (e) {
+        if (e.message === "Please log in") {
+          this.props.history.push("/");
+        }
+      }
     }
 
     render() {

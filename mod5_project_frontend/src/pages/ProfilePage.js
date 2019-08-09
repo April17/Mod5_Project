@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import withAuth from '../hocs/withAuth'
+import Character from '../components/Character'
+import {initGame} from '../redux/adapters/heroStatusAdapters'
 
 
 class ProfilePage extends Component {
@@ -11,6 +13,15 @@ class ProfilePage extends Component {
       localStorage.clear()
       this.props.history.push("/")
     }
+  }
+
+  genCharacters = () => {
+    return this.props.user.characters.map(character => <Character key={character.id} characterInfo={character} onSelect={this.onSelect}/>)
+  }
+
+  onSelect = (characterInfo) => {
+    this.props.initGame(characterInfo)
+    this.props.history.push("/game")
   }
 
   render() {
@@ -24,7 +35,7 @@ class ProfilePage extends Component {
         <header className="Profile-header">
           Name: {this.props.user.name}
           <br></br>
-          Character: {this.props.user.characters[0].name}
+          {this.genCharacters()}
         </header>
       </div>
     );
@@ -37,4 +48,8 @@ const mapStateToProps = state => {
   }
 }
 
-export default withAuth(connect(mapStateToProps, null)(withRouter(ProfilePage)));
+const mapDispatchToProps = {
+  initGame: initGame
+}
+
+export default withAuth(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfilePage)));

@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
-import { updateHeroStatus } from '../redux/adapters/heroStatusUpdate'
+import { updateHeroStatus } from '../redux/adapters/heroStatusAdapters'
 
 // import { GamingScene } from "./GamingScene";
 
@@ -50,11 +50,12 @@ class Game extends Component {
             const top_layer = map.createStaticLayer("top_layer", tileset, 0, 0);
             world_layer.setCollisionByProperty({ collides: true });
             top_layer.setDepth(10);
-            const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
+            // const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
             /////////// End Map /////////////////////
 
             /////////// Character ///////////////////
-            hero = new Hero(this, spawnPoint.x, spawnPoint.y, "hero").setSize(16, 16)
+            console.log(that.props.characterInfo);
+            hero = new Hero(this, that.props.characterInfo.x, that.props.characterInfo.y, "hero", that.props.characterInfo.name, that.props.characterInfo.hp, that.props.characterInfo.atk, that.props.characterInfo.def ).setSize(16, 16)
             this.anims.create({
               key: "vetory",
               frameRate: 5,
@@ -223,7 +224,7 @@ class Game extends Component {
             /////  End Hero Movement //////
 
             //// Redux /////////
-            that.props.updateHeroStatus({ hp: hero.hp, atk: hero.atk, def: hero.def, x: hero.body.x.toFixed(0), y: hero.body.y.toFixed(0) })
+            that.props.updateHeroStatus({ name: hero.name, hp: hero.hp, atk: hero.atk, def: hero.def, x: hero.body.x.toFixed(0), y: hero.body.y.toFixed(0) })
             //// End Redux /////////
 
           }
@@ -255,11 +256,17 @@ class Game extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    characterInfo: state.status
+  }
+}
+
 const mapDispatchToProps = {
   updateHeroStatus
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(Game);
