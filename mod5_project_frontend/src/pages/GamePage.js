@@ -13,7 +13,7 @@ class GamePage extends Component {
       <div className="GamePage">
         <header className="App-header">
           <div className="Game-Component">
-            <Game />
+            <Game routingProps={this.props}/>
           </div>
           <div className="HeroStatus-Component">
             <HeroStatus />

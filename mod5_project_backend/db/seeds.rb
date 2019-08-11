@@ -12,6 +12,9 @@ playground = World.create(name: "Playground")
 
 april = Character.create(name:"April", hp: 1500, atk: 100, def: 200, x: 400, y: 400, user: fan, world: playground)
 
+february = Character.create(name:"February", hp: 2500, atk: 200, def: 200, x: 400, y: 400, user: fan, world: playground)
+
+
 small_hp_potion = Item.create(name:"Small HP Potion", effect: "Recover 100 HP", key: "hp", status: 100)
 
 april_got_small_hp_potion = CharacterItem.create(character: april, item: small_hp_potion)

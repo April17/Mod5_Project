@@ -50,106 +50,19 @@ class Game extends Component {
             const top_layer = map.createStaticLayer("top_layer", tileset, 0, 0);
             world_layer.setCollisionByProperty({ collides: true });
             top_layer.setDepth(10);
-            // const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
             /////////// End Map /////////////////////
 
             /////////// Character ///////////////////
-            console.log(that.props.characterInfo);
-            hero = new Hero(this, that.props.characterInfo.x, that.props.characterInfo.y, "hero", that.props.characterInfo.name, that.props.characterInfo.hp, that.props.characterInfo.atk, that.props.characterInfo.def ).setSize(16, 16)
-            this.anims.create({
-              key: "vetory",
-              frameRate: 5,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start: 4,
-                end: 6
-              }),
-              repeat: -1
-            })
-            ///////// Idel //////////////
-            this.anims.create({
-              key: "idel-down",
-              frameRate: 5,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start: 0,
-                end: 2
-              }),
-              repeat: -1
-            })
-            this.anims.create({
-              key: "idel-up",
-              frameRate: 5,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start: 43,
-                end: 43
-              })
-            })
-            this.anims.create({
-              key: "idel-sideway",
-              frameRate: 5,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start: 39,
-                end: 39
-              })
-            })
-            ///////// End Idel //////////////
-
-            ///////// Attack //////////////
-            this.anims.create({
-              key: "attack-sideway",
-              frameRate: 20,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start:24,
-                end: 27
-              })
-            })
-            this.anims.create({
-              key: "attack-up",
-              frameRate: 20,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start: 28,
-                end: 31
-              })
-            })
-            this.anims.create({
-              key: "attack-down",
-              frameRate: 20,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start: 19,
-                end: 23
-              })
-            })
-            ///////// End Attack //////////////
-
-            ///////// Walk //////////////
-            this.anims.create({
-              key: "walk-sideway",
-              frameRate: 10,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start: 12,
-                end: 15
-              }),
-              repeat: -1
-            })
-            this.anims.create({
-              key: "walk-up",
-              frameRate: 10,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start: 16,
-                end: 19
-              }),
-              repeat: -1
-            })
-            this.anims.create({
-              key: "walk-down",
-              frameRate: 10,
-              frames: this.anims.generateFrameNumbers("hero", {
-                start: 8,
-                end: 11
-              }),
-              repeat: -1
-            })
-            ///////// End Walk //////////////
-            window.hero = hero
+            hero = new Hero(this,
+                            (that.props.characterInfo.x+8),
+                            (that.props.characterInfo.y+8),
+                            "hero",
+                            that.props.characterInfo.name,
+                            that.props.characterInfo.hp,
+                            that.props.characterInfo.atk,
+                            that.props.characterInfo.def )
+                            .setSize(16, 16)
+            // window.hero = hero
             this.physics.add.collider(hero, world_layer);
             ////////// End Character ///////////////
 
@@ -221,15 +134,30 @@ class Game extends Component {
                 hero.anims.play("idel-down", true);
               }
             }
+            if (cursors.J.isUp){
+              hero.setSize(16, 16)
+            }
             /////  End Hero Movement //////
 
             //// Redux /////////
-            that.props.updateHeroStatus({ name: hero.name, hp: hero.hp, atk: hero.atk, def: hero.def, x: hero.body.x.toFixed(0), y: hero.body.y.toFixed(0) })
+            that.props.updateHeroStatus({ id: that.props.characterInfo.id,
+                                          name: hero.name,
+                                          hp: hero.hp,
+                                          atk: hero.atk,
+                                          def: hero.def,
+                                          x: hero.body.x.toFixed(0),
+                                          y: hero.body.y.toFixed(0) })
             //// End Redux /////////
 
           }
         }
       }
+    }
+  }
+
+  componentDidMount() {
+    if (!this.props.characterInfo.name) {
+      this.props.routingProps.history.push("/profile")
     }
   }
 
