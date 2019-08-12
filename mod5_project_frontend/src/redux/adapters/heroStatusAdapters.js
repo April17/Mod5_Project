@@ -1,4 +1,5 @@
 import actions from "../actions/heroStatusActions";
+import { API_ROOT } from '../../actioncable';
 
 export const initGame = characterInfo => dispatch => {
   dispatch(actions.initGameAction(characterInfo));
@@ -16,8 +17,5 @@ export const updateHeroStatus = status => dispatch => {
     },
     body: JSON.stringify(status)
   }
-  fetch(`http://localhost:3000/characters/${status.id}`, config)
-    .then(rsp => rsp.json())
-    .then(console.log)
-    // debugger
+  fetch(`${API_ROOT}/characters/${status.id}`, config)
 };

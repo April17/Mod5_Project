@@ -1,4 +1,6 @@
 import actions from "../actions/currentUserActions";
+import { API_ROOT } from '../../actioncable';
+
 
 export const logIn = logInData => dispatch => {
   // logIn start
@@ -10,7 +12,7 @@ export const logIn = logInData => dispatch => {
     },
     body: JSON.stringify(logInData)
   }
-  return fetch("http://localhost:3000/login", config)
+  return fetch(`${API_ROOT}/login`, config)
     .then(rsp => rsp.json())
     .then(data => {
       localStorage.token = data.token
@@ -27,7 +29,7 @@ export const getCurrentUser = () => dispatch => {
       Authorization: localStorage.token
     }
   }
- fetch("http://localhost:3000/profile", config)
+ fetch(`${API_ROOT}/profile`, config)
     .then(rsp => rsp.json())
     .then(userData => {
       dispatch(actions.gotUserInfo(userData))

@@ -62,7 +62,7 @@ class Game extends Component {
                             that.props.characterInfo.atk,
                             that.props.characterInfo.def )
                             .setSize(16, 16)
-            // window.hero = hero
+            window.hero = hero
             this.physics.add.collider(hero, world_layer);
             ////////// End Character ///////////////
 
@@ -100,12 +100,10 @@ class Game extends Component {
                 hero.anims.play("attack-down", true).setSize(16, 32).setOffset(16, 16);
               }
             } else if (cursors.A.isDown) {
-              hero.setSize(16, 16)
               hero.flipX = true
               hero.anims.play("walk-sideway", true);
               hero.body.setVelocityX(-speed);
             } else if (cursors.D.isDown) {
-              hero.setSize(16, 16)
               hero.flipX = false
               hero.anims.play("walk-sideway", true);
               hero.body.setVelocityX(speed);
@@ -115,7 +113,6 @@ class Game extends Component {
               hero.anims.play("walk-up", true);
               hero.body.setVelocityY(-speed);
             } else if (cursors.S.isDown) {
-              hero.setSize(16, 16)
               hero.flipX = false
               hero.anims.play("walk-down", true);
               hero.body.setVelocityY(speed);
@@ -138,7 +135,7 @@ class Game extends Component {
               hero.setSize(16, 16)
             }
             /////  End Hero Movement //////
-
+            debugger
             //// Redux /////////
             that.props.updateHeroStatus({ id: that.props.characterInfo.id,
                                           name: hero.name,

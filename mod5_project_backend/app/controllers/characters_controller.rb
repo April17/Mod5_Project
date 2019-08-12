@@ -11,5 +11,5 @@ end
 private
 
 def character_params
-  params.require(:character).permit(:x, :y)
+  params.require(:character).permit(:x, :y, :hp)
 end

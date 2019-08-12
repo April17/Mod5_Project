@@ -24,8 +24,6 @@ const defaultState = {
 }
 
 export default (state = defaultState, action) => {
-  // console.log('in root reducer', action);
-
   switch (action.type) {
     case 'GOT_USER_INFO':
       return action.payload
