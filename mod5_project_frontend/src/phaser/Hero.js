@@ -109,5 +109,33 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
         });
         ///////// End Walk //////////////
 
+        //////// Hit ///////////////
+        scene.anims.create({
+          key: "hit-sideway",
+          frameRate: 15,
+          frames: scene.anims.generateFrameNumbers(texture, {
+            start: 36,
+            end: 39
+          }),
+        });
+        scene.anims.create({
+          key: "hit-up",
+          frameRate: 15,
+          frames: scene.anims.generateFrameNumbers(texture, {
+            start: 32,
+            end: 35
+          }),
+        });
+        scene.anims.create({
+          key: "hit-down",
+          frameRate: 15,
+          frames: scene.anims.generateFrameNumbers(texture, {
+            start: 40,
+            end: 43
+          }),
+        });
+        //////// End Hit ///////////////
+
+
     }
 }

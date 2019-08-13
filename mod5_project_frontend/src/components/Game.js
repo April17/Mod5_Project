@@ -11,9 +11,10 @@ import herotile from '../assets/active_resources/chara_hero.png'
 import slimetile from '../assets/active_resources/chara_slime.png'
 import dungeonSprites from '../assets/active_resources/tiles_dungeon_v1.png'
 import { updateHeroStatus } from '../redux/adapters/heroStatusAdapters'
+import { updateMonsterStatus } from '../redux/adapters/monsterStatusAdapters'
 import { heroControl } from '../phaser/HeroControl'
 import { slimeMovement } from '../phaser/SlimeMovement'
-import { ColliderMonster } from '../phaser/Collider'
+import { ColliderMonster } from '../phaser/ColliderMonster'
 import { ColliderObject } from '../phaser/ColliderObject'
 
 
@@ -23,6 +24,9 @@ let hero;
 let slime;
 let cursors;
 let that;
+let size;
+let canvasHeight = 320
+let canvasWidth = 180
 // let chest1Img = new Image()
 class Game extends Component {
   constructor(props) {
@@ -31,8 +35,8 @@ class Game extends Component {
     this.state = {
       initialize: false,
       game: {
-        width: 320,
-        height: 180,
+        width: canvasHeight,
+        height: canvasWidth,
         type: Phaser.AUTO,
         physics: {
           default: "arcade",
@@ -91,7 +95,7 @@ class Game extends Component {
             ////////// End Object ///////////////
 
             ///////// Collider  ////////////////
-            new ColliderMonster(this, hero, slime)
+            new ColliderMonster(that, this, hero, slime)
             new ColliderObject(this, hero, chest1)
             this.physics.add.collider(hero, world_layer);
             this.physics.add.collider(slime, world_layer);
@@ -109,7 +113,7 @@ class Game extends Component {
             camera.startFollow(hero);
             camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
             cursors = this.input.keyboard.addKeys("W, A, S, D, J, K");
-            this.scale.setZoom(3.5)
+            this.scale.setZoom(3.2)
             /////////// End Camera and Controls ///////////////////
           },
           update: function(time, delta) {
@@ -124,6 +128,10 @@ class Game extends Component {
   }
 
   componentDidMount() {
+    size = document.querySelector("#game").clientWidth
+    canvasHeight = size / 3.2
+    canvasWidth = canvasHeight/1.8
+    console.log(canvasHeight);
     if (!this.props.characterInfo.name) {
       this.props.routingProps.history.push("/profile")
     }
@@ -160,7 +168,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  updateHeroStatus
+  updateHeroStatus,
+  updateMonsterStatus
 }
 
 export default connect(

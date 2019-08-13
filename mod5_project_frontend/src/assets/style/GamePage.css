@@ -1,8 +1,23 @@
+.GamePage{
+  padding: 20px 20px;
+}
 .Game-Component {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1120px;
-  height: 635px;
+  /* width: 1024px; */
+  height: 576px;
+}
+.No-Space {
+  margin: 0px !important;
+  /* border: 0px !important; */
+  /* padding: 0px !important; */
+  box-shadow: none !important;
+}
+.No-Shadow{
+  box-shadow: none !important;
+}
+.cord{
+  width: 78px !important;
 }

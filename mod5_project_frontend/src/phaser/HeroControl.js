@@ -64,6 +64,19 @@ export const heroControl = (game, hero, cursors) => {
     hero.setSize(16, 16)
     hero.attacking = false
   }
+  if (cursors.K.isDown){
+    if (hero.hp < 1100) {
+      hero.hp = hero.hp + 100
+      console.log("clicked");
+      game.props.updateHeroStatus({ id: game.props.characterInfo.id,
+                                    name: hero.name,
+                                    hp: hero.hp,
+                                    atk: hero.atk,
+                                    def: hero.def,
+                                    x: hero.body.x.toFixed(0),
+                                    y: hero.body.y.toFixed(0) })
+    }
+  }
   if (cursors.A.isUp || cursors.D.isUp) {
     if (prevX !== hero.body.x) {
       game.props.updateHeroStatus({ id: game.props.characterInfo.id,

@@ -135,6 +135,6 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
             end: 43
           }),
         });
-
+        //////// End Hit ///////////////
     }
 }
