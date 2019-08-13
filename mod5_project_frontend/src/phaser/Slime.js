@@ -1,22 +1,23 @@
-export class Hero extends Phaser.Physics.Arcade.Sprite {
-    name = "player 1";
+export class Slime extends Phaser.Physics.Arcade.Sprite {
+    name = "";
+    type = "";
     hp = 0;
     atk = 0;
     def = 0;
-    attacking = false;
-    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, heroName: string, heroHp: number, heroAtk: number, heroDef: number) {
+    constructor(scene: Phaser.Scene, x: number, y: number, texture: string,) {
         super(scene, x, y, texture);
         scene.sys.updateList.add(this);
         scene.sys.displayList.add(this);
         scene.physics.world.enableBody(this);
-        // this.setImmovable(true);
-        this.name = heroName;
-        this.hp = heroHp;
-        this.atk = heroAtk;
-        this.def = heroDef;
-
+        this.setImmovable(true);
+        this.name = "Sam";
+        this.type = "slime"
+        this.hp = 100;
+        this.atk = 10;
+        this.def = 20;
+        // debugger
         scene.anims.create({
-          key: "vetory",
+          key: "slime-vetory",
           frameRate: 5,
           frames: scene.anims.generateFrameNumbers(texture, {
             start: 4,
@@ -26,7 +27,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
         });
         ///////// Idel //////////////
         scene.anims.create({
-          key: "idel-down",
+          key: "slime-idel-down",
           frameRate: 5,
           frames: scene.anims.generateFrameNumbers(texture, {
             start: 0,
@@ -35,7 +36,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
           repeat: -1
         });
         scene.anims.create({
-          key: "idel-up",
+          key: "slime-idel-up",
           frameRate: 5,
           frames: scene.anims.generateFrameNumbers(texture, {
             start: 43,
@@ -43,7 +44,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
           })
         });
         scene.anims.create({
-          key: "idel-sideway",
+          key: "slime-idel-sideway",
           frameRate: 5,
           frames: scene.anims.generateFrameNumbers(texture, {
             start: 39,
@@ -54,7 +55,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
 
         ///////// Attack //////////////
         scene.anims.create({
-          key: "attack-sideway",
+          key: "slime-attack-sideway",
           frameRate: 20,
           frames: scene.anims.generateFrameNumbers(texture, {
             start:24,
@@ -62,7 +63,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
           })
         });
         scene.anims.create({
-          key: "attack-up",
+          key: "slime-attack-up",
           frameRate: 20,
           frames: scene.anims.generateFrameNumbers(texture, {
             start: 28,
@@ -70,7 +71,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
           })
         });
         scene.anims.create({
-          key: "attack-down",
+          key: "slime-attack-down",
           frameRate: 20,
           frames: scene.anims.generateFrameNumbers(texture, {
             start: 19,
@@ -81,7 +82,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
 
         ///////// Walk //////////////
         scene.anims.create({
-          key: "walk-sideway",
+          key: "slime-walk-sideway",
           frameRate: 10,
           frames: scene.anims.generateFrameNumbers(texture, {
             start: 12,
@@ -90,7 +91,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
           repeat: -1
         });
         scene.anims.create({
-          key: "walk-up",
+          key: "slime-walk-up",
           frameRate: 10,
           frames: scene.anims.generateFrameNumbers(texture, {
             start: 16,
@@ -99,7 +100,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
           repeat: -1
         });
         scene.anims.create({
-          key: "walk-down",
+          key: "slime-walk-down",
           frameRate: 10,
           frames: scene.anims.generateFrameNumbers(texture, {
             start: 8,
@@ -108,6 +109,32 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
           repeat: -1
         });
         ///////// End Walk //////////////
+
+        //////// Hit ///////////////
+        scene.anims.create({
+          key: "slime-hit-sideway",
+          frameRate: 15,
+          frames: scene.anims.generateFrameNumbers(texture, {
+            start: 36,
+            end: 39
+          }),
+        });
+        scene.anims.create({
+          key: "slime-hit-up",
+          frameRate: 15,
+          frames: scene.anims.generateFrameNumbers(texture, {
+            start: 32,
+            end: 35
+          }),
+        });
+        scene.anims.create({
+          key: "slime-hit-down",
+          frameRate: 15,
+          frames: scene.anims.generateFrameNumbers(texture, {
+            start: 40,
+            end: 43
+          }),
+        });
 
     }
 }

@@ -7,12 +7,10 @@ export const initGame = characterInfo => dispatch => {
 
 export const updateHeroStatus = status => dispatch => {
   dispatch(actions.updateHeroStatusAction(status));
-  // console.log(status.id);
   const config = {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
       Authorization: localStorage.token
     },
     body: JSON.stringify(status)
