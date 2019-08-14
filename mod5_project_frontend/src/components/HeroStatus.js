@@ -10,7 +10,7 @@ class HeroStatus extends Component {
       <div className="ui centered two column grid">
         <div className="row">
           <div className="five wide column">
-            <Progress total={1200} value={this.props.player.hp} inverted color='red' active size='large'/>
+            <Progress total={this.props.player.max_hp} value={this.props.player.hp} inverted color='red' active size='large'/>
           </div>
           <div className="five wide column">
             Atk: {this.props.player.atk}
@@ -18,7 +18,7 @@ class HeroStatus extends Component {
         </div>
         <div className="row">
           <div className="five wide column">
-            HP: {this.props.player.hp}
+            HP: {this.props.player.max_hp}/{this.props.player.hp}
           </div>
           <div className="five wide column">
             Def: {this.props.player.def}

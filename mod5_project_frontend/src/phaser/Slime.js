@@ -4,13 +4,13 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
     hp = 0;
     atk = 0;
     def = 0;
-    constructor(scene: Phaser.Scene, x: number, y: number, texture: string,) {
+    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, name: string) {
         super(scene, x, y, texture);
         scene.sys.updateList.add(this);
         scene.sys.displayList.add(this);
         scene.physics.world.enableBody(this);
         this.setImmovable(true);
-        this.name = "Sam";
+        this.name = name;
         this.type = "slime"
         this.hp = 100;
         this.atk = 10;

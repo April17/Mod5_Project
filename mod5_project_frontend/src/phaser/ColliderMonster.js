@@ -30,24 +30,24 @@ export class ColliderMonster {
      } else {
        hero.hp = hero.hp - 50
        if (hero.body.facing === 13) {
-         hero.flipX = false
-         hero.anims.nextAnim = `${hero.type}-idel-sideway`
-         hero.anims.play(`${hero.type}-hit-sideway`, true)
+         hero.flipX = true
+         hero.anims.nextAnim = `idel-sideway`
+         hero.anims.play(`hit-sideway`, true)
          hero.setX(hero.x + 8)
        } else if (hero.body.facing === 14) {
-         hero.flipX = true
-         hero.anims.nextAnim = `${hero.type}-idel-sideway`
-         hero.anims.play(`${hero.type}-hit-sideway`, true)
+         hero.flipX = false
+         hero.anims.nextAnim = `idel-sideway`
+         hero.anims.play(`hit-sideway`, true)
          hero.setX(hero.x - 8)
        } else if (hero.body.facing === 11) {
          hero.flipX = false
-         hero.anims.nextAnim = `${hero.type}-idel-down`
-         hero.anims.play(`${hero.type}-hit-up`, true)
+         hero.anims.nextAnim = `idel-down`
+         hero.anims.play(`hit-down`, true)
          hero.setY(hero.y + 8)
        } else if (hero.body.facing === 12) {
          hero.flipX = false
-         hero.anims.nextAnim = `${hero.type}-idel-up`
-         hero.anims.play(`${hero.type}-hit-down`, true)
+         hero.anims.nextAnim = `idel-up`
+         hero.anims.play(`hit-up`, true)
          hero.setY(hero.y - 8)
        }
      }

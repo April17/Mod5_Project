@@ -33,7 +33,7 @@ class ProfilePage extends Component {
     return (
       <div className="ProfilePage">
         <header className="Profile-header">
-          Name: {this.props.user.name}
+          Welcome Back: {this.props.user.name}
           <br></br>
           {this.genCharacters()}
         </header>

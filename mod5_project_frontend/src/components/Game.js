@@ -5,6 +5,7 @@ import { Hero } from "../phaser/Hero"
 import { Slime } from "../phaser/Slime"
 import { Chest } from "../phaser/Chest"
 import { connect } from "react-redux"
+import xiaoLaJi from '../assets/active_resources/xiao_la_ji.gif'
 import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
@@ -16,12 +17,14 @@ import { heroControl } from '../phaser/HeroControl'
 import { slimeMovement } from '../phaser/SlimeMovement'
 import { ColliderMonster } from '../phaser/ColliderMonster'
 import { ColliderObject } from '../phaser/ColliderObject'
+import '../assets/style/Game.css'
 
 
 // import { GamingScene } from "./GamingScene";
 
 let hero;
 let slime;
+let slime2
 let cursors;
 let that;
 let size;
@@ -77,6 +80,7 @@ class Game extends Component {
                             (that.props.characterInfo.y+8),
                             "hero",
                             that.props.characterInfo.name,
+                            that.props.characterInfo.max_hp,
                             that.props.characterInfo.hp,
                             that.props.characterInfo.atk,
                             that.props.characterInfo.def )
@@ -84,8 +88,16 @@ class Game extends Component {
             slime = new Slime(this,
                               400,
                               300,
-                              "slime")
+                              "slime",
+                              "Sam")
                               .setSize(16, 16)
+            slime2 = new Slime(this,
+                              430,
+                              300,
+                              "slime",
+                              "Tom")
+                              .setSize(16, 16)
+
 
 
             ////////// End Character ///////////////
@@ -96,6 +108,7 @@ class Game extends Component {
 
             ///////// Collider  ////////////////
             new ColliderMonster(that, this, hero, slime)
+            new ColliderMonster(that, this, hero, slime2)
             new ColliderObject(this, hero, chest1)
             this.physics.add.collider(hero, world_layer);
             this.physics.add.collider(slime, world_layer);
@@ -131,7 +144,6 @@ class Game extends Component {
     size = document.querySelector("#game").clientWidth
     canvasHeight = size / 3.2
     canvasWidth = canvasHeight/1.8
-    console.log(canvasHeight);
     if (!this.props.characterInfo.name) {
       this.props.routingProps.history.push("/profile")
     }
@@ -149,8 +161,13 @@ class Game extends Component {
         <header className="Game-header">
           { !initialize &&
             <React.Fragment>
-              <div onClick={this.initializeGame} className="flex">
-                <a href="#Play" className="bttn">Play</a>
+              <div onClick={this.initializeGame} id="gameInit" className="flex">
+                <div>
+                  <img src={xiaoLaJi} alt="xiao_la_ji"/>
+                </div>
+                <button className="massive ui red button">
+                  Play
+                </button>
               </div>
             </React.Fragment>
           }

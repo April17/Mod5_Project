@@ -16,6 +16,9 @@ class Character extends Component {
           <img src={hero1} alt="hero1" />
         <div>
           <p>
+            MAX HP: {this.props.characterInfo.max_hp}
+          </p>
+          <p>
             HP: {this.props.characterInfo.hp}
           </p>
           <p>

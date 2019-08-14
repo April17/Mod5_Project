@@ -29,6 +29,8 @@ export default (state = defaultState, action) => {
       return action.payload
     case 'LOGIN_FAIL':
       return {...state}
+    case 'LOGOUT':
+      return null
     default:
       return state
   }

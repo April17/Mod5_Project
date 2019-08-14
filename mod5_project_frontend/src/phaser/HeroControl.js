@@ -65,11 +65,14 @@ export const heroControl = (game, hero, cursors) => {
     hero.attacking = false
   }
   if (cursors.K.isDown){
-    if (hero.hp < 1100) {
+    if (hero.hp < hero.max_hp) {
       hero.hp = hero.hp + 100
-      console.log("clicked");
+      if (hero.hp > hero.max_hp) {
+        hero.hp = hero.max_hp
+      }
       game.props.updateHeroStatus({ id: game.props.characterInfo.id,
                                     name: hero.name,
+                                    max_hp: hero.max_hp,
                                     hp: hero.hp,
                                     atk: hero.atk,
                                     def: hero.def,
@@ -81,6 +84,7 @@ export const heroControl = (game, hero, cursors) => {
     if (prevX !== hero.body.x) {
       game.props.updateHeroStatus({ id: game.props.characterInfo.id,
                                     name: hero.name,
+                                    max_hp: hero.max_hp,
                                     hp: hero.hp,
                                     atk: hero.atk,
                                     def: hero.def,
@@ -93,6 +97,7 @@ export const heroControl = (game, hero, cursors) => {
     if (prevY !== hero.body.y) {
       game.props.updateHeroStatus({ id: game.props.characterInfo.id,
                                     name: hero.name,
+                                    max_hp: hero.max_hp,
                                     hp: hero.hp,
                                     atk: hero.atk,
                                     def: hero.def,

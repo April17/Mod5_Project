@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_203020) do
+ActiveRecord::Schema.define(version: 2019_08_08_200919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,11 +24,15 @@ ActiveRecord::Schema.define(version: 2019_08_08_203020) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.integer "hp"
-    t.integer "atk"
-    t.integer "def"
-    t.integer "x"
-    t.integer "y"
+    t.integer "level", default: 1
+    t.integer "exp_next_level", default: 1000
+    t.integer "exp", default: 0
+    t.integer "max_hp", default: 1000
+    t.integer "hp", default: 100
+    t.integer "atk", default: 20
+    t.integer "def", default: 20
+    t.integer "x", default: 300
+    t.integer "y", default: 300
     t.integer "user_id"
     t.integer "world_id"
     t.datetime "created_at", null: false
@@ -40,21 +44,24 @@ ActiveRecord::Schema.define(version: 2019_08_08_203020) do
     t.string "effect"
     t.string "key"
     t.integer "status"
+    t.integer "rarity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "monsters", force: :cascade do |t|
     t.string "name"
-    t.integer "hp"
-    t.integer "atk"
-    t.integer "def"
-    t.integer "x"
-    t.integer "y"
+    t.string "monster_type"
+    t.integer "exp_provide", default: 100
+    t.integer "max_hp", default: 1000
+    t.integer "hp", default: 200
+    t.integer "atk", default: 20
+    t.integer "def", default: 20
+    t.integer "x", default: 350
+    t.integer "y", default: 350
     t.integer "world_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "monster_type"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,6 +74,7 @@ ActiveRecord::Schema.define(version: 2019_08_08_203020) do
 
   create_table "worlds", force: :cascade do |t|
     t.string "name"
+    t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

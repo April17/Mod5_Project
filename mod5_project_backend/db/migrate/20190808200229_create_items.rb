@@ -5,6 +5,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :effect
       t.string :key
       t.integer :status
+      t.integer :rarity
 
       t.timestamps
     end

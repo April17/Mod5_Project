@@ -35,3 +35,21 @@ export const getCurrentUser = () => dispatch => {
       dispatch(actions.gotUserInfo(userData))
     })
 }
+
+export const signUp = signUpData => dispatch => {
+  const config = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(signUpData)
+  }
+  return fetch(`${API_ROOT}/users`, config)
+    .then(rsp => rsp.json())
+}
+
+export const logOut = () => dispatch => {
+  localStorage.clear()
+  dispatch(actions.logOut())
+}
