@@ -144,7 +144,7 @@ class Game extends Component {
     size = document.querySelector("#game").clientWidth
     canvasHeight = size / 3.2
     canvasWidth = canvasHeight/1.8
-    if (!this.props.characterInfo.name) {
+    if (!this.props.characterInfo.name || localStorage.token === "undefined") {
       this.props.routingProps.history.push("/profile")
     }
   }

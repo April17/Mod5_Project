@@ -67,17 +67,17 @@ export const heroControl = (game, hero, cursors) => {
   if (cursors.K.isDown){
     if (hero.hp < hero.max_hp) {
       hero.hp = hero.hp + 100
-      if (hero.hp > hero.max_hp) {
-        hero.hp = hero.max_hp
-      }
-      game.props.updateHeroStatus({ id: game.props.characterInfo.id,
-                                    name: hero.name,
-                                    max_hp: hero.max_hp,
-                                    hp: hero.hp,
-                                    atk: hero.atk,
-                                    def: hero.def,
-                                    x: hero.body.x.toFixed(0),
-                                    y: hero.body.y.toFixed(0) })
+    if (hero.hp > hero.max_hp) {
+      hero.hp = hero.max_hp
+    }
+    game.props.updateHeroStatus({ id: game.props.characterInfo.id,
+                                  name: hero.name,
+                                  max_hp: hero.max_hp,
+                                  hp: hero.hp,
+                                  atk: hero.atk,
+                                  def: hero.def,
+                                  x: hero.body.x.toFixed(0),
+                                  y: hero.body.y.toFixed(0) })
     }
   }
   if (cursors.A.isUp || cursors.D.isUp) {
