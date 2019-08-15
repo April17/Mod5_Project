@@ -1,9 +1,8 @@
 import actions from "../actions/currentUserActions";
-import { API_ROOT } from '../../actioncable';
+import { API_ROOT, HEADERS } from '../../actioncable';
 
 
 export const logIn = logInData => dispatch => {
-  // logIn start
   const config = {
     method: 'POST',
     headers: {
@@ -52,4 +51,67 @@ export const signUp = signUpData => dispatch => {
 export const logOut = () => dispatch => {
   localStorage.clear()
   dispatch(actions.logOut())
+}
+
+export const editAccount = (newUserInfo) => dispatch => {
+  const config = {
+    method: 'PATCH',
+    headers: HEADERS,
+    body: JSON.stringify(newUserInfo)
+  }
+  return fetch(`${API_ROOT}/users/update`, config)
+    .then(rsp => rsp.json())
+    .then(data => {
+      if (!data.errors) {
+        dispatch(actions.gotUserInfo(data))
+      } else {
+        console.log(data.errors);
+      }
+    })
+}
+
+export const deleteAccount = () => dispatch => {
+  console.log("delete_accout");
+  const config = {
+    method: 'DELETE',
+    headers: HEADERS
+  }
+  return fetch(`${API_ROOT}/users/delete_accout`, config)
+    .then(rsp => rsp.json())
+  //push to Front Page
+}
+
+export const createCharacter = (newCharacterInfo) => dispatch => {
+  const config = {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify(newCharacterInfo)
+  }
+  return fetch(`${API_ROOT}/characters`, config)
+    .then(rsp => rsp.json())
+    .then(data => {
+      if (!data.errors) {
+        dispatch(actions.gotUserInfo(data))
+      } else {
+        console.log(data.errors);
+      }
+    })
+}
+
+export const deleteCharacter = (characterId) => dispatch => {
+  const config = {
+    method: 'DELETE',
+    headers: HEADERS,
+    body: JSON.stringify(characterId)
+  }
+  return fetch(`${API_ROOT}/characters/${characterId}`, config)
+    .then(rsp => rsp.json())
+    .then(data => {
+      if (!data.errors) {
+        dispatch(actions.gotUserInfo(data))
+      } else {
+        console.log(data.errors);
+      }
+    })
+  //fetch New user Info
 }

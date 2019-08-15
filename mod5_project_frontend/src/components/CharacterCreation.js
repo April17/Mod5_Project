@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid, Segment } from 'semantic-ui-react'
 import { connect } from "react-redux"
+import {createCharacter} from '../redux/adapters/currentUserAdapters'
 import '../assets/style/CharacterCreation.css'
 
 
@@ -41,23 +42,15 @@ class CharacterCreation extends React.Component{
     }
   }
 
-  handleSubmit = () => {
-    // this.props.signUp(this.state)
-    // .then(data => {
-    //   if (data.success) {
-    //     console.log(data.success);
-    //     this.props.history.push("/")
-    //   }
-    // })
-    // .catch(error => {
-    //   console.log(error);
-    // })
+  handleSubmit = (event) => {
+    console.log(event.currentTarget);
+    this.props.createCharacter(this.state)
   }
 
   render() {
     return(
       <Grid.Column textAlign='center'>
-        <Form onSubmit={this.handleSubmit}>
+        <Form >
           <Segment>
             <Form.Field>
               <Grid columns={3} textAlign='center'>
@@ -72,6 +65,7 @@ class CharacterCreation extends React.Component{
               </Grid.Column>
             </Grid>
             <Form.Field>
+              HP
               <Grid columns={3}>
                 <Grid.Column textAlign='right'>
                   <Button name="minus" icon='minus' onClick={this.handleHpChange}/>
@@ -85,6 +79,7 @@ class CharacterCreation extends React.Component{
               </Grid>
             </Form.Field>
             <Form.Field>
+              ATK
               <Grid columns={3}>
                 <Grid.Column textAlign='right'>
                   <Button name="minus" icon='minus' onClick={this.handleAtkChange}/>
@@ -98,6 +93,7 @@ class CharacterCreation extends React.Component{
               </Grid>
             </Form.Field>
             <Form.Field>
+              DEF
               <Grid columns={3}>
                 <Grid.Column textAlign='right'>
                   <Button name="minus" icon='minus' onClick={this.handleDefChange}/>
@@ -110,7 +106,7 @@ class CharacterCreation extends React.Component{
                 </Grid.Column>
               </Grid>
             </Form.Field>
-            <Button color='green' type='submit'>Create</Button>
+            <Button color='green' type='submit' onClick={this.handleSubmit} >Create</Button>
           </Segment>
         </Form>
       </Grid.Column>
@@ -125,7 +121,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  createCharacter: null
+  createCharacter: createCharacter
 }
 
 export default connect(

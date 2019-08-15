@@ -4,7 +4,6 @@ export class ColliderMonster {
     scene.physics.world.addCollider(hero, monster, (hero: Hero, monster: monsterClassName) => {
      if (hero.attacking === true) {
        monster.hp = monster.hp - 10
-       console.log("Slime HP: ", monster.hp);
        game.props.updateMonsterStatus({name: monster.name, hp: monster.hp})
        if (hero.body.facing === 13) {
          monster.flipX = false

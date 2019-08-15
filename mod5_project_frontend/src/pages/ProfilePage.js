@@ -6,6 +6,7 @@ import Character from '../components/Character'
 import EditAccount from '../components/EditAccount'
 import CharacterCreation from '../components/CharacterCreation'
 import {initGame} from '../redux/adapters/heroStatusAdapters'
+import {deleteAccount} from '../redux/adapters/currentUserAdapters'
 import { Button, Header, Image, Modal, Grid, Segment, Icon } from 'semantic-ui-react'
 import xiaoLaJi from '../assets/active_resources/xiao_la_ji.gif'
 import heroPreview from '../assets/active_resources/heroPreview.gif'
@@ -14,6 +15,10 @@ import heroPreview from '../assets/active_resources/heroPreview.gif'
 
 
 class ProfilePage extends Component {
+
+  state = {
+    delete_accout: false
+  }
 
   componentDidMount(){
     if (localStorage.token === "undefined") {
@@ -31,7 +36,23 @@ class ProfilePage extends Component {
     this.props.history.push("/game")
   }
 
+  handleModal = (event) => {
+    this.setState({delete_accout: !this.state.delete_accout})
+  }
 
+  handleDelete = (event) => {
+    this.setState({delete_accout: !this.state.delete_accout})
+    this.props.deleteAccount(this.props.user.username)
+      .then(data => {
+        if (!data.errors) {
+          localStorage.clear()
+          console.log(data.success);
+          this.props.history.push("/")
+        } else {
+          console.log(data.errors);
+        }
+      })
+  }
 
   render() {
     if (!this.props.user) {
@@ -67,7 +88,7 @@ class ProfilePage extends Component {
                   </Grid.Row>
                   <Grid.Column width={16}>
                     <Segment>
-                      <Modal trigger={<Button color='green' size='small' >Edit Account</Button>} closeIcon>
+                      <Modal name="edit_accout" dimmer="blurring" trigger={<Button color='green' size='small' >Edit Account</Button>} closeIcon>
                         <Modal.Header>Edit Account</Modal.Header>
                         <Modal.Content>
                           <Grid columns={2} divided>
@@ -86,7 +107,7 @@ class ProfilePage extends Component {
                   </Grid.Column>
                   <Grid.Column width={16}>
                     <Segment>
-                      <Modal className="delete_account_modal" trigger={<Button color='red' size="tiny">Delete Account</Button>} basic size='small'>
+                      <Modal name="delete_accout" open={this.state.delete_accout} trigger={<Button name="delete_accout" onClick={this.handleModal} color='red' size="tiny">Delete Account</Button>} basic size='small'>
                         <Header icon='trash alternate' content='Delete Account?' />
                         <Modal.Content>
                           <p>
@@ -94,10 +115,10 @@ class ProfilePage extends Component {
                           </p>
                         </Modal.Content>
                         <Modal.Actions>
-                          <Button color='green' inverted>
+                          <Button onClick={this.handleModal} color='green' inverted>
                             <Icon name='remove' /> Cancel
                           </Button>
-                          <Button onClick={null} color='red' inverted>
+                          <Button onClick={this.handleDelete} color='red' inverted>
                             <Icon name='checkmark' /> Confirm
                           </Button>
                         </Modal.Actions>
@@ -115,12 +136,12 @@ class ProfilePage extends Component {
                 </div>
               </Segment>
               <Segment>
-                <Modal trigger={<Button color='green' size='medium' >Create Character</Button>} closeOnDimmerClick={false} closeIcon>
+                <Modal name="create_character" dimmer="blurring" trigger={<Button color='green' size='medium' >Create Character</Button>} closeOnDimmerClick={false} closeIcon>
                   <Modal.Header>Character Creation</Modal.Header>
                   <Modal.Content>
                     <Grid columns={1}>
                       <Grid.Column>
-                        <Image src={heroPreview} size='medium' centered />
+                        <Image src={heroPreview} size='small' centered />
                       </Grid.Column>
                       <CharacterCreation />
                     </Grid>
@@ -142,7 +163,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  initGame: initGame
+  initGame: initGame,
+  deleteAccount: deleteAccount
 }
 
 export default withAuth(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfilePage)));

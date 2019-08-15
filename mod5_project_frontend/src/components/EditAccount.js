@@ -1,10 +1,14 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
 import { connect } from "react-redux"
+import { withRouter } from 'react-router-dom'
+import {editAccount} from '../redux/adapters/currentUserAdapters'
+
 
 
 class EditAccount extends React.Component{
   state = {
+    id: this.props.user.id,
     name: '',
     password: '',
     password_confirmation: ''
@@ -15,16 +19,16 @@ class EditAccount extends React.Component{
   }
 
   handleSubmit = () => {
-    // this.props.signUp(this.state)
-    // .then(data => {
-    //   if (data.success) {
-    //     console.log(data.success);
-    //     this.props.history.push("/")
-    //   }
-    // })
-    // .catch(error => {
-    //   console.log(error);
-    // })
+    this.props.editAccount(this.state)
+      // .then(data => {
+      //   if (data.success) {
+      //     console.log(data.success);
+      //     this.props.history.push("/profile")
+      //   }
+      // })
+      // .catch(error => {
+      //   console.log(error);
+      // })
   }
 
   render() {
@@ -59,10 +63,10 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  editAccount: null
+  editAccount: editAccount
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(EditAccount);
+  )(withRouter(EditAccount));

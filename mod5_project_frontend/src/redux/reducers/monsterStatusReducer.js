@@ -11,7 +11,6 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'MONSTER_STATUS':
-    console.log(action.payload);
       return action.payload
     default:
       return state

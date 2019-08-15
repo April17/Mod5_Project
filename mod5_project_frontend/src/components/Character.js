@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import {deleteCharacter} from '../redux/adapters/currentUserAdapters'
 import hero1 from '../assets/active_resources/Hero1.gif'
 
 
 class Character extends Component {
 
+  state = {
+    delete_character: false
+  }
 
   handlePlay = (event) => {
     let modal = document.querySelector(".delete_character_modal")
@@ -15,8 +20,13 @@ class Character extends Component {
     }
   }
 
+  handleModal = (event) => {
+    this.setState({delete_character: !this.state.delete_character})
+  }
+
   handleDelete = (event) => {
-    console.log("Delete Character");
+    this.setState({delete_character: !this.state.delete_character})
+    this.props.deleteCharacter(this.props.characterInfo.id)
   }
 
   render() {
@@ -54,7 +64,7 @@ class Character extends Component {
             y: {this.props.characterInfo.y}
           </span>
           <span className="delete_character">
-            <Modal className="delete_character_modal" trigger={<Button id={this.props.characterInfo.id} color='red' size="tiny">Delete Character</Button>} basic size='small'>
+            <Modal className="delete_character_modal" open={this.state.delete_character} trigger={<Button id={this.props.characterInfo.id} onClick={this.handleModal} color='red' size="tiny">Delete Character</Button>} basic size='small'>
               <Header icon='trash alternate' content='Delete Character?' />
               <Modal.Content>
                 <p>
@@ -62,7 +72,7 @@ class Character extends Component {
                 </p>
               </Modal.Content>
               <Modal.Actions>
-                <Button color='green' inverted>
+                <Button onClick={this.handleModal} color='green' inverted>
                   <Icon name='remove' /> Cancel
                 </Button>
                 <Button onClick={this.handleDelete} color='red' inverted>
@@ -77,4 +87,11 @@ class Character extends Component {
   }
 }
 
-export default Character;
+const mapDispatchToProps = {
+  deleteCharacter: deleteCharacter
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+  )(Character);
