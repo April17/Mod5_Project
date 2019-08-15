@@ -17,7 +17,8 @@ import heroPreview from '../assets/active_resources/heroPreview.gif'
 class ProfilePage extends Component {
 
   state = {
-    delete_accout: false
+    delete_accout: false,
+    edit_account: false
   }
 
   componentDidMount(){
@@ -37,7 +38,8 @@ class ProfilePage extends Component {
   }
 
   handleModal = (event) => {
-    this.setState({delete_accout: !this.state.delete_accout})
+    let bol = (event.target.value === "true")
+    this.setState({[event.target.name]: bol})
   }
 
   handleDelete = (event) => {
@@ -88,7 +90,7 @@ class ProfilePage extends Component {
                   </Grid.Row>
                   <Grid.Column width={16}>
                     <Segment>
-                      <Modal name="edit_accout" dimmer="blurring" trigger={<Button color='green' size='small' >Edit Account</Button>} closeIcon>
+                      <Modal dimmer="blurring" trigger={<Button name="edit_account" value={true} onClick={this.handleModal} color='green' size='small' >Edit Account</Button>} closeIcon>
                         <Modal.Header>Edit Account</Modal.Header>
                         <Modal.Content>
                           <Grid columns={2} divided>
@@ -98,7 +100,7 @@ class ProfilePage extends Component {
                                   <Image src={xiaoLaJi} size='medium' wrapped />
                                 </Segment>
                               </Grid.Column>
-                              <EditAccount />
+                              <EditAccount handleModal={this.handleModal}/>
                             </Grid.Row>
                           </Grid>
                         </Modal.Content>
@@ -107,7 +109,7 @@ class ProfilePage extends Component {
                   </Grid.Column>
                   <Grid.Column width={16}>
                     <Segment>
-                      <Modal name="delete_accout" open={this.state.delete_accout} trigger={<Button name="delete_accout" onClick={this.handleModal} color='red' size="tiny">Delete Account</Button>} basic size='small'>
+                      <Modal open={this.state.delete_accout} trigger={<Button name="delete_accout" value={true} onClick={this.handleModal} color='red' size="tiny">Delete Account</Button>} basic size='small'>
                         <Header icon='trash alternate' content='Delete Account?' />
                         <Modal.Content>
                           <p>
@@ -115,10 +117,10 @@ class ProfilePage extends Component {
                           </p>
                         </Modal.Content>
                         <Modal.Actions>
-                          <Button onClick={this.handleModal} color='green' inverted>
+                          <Button name="delete_accout" value={false} onClick={this.handleModal} color='green' inverted>
                             <Icon name='remove' /> Cancel
                           </Button>
-                          <Button onClick={this.handleDelete} color='red' inverted>
+                          <Button name="delete_accout" value={false} onClick={this.handleDelete} color='red' inverted>
                             <Icon name='checkmark' /> Confirm
                           </Button>
                         </Modal.Actions>
@@ -136,7 +138,7 @@ class ProfilePage extends Component {
                 </div>
               </Segment>
               <Segment>
-                <Modal name="create_character" dimmer="blurring" trigger={<Button color='green' size='medium' >Create Character</Button>} closeOnDimmerClick={false} closeIcon>
+                <Modal dimmer="blurring" trigger={<Button name="create_character" value={true} color='green' size='medium' onClick={this.modalHandler}>Create Character</Button>} closeOnDimmerClick={false} closeIcon>
                   <Modal.Header>Character Creation</Modal.Header>
                   <Modal.Content>
                     <Grid columns={1}>

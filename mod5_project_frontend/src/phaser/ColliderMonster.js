@@ -1,33 +1,36 @@
 export class ColliderMonster {
   constructor (game, scene, hero, monster) {
     const monsterClassName = monster.constructor.name
+    let monsterStatus = {name: monster.name, monster_type: monster.monster_type, exp_provide: monster.exp_provide, max_hp: monster.max_hp, hp: monster.hp, atk: monster.atk, def: monster.def}
     scene.physics.world.addCollider(hero, monster, (hero: Hero, monster: monsterClassName) => {
      if (hero.attacking === true) {
-       monster.hp = monster.hp - 10
-       game.props.updateMonsterStatus({name: monster.name, hp: monster.hp})
+       monster.hp = monster.hp - hero.atk
+       game.props.updateMonsterStatus({...monsterStatus, hp: monster.hp})
        if (hero.body.facing === 13) {
          monster.flipX = false
-         monster.anims.nextAnim = `${monster.type}-idel-sideway`
-         monster.anims.play(`${monster.type}-hit-sideway`, true)
+         monster.anims.nextAnim = `${monster.monster_type}-idel-sideway`
+         monster.anims.play(`${monster.monster_type}-hit-sideway`, true)
          monster.setX(monster.x - 8)
        } else if (hero.body.facing === 14) {
          monster.flipX = true
-         monster.anims.nextAnim = `${monster.type}-idel-sideway`
-         monster.anims.play(`${monster.type}-hit-sideway`, true)
+         monster.anims.nextAnim = `${monster.monster_type}-idel-sideway`
+         monster.anims.play(`${monster.monster_type}-hit-sideway`, true)
          monster.setX(monster.x + 8)
        } else if (hero.body.facing === 11) {
          monster.flipX = false
-         monster.anims.nextAnim = `${monster.type}-idel-down`
-         monster.anims.play(`${monster.type}-hit-up`, true)
+         monster.anims.nextAnim = `${monster.monster_type}-idel-down`
+         monster.anims.play(`${monster.monster_type}-hit-up`, true)
          monster.setY(monster.y - 8)
        } else if (hero.body.facing === 12) {
          monster.flipX = false
-         monster.anims.nextAnim = `${monster.type}-idel-up`
-         monster.anims.play(`${monster.type}-hit-down`, true)
+         monster.anims.nextAnim = `${monster.monster_type}-idel-up`
+         monster.anims.play(`${monster.monster_type}-hit-down`, true)
          monster.setY(monster.y + 8)
        }
      } else {
-       hero.hp = hero.hp - 50
+       if (hero.hp > 50) {
+         hero.hp = hero.hp - monster.atk
+       }
        if (hero.body.facing === 13) {
          hero.flipX = true
          hero.anims.nextAnim = `idel-sideway`
@@ -52,6 +55,8 @@ export class ColliderMonster {
      }
      if (monster.hp < 0) {
        monster.destroy()
+       hero.exp = hero.exp + monster.exp_provide
+       hero.x = hero.x + 0.01
      }
    })
  }

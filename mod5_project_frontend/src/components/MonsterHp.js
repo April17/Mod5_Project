@@ -10,7 +10,7 @@ class MonsterHp extends Component {
       <div className="ui centered grid">
         <div className="ten wide column">
           {this.props.monster.name}:
-          <Progress total={100} value={this.props.monster.hp} inverted color='red' active size='medium'/>
+          <Progress total={this.props.monster.max_hp} value={this.props.monster.hp} inverted color='red' active size='medium'/>
         </div>
       </div>
     )

@@ -21,7 +21,8 @@ class Character extends Component {
   }
 
   handleModal = (event) => {
-    this.setState({delete_character: !this.state.delete_character})
+    let bol = (event.target.value === "true")
+    this.setState({[event.target.name]: bol})
   }
 
   handleDelete = (event) => {
@@ -64,7 +65,7 @@ class Character extends Component {
             y: {this.props.characterInfo.y}
           </span>
           <span className="delete_character">
-            <Modal className="delete_character_modal" open={this.state.delete_character} trigger={<Button id={this.props.characterInfo.id} onClick={this.handleModal} color='red' size="tiny">Delete Character</Button>} basic size='small'>
+            <Modal className="delete_character_modal" open={this.state.delete_character} trigger={<Button id={this.props.characterInfo.id} name="delete_character" value={true} onClick={this.handleModal} color='red' size="tiny">Delete Character</Button>} basic size='small'>
               <Header icon='trash alternate' content='Delete Character?' />
               <Modal.Content>
                 <p>
@@ -72,10 +73,10 @@ class Character extends Component {
                 </p>
               </Modal.Content>
               <Modal.Actions>
-                <Button onClick={this.handleModal} color='green' inverted>
+                <Button onClick={this.handleModal} name="delete_character" value={false} color='green' inverted>
                   <Icon name='remove' /> Cancel
                 </Button>
-                <Button onClick={this.handleDelete} color='red' inverted>
+                <Button onClick={this.handleDelete} name="delete_character" value={false} color='red' inverted>
                   <Icon name='checkmark' /> Confirm
                 </Button>
               </Modal.Actions>

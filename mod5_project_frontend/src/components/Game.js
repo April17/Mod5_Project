@@ -75,27 +75,30 @@ class Game extends Component {
             /////////// End Map /////////////////////
 
             /////////// Character ///////////////////
-            hero = new Hero(this,
-                            (that.props.characterInfo.x+8),
-                            (that.props.characterInfo.y+8),
-                            "hero",
-                            that.props.characterInfo.name,
-                            that.props.characterInfo.max_hp,
-                            that.props.characterInfo.hp,
-                            that.props.characterInfo.atk,
-                            that.props.characterInfo.def )
-                            .setSize(16, 16)
+            hero = new Hero(this, "hero", that.props.characterInfo)
             slime = new Slime(this,
                               400,
                               300,
                               "slime",
-                              "Sam")
+                              "Sam",
+                              "slime",
+                              100,
+                              300,
+                              300,
+                              10,
+                              20)
                               .setSize(16, 16)
             slime2 = new Slime(this,
-                              430,
-                              300,
+                              450,
+                              330,
                               "slime",
-                              "Tom")
+                              "Tom",
+                              "slime",
+                              400,
+                              300,
+                              300,
+                              100,
+                              20)
                               .setSize(16, 16)
 
 

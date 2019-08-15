@@ -1,6 +1,10 @@
 const defaultState = {
   id: 0,
   name: "",
+  level: 1,
+  exp_next_level: 100,
+  exp: 0,
+  max_hp: 100,
   hp: 1,
   atk: 10,
   def: 10,

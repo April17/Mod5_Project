@@ -1,30 +1,44 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Progress } from 'semantic-ui-react'
+import { Progress, Grid, Segment } from 'semantic-ui-react'
 
 
 class HeroStatus extends Component {
 
   render(){
+    if (!this.props.player.id) {
+      return(
+        <p> Getting your Information </p>
+      )
+    }
     return(
-      <div className="ui centered two column grid">
-        <div className="row">
-          <div className="five wide column">
-            <Progress total={this.props.player.max_hp} value={this.props.player.hp} inverted color='red' active size='large'/>
-          </div>
-          <div className="five wide column">
-            Atk: {this.props.player.atk}
-          </div >
-        </div>
-        <div className="row">
-          <div className="five wide column">
-            HP: {this.props.player.max_hp}/{this.props.player.hp}
-          </div>
-          <div className="five wide column">
-            Def: {this.props.player.def}
-          </div>
-        </div>
-      </div>
+      <Grid columns={3} textAlign='center'>
+        <Grid.Row stretched>
+          <Grid.Column textAlign='center'>
+            <Segment>
+              Lv: {this.props.player.level}
+            </Segment>
+            <Segment>
+              <Progress total={this.props.player.exp_next_level} value={this.props.player.exp} inverted color='yellow' active size='small'/>
+                EXP: {this.props.player.exp}/{this.props.player.exp_next_level}
+            </Segment>
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Segment>
+              <Progress total={this.props.player.max_hp} value={this.props.player.hp} inverted color='red' active size='small'/>
+                HP: {this.props.player.hp}/{this.props.player.max_hp}
+            </Segment>
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Segment>
+              Atk: {this.props.player.atk}
+            </Segment>
+            <Segment>
+              Def: {this.props.player.def}
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 }

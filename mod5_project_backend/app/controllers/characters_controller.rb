@@ -39,5 +39,5 @@ end
 private
 
 def character_params
-  params.require(:character).permit(:name, :max_hp, :hp, :atk, :def, :x, :y)
+  params.require(:character).permit(:name, :exp, :max_hp, :hp, :atk, :def, :x, :y)
 end

@@ -5,10 +5,7 @@ import { API_ROOT, HEADERS } from '../../actioncable';
 export const logIn = logInData => dispatch => {
   const config = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
+    headers: HEADERS,
     body: JSON.stringify(logInData)
   }
   return fetch(`${API_ROOT}/login`, config)
@@ -38,10 +35,7 @@ export const getCurrentUser = () => dispatch => {
 export const signUp = signUpData => dispatch => {
   const config = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
+    headers: HEADERS,
     body: JSON.stringify(signUpData)
   }
   return fetch(`${API_ROOT}/users`, config)
@@ -56,7 +50,11 @@ export const logOut = () => dispatch => {
 export const editAccount = (newUserInfo) => dispatch => {
   const config = {
     method: 'PATCH',
-    headers: HEADERS,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: localStorage.token
+    },
     body: JSON.stringify(newUserInfo)
   }
   return fetch(`${API_ROOT}/users/update`, config)
@@ -74,7 +72,11 @@ export const deleteAccount = () => dispatch => {
   console.log("delete_accout");
   const config = {
     method: 'DELETE',
-    headers: HEADERS
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: localStorage.token
+    }
   }
   return fetch(`${API_ROOT}/users/delete_accout`, config)
     .then(rsp => rsp.json())
@@ -84,7 +86,11 @@ export const deleteAccount = () => dispatch => {
 export const createCharacter = (newCharacterInfo) => dispatch => {
   const config = {
     method: 'POST',
-    headers: HEADERS,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: localStorage.token
+    },
     body: JSON.stringify(newCharacterInfo)
   }
   return fetch(`${API_ROOT}/characters`, config)
@@ -101,7 +107,11 @@ export const createCharacter = (newCharacterInfo) => dispatch => {
 export const deleteCharacter = (characterId) => dispatch => {
   const config = {
     method: 'DELETE',
-    headers: HEADERS,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: localStorage.token
+    },
     body: JSON.stringify(characterId)
   }
   return fetch(`${API_ROOT}/characters/${characterId}`, config)

@@ -18,23 +18,15 @@ class EditAccount extends React.Component{
     this.setState({[event.target.name]: event.target.value});
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
     this.props.editAccount(this.state)
-      // .then(data => {
-      //   if (data.success) {
-      //     console.log(data.success);
-      //     this.props.history.push("/profile")
-      //   }
-      // })
-      // .catch(error => {
-      //   console.log(error);
-      // })
+    this.props.handleModal(event)
   }
 
   render() {
     return(
       <Grid.Column textAlign='center'>
-        <Form onSubmit={this.handleSubmit}>
+        <Form>
           <Segment>
             <Form.Field>
               <Header as='h3'>{this.props.user.username}</Header>
@@ -48,7 +40,7 @@ class EditAccount extends React.Component{
             <Form.Field>
               <input type="password" name="password_confirmation" onChange={this.handleChange} placeholder='Confirm Password' />
             </Form.Field>
-            <Button color='green' type='submit'>Submit</Button>
+            <Button name="edit_account" value={false} color='green' type='submit' onClick={this.handleSubmit}>Submit</Button>
           </Segment>
         </Form>
       </Grid.Column>

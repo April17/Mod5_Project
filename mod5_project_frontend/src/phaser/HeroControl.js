@@ -1,6 +1,17 @@
 let prevX = 0;
 let prevY = 0;
 export const heroControl = (game, hero, cursors) => {
+  let heroStatus = {id: game.props.characterInfo.id,
+                    name: hero.name,
+                    level: hero.level,
+                    exp_next_level: hero.exp_next_level,
+                    exp: hero.exp,
+                    max_hp: hero.max_hp,
+                    hp: hero.hp,
+                    atk: hero.atk,
+                    def: hero.def,
+                    x: hero.body.x.toFixed(0),
+                    y: hero.body.y.toFixed(0) }
   const speed = 100;
   const prevVelocity = hero.body.velocity.clone();
   hero.body.setVelocity(0);
@@ -70,39 +81,18 @@ export const heroControl = (game, hero, cursors) => {
     if (hero.hp > hero.max_hp) {
       hero.hp = hero.max_hp
     }
-    game.props.updateHeroStatus({ id: game.props.characterInfo.id,
-                                  name: hero.name,
-                                  max_hp: hero.max_hp,
-                                  hp: hero.hp,
-                                  atk: hero.atk,
-                                  def: hero.def,
-                                  x: hero.body.x.toFixed(0),
-                                  y: hero.body.y.toFixed(0) })
+    game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
     }
   }
   if (cursors.A.isUp || cursors.D.isUp) {
     if (prevX !== hero.body.x) {
-      game.props.updateHeroStatus({ id: game.props.characterInfo.id,
-                                    name: hero.name,
-                                    max_hp: hero.max_hp,
-                                    hp: hero.hp,
-                                    atk: hero.atk,
-                                    def: hero.def,
-                                    x: hero.body.x.toFixed(0),
-                                    y: hero.body.y.toFixed(0) })
+      game.props.updateHeroStatus({...heroStatus, x: hero.body.x.toFixed(0)})
       prevX = hero.body.x
     }
   }
   if (cursors.W.isUp || cursors.S.isUp) {
     if (prevY !== hero.body.y) {
-      game.props.updateHeroStatus({ id: game.props.characterInfo.id,
-                                    name: hero.name,
-                                    max_hp: hero.max_hp,
-                                    hp: hero.hp,
-                                    atk: hero.atk,
-                                    def: hero.def,
-                                    x: hero.body.x.toFixed(0),
-                                    y: hero.body.y.toFixed(0) })
+      game.props.updateHeroStatus({...heroStatus, y: hero.body.y.toFixed(0)})
       prevY = hero.body.y
     }
   }

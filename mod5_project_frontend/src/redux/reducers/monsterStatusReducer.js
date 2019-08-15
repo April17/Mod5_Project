@@ -1,6 +1,9 @@
 const defaultState = {
   id: 0,
   name: "Unknown",
+  monster_type: "Unknown",
+  exp_provide: 1,
+  max_hp:100,
   hp: 1,
   atk: 10,
   def: 10,

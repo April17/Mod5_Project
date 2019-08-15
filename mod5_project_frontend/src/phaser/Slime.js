@@ -1,20 +1,24 @@
 export class Slime extends Phaser.Physics.Arcade.Sprite {
     name = "";
-    type = "";
+    monster_type = "";
+    exp_provide = 0;
+    max_hp = 0;
     hp = 0;
     atk = 0;
     def = 0;
-    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, name: string) {
+    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, name: string, monster_type, exp_provide, max_hp, hp, atk, def) {
         super(scene, x, y, texture);
         scene.sys.updateList.add(this);
         scene.sys.displayList.add(this);
         scene.physics.world.enableBody(this);
         this.setImmovable(true);
         this.name = name;
-        this.type = "slime"
-        this.hp = 100;
-        this.atk = 10;
-        this.def = 20;
+        this.monster_type = monster_type;
+        this.exp_provide = exp_provide;
+        this.max_hp = max_hp;
+        this.hp = hp;
+        this.atk = atk;
+        this.def = def;
         // debugger
         scene.anims.create({
           key: "slime-vetory",
