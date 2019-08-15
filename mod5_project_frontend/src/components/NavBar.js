@@ -18,22 +18,28 @@ class NavBar extends Component {
 
     return (
       <Menu>
-        <Menu.Item name='browse' onClick={null}>
+        <Menu.Item name='browse'>
           Dungeon Online
         </Menu.Item>
+        {this.props.user ?
+          ( <Menu.Item name='browse'>
+              Welcome back {this.props.user.name}
+            </Menu.Item> ) :
+          ( null )
+        }
         <Menu.Menu position='right'>
         {
           this.props.user ? (
             <Fragment>
-              <Menu.Item name='account' onClick={null}>
+              <Menu.Item name='account'>
                 <Link to="/profile">Account</Link>
               </Menu.Item>
-              <Menu.Item name='logout' onClick={this.onLogout}>
-                <Link to="#logout">Logout</Link>
+              <Menu.Item name='logout'>
+                <Link onClick={this.onLogout} to="#logout">Logout</Link>
               </Menu.Item>
             </Fragment>
           ) : (
-            <Menu.Item name='signup' onClick={null}>
+            <Menu.Item name='signup'>
               <Link to="/signup">Sign Up</Link>
             </Menu.Item>
           )
