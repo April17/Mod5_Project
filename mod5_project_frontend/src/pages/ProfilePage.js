@@ -10,6 +10,7 @@ import {deleteAccount} from '../redux/adapters/currentUserAdapters'
 import {modalToggle} from '../redux/adapters/utilityAdapters'
 import { Button, Header, Image, Modal, Grid, Segment, Icon } from 'semantic-ui-react'
 import xiaoLaJi from '../assets/active_resources/xiao_la_ji.gif'
+import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
 import heroPreview from '../assets/active_resources/heroPreview.gif'
 
 
@@ -55,7 +56,10 @@ class ProfilePage extends Component {
   render() {
     if (!this.props.user) {
       return(
-        <p> Getting your Information </p>
+        <div>
+          <img src={xiaoLaJi2} alt="xiaoLaJi2"/>
+          <p> Getting your Information </p>
+        </div>
       )
     }
     return (

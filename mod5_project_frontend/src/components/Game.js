@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux"
+import { updateHeroStatus } from '../redux/adapters/heroStatusAdapters'
+import { updateMonsterStatus } from '../redux/adapters/monsterStatusAdapters'
 import Phaser from 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
 import { Hero } from "../phaser/Hero"
 import { Slime } from "../phaser/Slime"
 import { Chest } from "../phaser/Chest"
-import { connect } from "react-redux"
+import { heroControl } from '../phaser/HeroControl'
+import { slimeMovement } from '../phaser/SlimeMovement'
+import { levelSystem } from '../phaser/GameMechanic'
+import { ColliderMonster } from '../phaser/ColliderMonster'
+import { ColliderObject } from '../phaser/ColliderObject'
 import xiaoLaJi from '../assets/active_resources/xiao_la_ji.gif'
 import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
 import slimetile from '../assets/active_resources/chara_slime.png'
 import dungeonSprites from '../assets/active_resources/tiles_dungeon_v1.png'
-import { updateHeroStatus } from '../redux/adapters/heroStatusAdapters'
-import { updateMonsterStatus } from '../redux/adapters/monsterStatusAdapters'
-import { heroControl } from '../phaser/HeroControl'
-import { slimeMovement } from '../phaser/SlimeMovement'
-import { ColliderMonster } from '../phaser/ColliderMonster'
-import { ColliderObject } from '../phaser/ColliderObject'
 import '../assets/style/Game.css'
 
 
@@ -27,9 +28,6 @@ let slime;
 let slime2
 let cursors;
 let that;
-let size;
-let canvasHeight = 320
-let canvasWidth = 180
 // let chest1Img = new Image()
 class Game extends Component {
   constructor(props) {
@@ -38,8 +36,8 @@ class Game extends Component {
     this.state = {
       initialize: false,
       game: {
-        width: canvasHeight,
-        height: canvasWidth,
+        width: 480,
+        height: 270,
         type: Phaser.AUTO,
         physics: {
           default: "arcade",
@@ -82,6 +80,7 @@ class Game extends Component {
                               300,
                               "slime",
                               "Sam",
+                              1,
                               "slime",
                               1000,
                               300,
@@ -94,12 +93,13 @@ class Game extends Component {
                               330,
                               "slime",
                               "Tom",
+                              30,
                               "slime",
                               1000,
                               300,
                               300,
                               100,
-                              20)
+                              200)
                               .setSize(16, 16)
             ////////// End Character ///////////////
 
@@ -127,7 +127,7 @@ class Game extends Component {
             camera.startFollow(hero);
             camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
             cursors = this.input.keyboard.addKeys("W, A, S, D, J, K");
-            this.scale.setZoom(3.2)
+            this.scale.setZoom(4.2)
             /////////// End Camera and Controls ///////////////////
           },
           update: function(time, delta) {
@@ -135,11 +135,7 @@ class Game extends Component {
             if (slime.active === true) {
               slimeMovement(that, slime, this, hero)
             }
-            if (hero.exp >= hero.exp_next_level) {
-              hero.level ++
-              hero.exp = hero.exp - hero.exp_next_level
-              hero.exp_next_level = hero.exp_next_level + 1000
-            }
+            levelSystem(hero)
           }
         }
       }
@@ -147,9 +143,6 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    size = document.querySelector("#game").clientWidth
-    canvasHeight = size / 3.2
-    canvasWidth = canvasHeight/1.8
     if (!this.props.characterInfo.name || localStorage.token === "undefined") {
       this.props.routingProps.history.push("/profile")
     }

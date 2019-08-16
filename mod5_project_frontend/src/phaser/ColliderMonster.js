@@ -1,10 +1,12 @@
+import { damageSystem } from './GameMechanic'
+
 export class ColliderMonster {
   constructor (game, scene, hero, monster) {
     const monsterClassName = monster.constructor.name
     let monsterStatus = {name: monster.name, monster_type: monster.monster_type, exp_provide: monster.exp_provide, max_hp: monster.max_hp, hp: monster.hp, atk: monster.atk, def: monster.def}
     scene.physics.world.addCollider(hero, monster, (hero: Hero, monster: monsterClassName) => {
      if (hero.attacking === true) {
-       monster.hp = monster.hp - hero.atk
+       damageSystem(hero, monster)
        game.props.updateMonsterStatus({...monsterStatus, hp: monster.hp})
        if (hero.body.facing === 13) {
          monster.flipX = false
@@ -29,7 +31,7 @@ export class ColliderMonster {
        }
      } else {
        if (hero.hp > 50) {
-         hero.hp = hero.hp - monster.atk
+         damageSystem(monster, hero)
        }
        if (hero.body.facing === 13) {
          hero.flipX = true
@@ -56,6 +58,7 @@ export class ColliderMonster {
      if (monster.hp < 0) {
        monster.destroy()
        hero.exp = hero.exp + monster.exp_provide
+       console.log(`${hero.name} obtain ${monster.exp_provide} EXP`);
        hero.x = hero.x + 0.01
      }
    })

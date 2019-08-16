@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
-
+import { Grid, Segment, Statistic, Icon } from 'semantic-ui-react'
 
 class PlayerLog extends Component {
 
   render(){
     return(
-      <div className="ui centered grid">
-        <div className="one column row">
-          <div className="three wide column">
-            PlayerLog
-          </div>
-        </div>
-        <div className="tow column row">
-          <div className="left floated column cord">
-            <p>x: {this.props.player.x}</p>
-          </div>
-          <div className="left floated column cord">
-            <p>y: {this.props.player.y}</p>
-          </div>
-        </div>
-      </div>
+      <Grid column={1} textAlign="left">
+        <Grid.Row column={1}>
+          <Grid.Column width={16}>
+            <Segment className="transparent">
+              <Statistic size='mini'>
+                <Statistic.Value><Icon name="map pin"/>{this.props.player.x}</Statistic.Value>
+              </Statistic>
+              <Statistic size='mini'>
+                <Statistic.Value floated="right">{this.props.player.y}</Statistic.Value>
+              </Statistic>
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 }

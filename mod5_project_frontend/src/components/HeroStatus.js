@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Progress, Grid, Segment } from 'semantic-ui-react'
+import { Progress, Grid, Segment, Header } from 'semantic-ui-react'
+// import '../assets/style/HeroStatus.css'
 
 
 class HeroStatus extends Component {
@@ -15,26 +16,26 @@ class HeroStatus extends Component {
       <Grid columns={3} textAlign='center'>
         <Grid.Row stretched>
           <Grid.Column textAlign='center'>
-            <Segment>
-              Lv: {this.props.player.level}
+            <Segment className="transparent No-Space">
+              <Header as='h4' className="No-Space">Lv: {this.props.player.level}</Header>
             </Segment>
-            <Segment>
-              <Progress total={this.props.player.exp_next_level} value={this.props.player.exp} inverted color='yellow' active size='small'/>
-                EXP: {this.props.player.exp}/{this.props.player.exp_next_level}
-            </Segment>
-          </Grid.Column>
-          <Grid.Column textAlign='center'>
-            <Segment>
-              <Progress total={this.props.player.max_hp} value={this.props.player.hp} inverted color='red' active size='small'/>
-                HP: {this.props.player.hp}/{this.props.player.max_hp}
+            <Segment className="transparent No-Space">
+              <Progress className="No-Space" total={this.props.player.exp_next_level} value={this.props.player.exp} inverted color='yellow' active size='small'/>
+                <Header as='h4' className="No-Space">EXP: {this.props.player.exp}/{this.props.player.exp_next_level}</Header>
             </Segment>
           </Grid.Column>
           <Grid.Column textAlign='center'>
-            <Segment>
-              Atk: {this.props.player.atk}
+            <Segment className="transparent No-Space">
+              <Progress className="No-Space" total={this.props.player.max_hp} value={this.props.player.hp} inverted color='red' active size='small'/>
+                <Header as='h4' className="No-Space">HP: {this.props.player.hp}/{this.props.player.max_hp}</Header>
             </Segment>
-            <Segment>
-              Def: {this.props.player.def}
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Segment className="transparent No-Space">
+              <Header as='h4'className="No-Space">Atk: {this.props.player.atk}</Header>
+            </Segment>
+            <Segment className="transparent No-Space">
+              <Header as='h4'className="No-Space">Def: {this.props.player.def}</Header>
             </Segment>
           </Grid.Column>
         </Grid.Row>

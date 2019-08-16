@@ -66,7 +66,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
         frames: scene.anims.generateFrameNumbers(texture, {
           start:24,
           end: 27
-        })
+        }),
       });
       scene.anims.create({
         key: "attack-up",

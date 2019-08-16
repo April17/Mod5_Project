@@ -17,7 +17,7 @@ class NavBar extends Component {
   render() {
 
     return (
-      <Menu>
+      <Menu className="navbar">
         <Menu.Item name='browse'>
           Dungeon Online
         </Menu.Item>
