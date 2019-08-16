@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Header } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCurrentUser, logOut } from '../redux/adapters/currentUserAdapters'
@@ -19,11 +19,11 @@ class NavBar extends Component {
     return (
       <Menu className="navbar">
         <Menu.Item name='browse'>
-          Dungeon Online
+          <Header as="h2">Dungeon Online</Header>
         </Menu.Item>
         {this.props.user ?
           ( <Menu.Item name='browse'>
-              Welcome back {this.props.user.name}
+              <Header as="h4">Welcome back {this.props.user.name}</Header>
             </Menu.Item> ) :
           ( null )
         }

@@ -78,13 +78,13 @@ class ProfilePage extends Component {
                     </Grid.Column>
                     <Grid.Column>
                       <Segment>
-                        Username: {this.props.user.username}
+                        <Header as='h3'>Username: {this.props.user.username}</Header>
                       </Segment>
                       <Segment>
-                        Display Name: {this.props.user.name}
+                        <Header as='h3'>Display Name: {this.props.user.name}</Header>
                       </Segment>
                       <Segment>
-                        Character Owned: {this.props.user.characters.length}
+                        <Header as='h3'>Character Owned: {this.props.user.characters.length}</Header>  
                       </Segment>
                     </Grid.Column>
                   </Grid.Row>
