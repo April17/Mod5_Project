@@ -64,6 +64,7 @@ class Game extends Component {
             // chest1Img.src = chesttile1
           },
           create: function() {
+            console.log("create");
             ///////////// Map ///////////////////////
             const map = this.make.tilemap({ key: "map" });
             const tileset = map.addTilesetImage("ts_dungeon", "ts-tiles");
@@ -82,7 +83,7 @@ class Game extends Component {
                               "slime",
                               "Sam",
                               "slime",
-                              100,
+                              1000,
                               300,
                               300,
                               10,
@@ -94,15 +95,12 @@ class Game extends Component {
                               "slime",
                               "Tom",
                               "slime",
-                              400,
+                              1000,
                               300,
                               300,
                               100,
                               20)
                               .setSize(16, 16)
-
-
-
             ////////// End Character ///////////////
 
             ////////// Object ///////////////
@@ -137,6 +135,11 @@ class Game extends Component {
             if (slime.active === true) {
               slimeMovement(that, slime, this, hero)
             }
+            if (hero.exp >= hero.exp_next_level) {
+              hero.level ++
+              hero.exp = hero.exp - hero.exp_next_level
+              hero.exp_next_level = hero.exp_next_level + 1000
+            }
           }
         }
       }
@@ -158,6 +161,7 @@ class Game extends Component {
   }
 
   render() {
+    // console.log(this.state);
     const { initialize, game } = this.state
     return (
       <div className="Game">

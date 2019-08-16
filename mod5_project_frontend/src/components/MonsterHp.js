@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Progress } from 'semantic-ui-react'
+import { Progress, Grid } from 'semantic-ui-react'
 
 
 class MonsterHp extends Component {
 
   render(){
     return(
-      <div className="ui centered grid">
-        <div className="ten wide column">
-          {this.props.monster.name}:
-          <Progress total={this.props.monster.max_hp} value={this.props.monster.hp} inverted color='red' active size='medium'/>
-        </div>
-      </div>
+      <Grid columns={1} textAlign='center'>
+        <Grid.Column textAlign='center'>
+          {this.props.monster.name}: {this.props.monster.monster_type}
+          <Progress total={this.props.monster.max_hp} value={this.props.monster.hp} inverted color='red' active size='small'/>
+        </Grid.Column>
+      </Grid>
     )
   }
 }

@@ -88,6 +88,7 @@ class Character extends Component {
   }
 }
 
+
 const mapDispatchToProps = {
   deleteCharacter: deleteCharacter
 }

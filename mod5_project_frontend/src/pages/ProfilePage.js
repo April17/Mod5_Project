@@ -7,6 +7,7 @@ import EditAccount from '../components/EditAccount'
 import CharacterCreation from '../components/CharacterCreation'
 import {initGame} from '../redux/adapters/heroStatusAdapters'
 import {deleteAccount} from '../redux/adapters/currentUserAdapters'
+import {modalToggle} from '../redux/adapters/utilityAdapters'
 import { Button, Header, Image, Modal, Grid, Segment, Icon } from 'semantic-ui-react'
 import xiaoLaJi from '../assets/active_resources/xiao_la_ji.gif'
 import heroPreview from '../assets/active_resources/heroPreview.gif'
@@ -29,7 +30,7 @@ class ProfilePage extends Component {
   }
 
   genCharacters = () => {
-    return this.props.user.characters.map(character => <Character key={character.id} characterInfo={character} onSelect={this.onSelect}/>)
+    return this.props.user.characters.map(character => <Character key={character.id} characterInfo={character} handleModalToogle={this.handleModalToogle} onSelect={this.onSelect}/>)
   }
 
   onSelect = (characterInfo) => {
@@ -42,18 +43,13 @@ class ProfilePage extends Component {
     this.setState({[event.target.name]: bol})
   }
 
-  handleDelete = (event) => {
-    this.setState({delete_accout: !this.state.delete_accout})
-    this.props.deleteAccount(this.props.user.username)
-      .then(data => {
-        if (!data.errors) {
-          localStorage.clear()
-          console.log(data.success);
-          this.props.history.push("/")
-        } else {
-          console.log(data.errors);
-        }
-      })
+  handleModalToogle = (event) => {
+    let bol = (event.currentTarget.value === "true")
+    this.props.modalToggle({[event.currentTarget.name]: bol})
+  }
+
+  handleDelete = () => {
+    this.props.deleteAccount(this.props.history)
   }
 
   render() {
@@ -90,7 +86,7 @@ class ProfilePage extends Component {
                   </Grid.Row>
                   <Grid.Column width={16}>
                     <Segment>
-                      <Modal dimmer="blurring" trigger={<Button name="edit_account" value={true} onClick={this.handleModal} color='green' size='small' >Edit Account</Button>} closeIcon>
+                      <Modal dimmer="blurring" open={this.props.modalState.edit_account_modal} trigger={<Button name="edit_account_modal" value={true} onClick={this.handleModalToogle} color='green' size='small' >Edit Account</Button>} >
                         <Modal.Header>Edit Account</Modal.Header>
                         <Modal.Content>
                           <Grid columns={2} divided>
@@ -100,7 +96,7 @@ class ProfilePage extends Component {
                                   <Image src={xiaoLaJi} size='medium' wrapped />
                                 </Segment>
                               </Grid.Column>
-                              <EditAccount handleModal={this.handleModal}/>
+                              <EditAccount handleModalToogle={this.handleModalToogle}/>
                             </Grid.Row>
                           </Grid>
                         </Modal.Content>
@@ -109,7 +105,7 @@ class ProfilePage extends Component {
                   </Grid.Column>
                   <Grid.Column width={16}>
                     <Segment>
-                      <Modal open={this.state.delete_accout} trigger={<Button name="delete_accout" value={true} onClick={this.handleModal} color='red' size="tiny">Delete Account</Button>} basic size='small'>
+                      <Modal open={this.props.modalState.delete_accout_modal} trigger={<Button name="delete_accout_modal" value={true} onClick={this.handleModalToogle} color='red' size="tiny">Delete Account</Button>} basic size='small'>
                         <Header icon='trash alternate' content='Delete Account?' />
                         <Modal.Content>
                           <p>
@@ -117,10 +113,10 @@ class ProfilePage extends Component {
                           </p>
                         </Modal.Content>
                         <Modal.Actions>
-                          <Button name="delete_accout" value={false} onClick={this.handleModal} color='green' inverted>
+                          <Button name="delete_accout_modal" value={false} onClick={this.handleModalToogle} color='green' inverted>
                             <Icon name='remove' /> Cancel
                           </Button>
-                          <Button name="delete_accout" value={false} onClick={this.handleDelete} color='red' inverted>
+                          <Button name="delete_accout_modal" value={false} onClick={this.handleDelete} color='red' inverted>
                             <Icon name='checkmark' /> Confirm
                           </Button>
                         </Modal.Actions>
@@ -138,14 +134,14 @@ class ProfilePage extends Component {
                 </div>
               </Segment>
               <Segment>
-                <Modal dimmer="blurring" trigger={<Button name="create_character" value={true} color='green' size='medium' onClick={this.modalHandler}>Create Character</Button>} closeOnDimmerClick={false} closeIcon>
+                <Modal dimmer="blurring" open={this.props.modalState.create_character_modal} trigger={<Button name="create_character_modal" value={true} color='green' size='medium' onClick={this.handleModalToogle}>Create Character</Button>} closeOnDimmerClick={false} >
                   <Modal.Header>Character Creation</Modal.Header>
                   <Modal.Content>
                     <Grid columns={1}>
                       <Grid.Column>
                         <Image src={heroPreview} size='small' centered />
                       </Grid.Column>
-                      <CharacterCreation />
+                      <CharacterCreation handleModalToogle={this.handleModalToogle}/>
                     </Grid>
                   </Modal.Content>
                 </Modal>
@@ -160,13 +156,15 @@ class ProfilePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.currentUser
+    user: state.currentUser,
+    modalState: state.utilityReducer
   }
 }
 
 const mapDispatchToProps = {
   initGame: initGame,
-  deleteAccount: deleteAccount
+  deleteAccount: deleteAccount,
+  modalToggle: modalToggle
 }
 
 export default withAuth(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfilePage)));

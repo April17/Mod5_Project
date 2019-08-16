@@ -42,8 +42,7 @@ class CharacterCreation extends React.Component{
     }
   }
 
-  handleSubmit = (event) => {
-    console.log(event.currentTarget);
+  handleSubmit = () => {
     this.props.createCharacter(this.state)
   }
 
@@ -106,6 +105,7 @@ class CharacterCreation extends React.Component{
                 </Grid.Column>
               </Grid>
             </Form.Field>
+            <Button name="create_character_modal" value={false} color='red' onClick={this.props.handleModalToogle} >Cancel</Button>
             <Button color='green' type='submit' onClick={this.handleSubmit} >Create</Button>
           </Segment>
         </Form>

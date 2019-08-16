@@ -3,6 +3,8 @@ import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { withRouter } from 'react-router-dom'
 import {editAccount} from '../redux/adapters/currentUserAdapters'
+import {modalToggle} from '../redux/adapters/utilityAdapters'
+
 
 
 
@@ -20,7 +22,6 @@ class EditAccount extends React.Component{
 
   handleSubmit = (event) => {
     this.props.editAccount(this.state)
-    this.props.handleModal(event)
   }
 
   render() {
@@ -40,6 +41,7 @@ class EditAccount extends React.Component{
             <Form.Field>
               <input type="password" name="password_confirmation" onChange={this.handleChange} placeholder='Confirm Password' />
             </Form.Field>
+            <Button name="edit_account_modal" value={false} color='red' onClick={this.props.handleModalToogle}>Cancel</Button>
             <Button name="edit_account" value={false} color='green' type='submit' onClick={this.handleSubmit}>Submit</Button>
           </Segment>
         </Form>
@@ -55,7 +57,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  editAccount: editAccount
+  editAccount: editAccount,
+  modalToggle: modalToggle
 }
 
 export default connect(

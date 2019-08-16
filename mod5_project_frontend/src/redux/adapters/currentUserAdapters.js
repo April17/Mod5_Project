@@ -1,4 +1,5 @@
 import actions from "../actions/currentUserActions";
+import utilityActions from "../actions/utilityActions";
 import { API_ROOT, HEADERS } from '../../actioncable';
 
 
@@ -62,14 +63,14 @@ export const editAccount = (newUserInfo) => dispatch => {
     .then(data => {
       if (!data.errors) {
         dispatch(actions.gotUserInfo(data))
+        dispatch(utilityActions.modalToggle({edit_account_modal: false}))
       } else {
         console.log(data.errors);
       }
     })
 }
 
-export const deleteAccount = () => dispatch => {
-  console.log("delete_accout");
+export const deleteAccount = (route) => dispatch => {
   const config = {
     method: 'DELETE',
     headers: {
@@ -80,6 +81,17 @@ export const deleteAccount = () => dispatch => {
   }
   return fetch(`${API_ROOT}/users/delete_accout`, config)
     .then(rsp => rsp.json())
+    .then(data => {
+      if (!data.errors) {
+        localStorage.clear()
+        console.log(data.success);
+        dispatch(actions.logOut())
+        dispatch(utilityActions.modalToggle({delete_accout_modal: false}))
+        route.push("/")
+      } else {
+        console.log(data.errors);
+      }
+    })
   //push to Front Page
 }
 
@@ -98,6 +110,7 @@ export const createCharacter = (newCharacterInfo) => dispatch => {
     .then(data => {
       if (!data.errors) {
         dispatch(actions.gotUserInfo(data))
+        dispatch(utilityActions.modalToggle({create_character_modal: false}))
       } else {
         console.log(data.errors);
       }
@@ -119,6 +132,7 @@ export const deleteCharacter = (characterId) => dispatch => {
     .then(data => {
       if (!data.errors) {
         dispatch(actions.gotUserInfo(data))
+        dispatch(utilityActions.modalToggle({delete_character_modal: false}))
       } else {
         console.log(data.errors);
       }
