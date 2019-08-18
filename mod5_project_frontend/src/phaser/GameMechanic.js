@@ -16,8 +16,8 @@ export const damageSystem = (attacker, defender) => {
     damage = attacker.atk - damageReduction
   }
   defender.hp = Math.round(defender.hp - damage)
-  console.log("defender level", defender.level);
-  console.log("attacker atk", attacker.atk);
-  console.log("damageReduction", damageReduction);
-  console.log("damage", damage);
+  // console.log("defender level", defender.level);
+  // console.log("attacker atk", attacker.atk);
+  // console.log("damageReduction", damageReduction);
+  // console.log("damage", damage);
 }

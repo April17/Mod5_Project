@@ -4,6 +4,8 @@ import monsterStatusReducer from "./monsterStatusReducer"
 import currentUserReducer from "./currentUserReducer"
 import logInReducer from "./logInReducer"
 import utilityReducer from "./utilityReducer"
+import feedReducer from "./feedReducer"
+
 
 
 
@@ -12,5 +14,6 @@ export default combineReducers({
   monsterStatus: monsterStatusReducer,
   currentUser: currentUserReducer,
   utilityReducer: utilityReducer,
+  feed: feedReducer,
   logIn: logInReducer
 });

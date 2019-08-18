@@ -9,8 +9,8 @@ class MonsterHp extends Component {
     return(
       <Grid columns={3} textAlign='center'>
         <Grid.Column textAlign='center'>
-          <Segment >
-            <Header as='h3'>{this.props.monster.name}: {this.props.monster.monster_type}</Header>
+          <Segment className="No-Space">
+            <Header className="No-Space textColor" as='h3'>{this.props.monster.name}: {this.props.monster.monster_type}</Header>
             <Progress total={this.props.monster.max_hp} value={this.props.monster.hp} inverted color='red' active size='small'/>
           </Segment>
         </Grid.Column>

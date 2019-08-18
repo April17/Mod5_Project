@@ -1,7 +1,7 @@
 import { damageSystem } from './GameMechanic'
 
 export class ColliderMonster {
-  constructor (game, scene, hero, monster) {
+  constructor (game, scene, hero, monster, key) {
     const monsterClassName = monster.constructor.name
     let monsterStatus = {name: monster.name, monster_type: monster.monster_type, exp_provide: monster.exp_provide, max_hp: monster.max_hp, hp: monster.hp, atk: monster.atk, def: monster.def}
     scene.physics.world.addCollider(hero, monster, (hero: Hero, monster: monsterClassName) => {
@@ -58,7 +58,7 @@ export class ColliderMonster {
      if (monster.hp < 0) {
        monster.destroy()
        hero.exp = hero.exp + monster.exp_provide
-       console.log(`${hero.name} obtain ${monster.exp_provide} EXP`);
+       game.props.addLog({summary: `${hero.name} obtain ${monster.exp_provide} EXP`, key: key.counter()})
        hero.x = hero.x + 0.01
      }
    })

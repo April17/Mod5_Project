@@ -17,25 +17,25 @@ class HeroStatus extends Component {
         <Grid.Row stretched>
           <Grid.Column textAlign='center'>
             <Segment className="transparent No-Space">
-              <Header as='h4' className="No-Space">Lv: {this.props.player.level}</Header>
+              <Header as='h4' className="No-Space textColor">Lv: {this.props.player.level}</Header>
             </Segment>
             <Segment className="transparent No-Space">
               <Progress className="No-Space" total={this.props.player.exp_next_level} value={this.props.player.exp} inverted color='yellow' active size='small'/>
-                <Header as='h4' className="No-Space">EXP: {this.props.player.exp}/{this.props.player.exp_next_level}</Header>
+                <Header as='h4' className="No-Space textColor">EXP: {this.props.player.exp}/{this.props.player.exp_next_level}</Header>
             </Segment>
           </Grid.Column>
           <Grid.Column textAlign='center'>
             <Segment className="transparent No-Space">
               <Progress className="No-Space" total={this.props.player.max_hp} value={this.props.player.hp} inverted color='red' active size='small'/>
-                <Header as='h4' className="No-Space">HP: {this.props.player.hp}/{this.props.player.max_hp}</Header>
+                <Header as='h4' className="No-Space textColor">HP: {this.props.player.hp}/{this.props.player.max_hp}</Header>
             </Segment>
           </Grid.Column>
           <Grid.Column textAlign='center'>
             <Segment className="transparent No-Space">
-              <Header as='h4'className="No-Space">Atk: {this.props.player.atk}</Header>
+              <Header as='h4'className="No-Space textColor">Atk: {this.props.player.atk}</Header>
             </Segment>
             <Segment className="transparent No-Space">
-              <Header as='h4'className="No-Space">Def: {this.props.player.def}</Header>
+              <Header as='h4'className="No-Space textColor">Def: {this.props.player.def}</Header>
             </Segment>
           </Grid.Column>
         </Grid.Row>

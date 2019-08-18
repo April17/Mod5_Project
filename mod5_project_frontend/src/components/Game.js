@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
+import {KeyGenerator} from '../utility/utilities'
 import { updateHeroStatus } from '../redux/adapters/heroStatusAdapters'
 import { updateMonsterStatus } from '../redux/adapters/monsterStatusAdapters'
+import { addLog } from '../redux/adapters/feedAdapters'
 import Phaser from 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
 import { Hero } from "../phaser/Hero"
@@ -62,7 +64,6 @@ class Game extends Component {
             // chest1Img.src = chesttile1
           },
           create: function() {
-            console.log("create");
             ///////////// Map ///////////////////////
             const map = this.make.tilemap({ key: "map" });
             const tileset = map.addTilesetImage("ts_dungeon", "ts-tiles");
@@ -108,8 +109,9 @@ class Game extends Component {
             ////////// End Object ///////////////
 
             ///////// Collider  ////////////////
-            new ColliderMonster(that, this, hero, slime)
-            new ColliderMonster(that, this, hero, slime2)
+            const key = new KeyGenerator()
+            new ColliderMonster(that, this, hero, slime, key)
+            new ColliderMonster(that, this, hero, slime2, key)
             new ColliderObject(this, hero, chest1)
             this.physics.add.collider(hero, world_layer);
             this.physics.add.collider(slime, world_layer);
@@ -120,6 +122,7 @@ class Game extends Component {
             window.slime = slime
             window.scene = this
             window.chest1 = chest1
+            window.key = key
             ////////////// End Window Object Debugger ////////////
 
             /////////// Camera and Controls ///////////////////
@@ -186,7 +189,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   updateHeroStatus,
-  updateMonsterStatus
+  updateMonsterStatus,
+  addLog
 }
 
 export default connect(

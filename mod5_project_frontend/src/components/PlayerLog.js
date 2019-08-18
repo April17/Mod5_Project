@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Segment, Statistic, Icon } from 'semantic-ui-react'
+import { Grid, Segment, Feed } from 'semantic-ui-react'
+
+
 
 class PlayerLog extends Component {
 
   render(){
     return(
-      <Grid column={1} textAlign="left">
+      <Grid column={1} textAlign="center">
         <Grid.Row column={1}>
           <Grid.Column width={16}>
-            <Segment className="transparent">
-              <Statistic size='mini'>
-                <Statistic.Value><Icon name="map pin"/>{this.props.player.x}</Statistic.Value>
-              </Statistic>
-              <Statistic size='mini'>
-                <Statistic.Value floated="right">{this.props.player.y}</Statistic.Value>
-              </Statistic>
+            <Segment className="transparent No-Space">
+              <Feed className="feedbox" events={this.props.log}/>
             </Segment>
           </Grid.Column>
         </Grid.Row>
@@ -26,7 +23,7 @@ class PlayerLog extends Component {
 
 const mapStateToProps = state => {
   return {
-    player: state.status
+    log: state.feed.log
   }
 }
 

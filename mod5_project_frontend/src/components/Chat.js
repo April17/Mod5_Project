@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Header, Segment, Image } from 'semantic-ui-react'
-import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
+import { Grid, Segment, Feed } from 'semantic-ui-react'
 
 
 
@@ -10,10 +9,13 @@ class Chat extends Component {
   render(){
     return(
       <Grid columns={1} textAlign='center'>
-        <Segment className="transparent">
-          <Header as="h2">Under Development</Header>
-          <Image src={xiaoLaJi2} size='small' centered/>
-        </Segment>
+        <Grid.Row column={1}>
+          <Grid.Column width={16}>
+            <Segment className="transparent No-Space">
+              <Feed className="feedbox" events={this.props.chat}/>
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     )
   }
@@ -21,7 +23,8 @@ class Chat extends Component {
 
 const mapStateToProps = state => {
   return {
-    player: state.status
+    player: state.status,
+    chat: state.feed.chat
   }
 }
 
