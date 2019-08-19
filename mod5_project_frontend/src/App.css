@@ -22,3 +22,9 @@
 .App-link {
   color: #61dafb;
 }
+
+body{
+  background-image: url('./assets/active_resources/Background.png');
+  background-size: cover;
+  background-position: center center;
+}

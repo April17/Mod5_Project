@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Segment, Divider } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { signUp } from '../redux/adapters/currentUserAdapters'
 
@@ -32,29 +32,47 @@ class Signup extends React.Component{
     return(
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='black' textAlign='center'>
+            <Header className="textColor" as='h2' color='black' textAlign='center'>
                  Sign Up
             </Header>
-            <Form onSubmit={this.handleSubmit}>
-              <Segment raised>
-                <Form.Field>
-                  Dungeon Online
-                </Form.Field>
-                <Form.Field>
-                  <input name="username" onChange={this.handleChange} placeholder='Username' />
-                </Form.Field>
-                <Form.Field>
-                  <input name="name" onChange={this.handleChange} placeholder='Display Name' />
-                </Form.Field>
-                <Form.Field>
-                  <input type="password" name="password" onChange={this.handleChange} placeholder='Password' />
-                </Form.Field>
-                <Form.Field>
-                  <input type="password" name="password_confirmation" onChange={this.handleChange} placeholder='Confirm Password' />
-                </Form.Field>
-                <Button type='submit'>Submit</Button>
-              </Segment>
-            </Form>
+            <Segment className="frostglass" raised>
+              <Form onSubmit={this.handleSubmit}>
+                <Segment className="transparent" raised>
+                  <Form.Field>
+                  <Header className="textColor" as='h3' color='black' textAlign='center'>
+                      Dungeon Online
+                  </Header>
+                  </Form.Field>
+                  <Form.Field>
+                    <div class="ui left icon input">
+                      <i class="user icon"></i>
+                      <input name="username" onChange={this.handleChange} placeholder='Username' />
+                    </div>
+                  </Form.Field>
+                  <Form.Field>
+                    <div class="ui left icon input">
+                      <i class="user outline icon"></i>
+                      <input name="name" onChange={this.handleChange} placeholder='Display Name' />
+                    </div>
+                  </Form.Field>
+                  <Form.Field>
+                    <div class="ui left icon input">
+                      <i class="lock icon"></i>
+                      <input type="password" name="password" onChange={this.handleChange} placeholder='Password' />
+                    </div>
+                  </Form.Field>
+                  <Form.Field>
+                    <div class="ui left icon input">
+                      <i class="lock icon"></i>
+                      <input type="password" name="password_confirmation" onChange={this.handleChange} placeholder='Confirm Password' />
+                    </div>
+                  </Form.Field>
+                  <Button type='submit' color="green" size='big'>Submit</Button>
+                </Segment>
+              </Form>
+              <Divider className="textColor" horizontal>Or</Divider>
+              <Button onClick={this.handleSignup} content='Login' size='big' />
+            </Segment>
           </Grid.Column>
       </Grid>
     )

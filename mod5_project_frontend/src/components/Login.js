@@ -31,11 +31,11 @@ class Login extends React.Component {
   render() {
       return (
         <div>
-          <Header as='h2' color='teal' textAlign='center'>
+          <Header className="textColor" as='h2' textAlign='center'>
                Log-in to your account
           </Header>
           <Form size='large' onSubmit={this.handelSubmit}>
-            <Segment raised>
+            <Segment className="transparent" raised>
               <Form.Input
                 fluid
                 name="username"

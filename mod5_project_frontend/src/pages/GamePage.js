@@ -21,7 +21,7 @@ class GamePage extends Component {
   render() {
     return (
       <div>
-        <Grid column={3} textAlign="center" >
+        <Grid column={3} textAlign="center" id="monster-hp-bar">
           <Grid.Column width={10} textAlign="center">
             <Segment className="transparent">
               <MonsterHp/>

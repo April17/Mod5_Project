@@ -8,6 +8,7 @@ export class ColliderMonster {
      if (hero.attacking === true) {
        damageSystem(hero, monster)
        game.props.updateMonsterStatus({...monsterStatus, hp: monster.hp})
+       game.props.monsterHpToggle("No-Space show")
        if (hero.body.facing === 13) {
          monster.flipX = false
          monster.anims.nextAnim = `${monster.monster_type}-idel-sideway`
@@ -57,8 +58,9 @@ export class ColliderMonster {
      }
      if (monster.hp < 0) {
        monster.destroy()
+       game.props.monsterHpToggle("No-Space hide")
        hero.exp = hero.exp + monster.exp_provide
-       game.props.addLog({summary: `${hero.name} obtain ${monster.exp_provide} EXP`, key: key.counter()})
+       game.props.addLog({summary: `-${hero.name} obtain ${monster.exp_provide} EXP.`, key: key.counter()})
        hero.x = hero.x + 0.01
      }
    })

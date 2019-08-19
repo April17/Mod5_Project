@@ -32,34 +32,34 @@ class Character extends Component {
 
   render() {
     return (
-      <div className="card" onClick={this.handlePlay}>
+      <div className="card frostglass" onClick={this.handlePlay}>
         <div className="image">
           <img src={hero1} alt="hero1"/>
         </div>
         <div className="content">
-          <div className="header">{this.props.characterInfo.name}</div>
-          <div className="meta">
+          <div className="header textColor">{this.props.characterInfo.name}</div>
+          <div className="meta textColor">
             EXP: {this.props.characterInfo.exp}/{this.props.characterInfo.exp_next_level}
           </div>
           <div className="description">
             <div className="ui two column grid">
-              <div className="column">
+              <div className="column textColor">
                 Lv: {this.props.characterInfo.level}
               </div>
-              <div className="column">
+              <div className="column textColor">
                 HP: {this.props.characterInfo.hp}/{this.props.characterInfo.max_hp}
               </div>
-              <div className="column">
+              <div className="column textColor">
                 ATK: {this.props.characterInfo.atk}
               </div>
-              <div className="column">
+              <div className="column textColor">
                 DEF: {this.props.characterInfo.def}
               </div>
             </div>
           </div>
         </div>
         <div className="extra content">
-          <span className="right floated">
+          <span className="right floated textColor">
             <i className="map pin icon"></i>
             x: {this.props.characterInfo.x}
             y: {this.props.characterInfo.y}

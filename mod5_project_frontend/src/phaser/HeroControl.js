@@ -1,5 +1,7 @@
 let prevX = 0;
 let prevY = 0;
+let keyDown = true;
+let counter = 0;
 export const heroControl = (game, hero, cursors) => {
   let heroStatus = {id: game.props.characterInfo.id,
                     name: hero.name,
@@ -75,13 +77,22 @@ export const heroControl = (game, hero, cursors) => {
     hero.setSize(16, 16)
     hero.attacking = false
   }
-  if (cursors.K.isDown){
+  if (cursors.K.isDown && keyDown){
     if (hero.hp < hero.max_hp) {
       hero.hp = hero.hp + 100
     if (hero.hp > hero.max_hp) {
       hero.hp = hero.max_hp
     }
     game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
+    }
+    keyDown = false
+  }
+  if (cursors.K.isUp && keyDown === false) {
+    if (counter === 0) {
+      setTimeout(function(){
+        keyDown = true
+        counter = 0}, 3000);
+      counter ++
     }
   }
   if (cursors.A.isUp || cursors.D.isUp) {

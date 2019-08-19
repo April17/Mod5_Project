@@ -12,7 +12,7 @@ import { Button, Header, Image, Modal, Grid, Segment, Icon } from 'semantic-ui-r
 import xiaoLaJi from '../assets/active_resources/xiao_la_ji.gif'
 import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
 import heroPreview from '../assets/active_resources/heroPreview.gif'
-
+import '../assets/style/ProfilePage.css'
 
 
 
@@ -63,33 +63,32 @@ class ProfilePage extends Component {
       )
     }
     return (
-      <div className="ProfilePage">
-        <Grid columns={2} divided>
+        <Grid columns={2} className="ProfilePage" >
           <Grid.Row stretched>
             <Grid.Column>
-              <Segment>
-                <Header as='h2'>Account Information</Header>
+              <Segment className="frostglass">
+                <Header className="textColor" as='h2'>Account Information</Header>
                 <Grid columns='equal'>
                   <Grid.Row stretched>
                     <Grid.Column>
-                      <Segment>
+                      <Segment className="transparent">
                         <Image src={xiaoLaJi} size='medium' wrapped />
                       </Segment>
                     </Grid.Column>
                     <Grid.Column>
-                      <Segment>
-                        <Header as='h3'>Username: {this.props.user.username}</Header>
+                      <Segment className="transparent">
+                        <Header className="textColor" as='h3'>Username: {this.props.user.username}</Header>
                       </Segment>
-                      <Segment>
-                        <Header as='h3'>Display Name: {this.props.user.name}</Header>
+                      <Segment className="transparent">
+                        <Header className="textColor" as='h3'>Display Name: {this.props.user.name}</Header>
                       </Segment>
-                      <Segment>
-                        <Header as='h3'>Character Owned: {this.props.user.characters.length}</Header>  
+                      <Segment className="transparent">
+                        <Header className="textColor" as='h3'>Character Owned: {this.props.user.characters.length}</Header>
                       </Segment>
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Column width={16}>
-                    <Segment>
+                    <Segment className="transparent">
                       <Modal dimmer="blurring" open={this.props.modalState.edit_account_modal} trigger={<Button name="edit_account_modal" value={true} onClick={this.handleModalToogle} color='green' size='small' >Edit Account</Button>} >
                         <Modal.Header>Edit Account</Modal.Header>
                         <Modal.Content>
@@ -108,7 +107,7 @@ class ProfilePage extends Component {
                     </Segment>
                   </Grid.Column>
                   <Grid.Column width={16}>
-                    <Segment>
+                    <Segment className="transparent">
                       <Modal open={this.props.modalState.delete_accout_modal} trigger={<Button name="delete_accout_modal" value={true} onClick={this.handleModalToogle} color='red' size="tiny">Delete Account</Button>} basic size='small'>
                         <Header icon='trash alternate' content='Delete Account?' />
                         <Modal.Content>
@@ -131,29 +130,30 @@ class ProfilePage extends Component {
               </Segment>
             </Grid.Column>
             <Grid.Column>
-              <Header as='h2'>Characters</Header>
-              <Segment>
-                <div className="ui link cards">
-                  {this.genCharacters()}
-                </div>
-              </Segment>
-              <Segment>
-                <Modal dimmer="blurring" open={this.props.modalState.create_character_modal} trigger={<Button name="create_character_modal" value={true} color='green' size='medium' onClick={this.handleModalToogle}>Create Character</Button>} closeOnDimmerClick={false} >
-                  <Modal.Header>Character Creation</Modal.Header>
-                  <Modal.Content>
-                    <Grid columns={1}>
-                      <Grid.Column>
-                        <Image src={heroPreview} size='small' centered />
-                      </Grid.Column>
-                      <CharacterCreation handleModalToogle={this.handleModalToogle}/>
-                    </Grid>
-                  </Modal.Content>
-                </Modal>
+              <Segment className="frostglass">
+                <Header className="textColor" as='h2'>Characters</Header>
+                <Segment className="transparent">
+                  <div className="ui link cards">
+                    {this.genCharacters()}
+                  </div>
+                </Segment>
+                <Segment className="transparent">
+                  <Modal dimmer="blurring" open={this.props.modalState.create_character_modal} trigger={<Button name="create_character_modal" value={true} color='green' size='medium' onClick={this.handleModalToogle}>Create Character</Button>} closeOnDimmerClick={false} >
+                    <Modal.Header>Character Creation</Modal.Header>
+                    <Modal.Content>
+                      <Grid columns={1}>
+                        <Grid.Column>
+                          <Image src={heroPreview} size='small' centered />
+                        </Grid.Column>
+                        <CharacterCreation handleModalToogle={this.handleModalToogle}/>
+                      </Grid>
+                    </Modal.Content>
+                  </Modal>
+                </Segment>
               </Segment>
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </div>
     );
   }
 }

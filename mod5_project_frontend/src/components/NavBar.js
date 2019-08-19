@@ -3,6 +3,8 @@ import { Menu, Header } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCurrentUser, logOut } from '../redux/adapters/currentUserAdapters'
+import  '../assets/style/NavBar.css'
+
 
 
 class NavBar extends Component {

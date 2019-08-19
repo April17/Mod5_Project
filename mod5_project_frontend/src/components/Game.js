@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import {KeyGenerator} from '../utility/utilities'
 import { updateHeroStatus } from '../redux/adapters/heroStatusAdapters'
 import { updateMonsterStatus } from '../redux/adapters/monsterStatusAdapters'
+import { monsterHpToggle } from '../redux/adapters/utilityAdapters'
 import { addLog } from '../redux/adapters/feedAdapters'
 import Phaser from 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
@@ -96,7 +97,7 @@ class Game extends Component {
                               "Tom",
                               30,
                               "slime",
-                              1000,
+                              2000,
                               300,
                               300,
                               100,
@@ -190,7 +191,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   updateHeroStatus,
   updateMonsterStatus,
-  addLog
+  addLog,
+  monsterHpToggle
 }
 
 export default connect(

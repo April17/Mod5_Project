@@ -9,20 +9,16 @@ class Frontpage extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Header as='h1' textAlign='center' >Welcome to Dungeon Online</Header>
-        <Segment placeholder>
-          <Grid columns={2} relaxed='very' stackable>
-            <Grid.Column>
-              <Login routingProps={this.props}/>
-            </Grid.Column>
-            <Grid.Column verticalAlign='middle'>
+      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header className="textColor" as='h1' textAlign='center' >Welcome to Dungeon Online</Header>
+          <Segment className="frostglass">
+                <Login routingProps={this.props}/>
+            <Divider className="textColor" horizontal>Or</Divider>
               <Button onClick={this.handleSignup} content='Sign up' icon='signup' size='big' />
-            </Grid.Column>
-          </Grid>
-          <Divider vertical>Or</Divider>
-        </Segment>
-      </div>
+          </Segment>
+        </Grid.Column>
+    </Grid>
     )
   }
 }

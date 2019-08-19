@@ -1,8 +1,8 @@
 export const levelSystem = (hero) => {
   if (hero.exp >= hero.exp_next_level) {
-    hero.level ++
     hero.exp = hero.exp - hero.exp_next_level
-    hero.exp_next_level = hero.exp_next_level + 1000
+    hero.exp_next_level = Math.round(hero.exp_next_level * (1+ hero.level/20))
+    hero.level ++
     hero.max_hp = hero.max_hp + hero.level * 5
     hero.atk = Math.round(hero.atk + hero.level * 0.5)
     hero.def = hero.def + hero.level
