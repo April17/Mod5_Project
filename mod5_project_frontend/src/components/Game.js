@@ -33,6 +33,8 @@ let slime;
 let slime2
 let cursors;
 let that;
+let key;
+let currentScene
 // let chest1Img = new Image()
 class Game extends Component {
   constructor(props) {
@@ -67,6 +69,8 @@ class Game extends Component {
             // chest1Img.src = chesttile1
           },
           create: function() {
+            currentScene = this
+            key = new KeyGenerator()
             ///////////// Map ///////////////////////
             const map = this.make.tilemap({ key: "map" });
             const tileset = map.addTilesetImage("ts_dungeon", "ts-tiles");
@@ -79,32 +83,13 @@ class Game extends Component {
 
             /////////// Character ///////////////////
             hero = new Hero(this, "hero", that.props.characterInfo).setSize(16, 16)
-            slime = new Slime(this,
-                              400,
-                              300,
-                              "slime",
-                              "Sam",
-                              1,
-                              "slime",
-                              1000,
-                              300,
-                              300,
-                              10,
-                              20)
-                              .setSize(16, 16)
-            slime2 = new Slime(this,
-                              450,
-                              330,
-                              "slime",
-                              "Tom",
-                              30,
-                              "slime",
-                              2000,
-                              300,
-                              300,
-                              100,
-                              200)
-                              .setSize(16, 16)
+
+
+            that.props.worldInfo.monsters.forEach(function(monster){
+              let currentMonster = new Slime(currentScene, monster).setSize(16, 16)
+              new ColliderMonster(that, currentScene, hero, currentMonster, key)
+              currentScene.physics.add.collider(currentMonster, world_layer);
+            })
             ////////// End Character ///////////////
 
             ////////// Object ///////////////
@@ -112,12 +97,8 @@ class Game extends Component {
             ////////// End Object ///////////////
 
             ///////// Collider  ////////////////
-            const key = new KeyGenerator()
-            new ColliderMonster(that, this, hero, slime, key)
-            new ColliderMonster(that, this, hero, slime2, key)
             new ColliderObject(this, hero, chest1)
             this.physics.add.collider(hero, world_layer);
-            this.physics.add.collider(slime, world_layer);
             ///////// End Collider  ////////////////
 
             ////////////// Window Object Debugger ////////////
@@ -138,10 +119,10 @@ class Game extends Component {
           },
           update: function(time, delta) {
             heroControl(that, hero, cursors)
-            if (slime.active === true) {
-              slimeMovement(that, slime, this, hero)
-            }
-            levelSystem(hero)
+            // if (slime.active === true) {
+            //   slimeMovement(that, slime, this, hero)
+            // }
+            levelSystem(hero, that, key)
           }
         }
       }
@@ -161,7 +142,6 @@ class Game extends Component {
   }
 
   render() {
-    console.log(this.props.worldInfo);
     if (!this.props.worldInfo.name) {
       return(
         <Grid columns={1} className="play-button" >

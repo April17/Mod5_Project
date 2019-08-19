@@ -1,4 +1,4 @@
-export const levelSystem = (hero) => {
+export const levelSystem = (hero, game, key) => {
   if (hero.exp >= hero.exp_next_level) {
     hero.exp = hero.exp - hero.exp_next_level
     hero.exp_next_level = Math.round(hero.exp_next_level * (1+ hero.level/20))
@@ -6,6 +6,8 @@ export const levelSystem = (hero) => {
     hero.max_hp = hero.max_hp + hero.level * 5
     hero.atk = Math.round(hero.atk + hero.level * 0.5)
     hero.def = hero.def + hero.level
+    hero.hp = hero.max_hp
+    game.props.addLog({summary: `-Congratulations! ${hero.name} is now Level ${hero.level}.`, key: key.counter()})
   }
 }
 

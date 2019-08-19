@@ -2,7 +2,6 @@ class WorldsController < ApplicationController
   skip_before_action :authorized
 
   def create
-    # debugger
     current_character = Character.find_by(id: params[:character_id])
     if current_character.world
       current_world = current_character.world
@@ -12,7 +11,7 @@ class WorldsController < ApplicationController
         WorldCharacter.create(world: current_world, character: current_character)
       else
         current_world = World.create(name: "Playground")
-        Monster.all.each {|monster| WorldMonsters.create(world: current_world, monster: monster)}
+        Monster.all.each {|monster| WorldMonster.create(world: current_world, monster: monster)}
         WorldCharacter.create(world: current_world, character: current_character)
       end
     end

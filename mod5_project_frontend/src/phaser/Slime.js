@@ -7,25 +7,25 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
     hp = 0;
     atk = 0;
     def = 0;
-    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, name: string, level, monster_type, exp_provide, max_hp, hp, atk, def) {
-        super(scene, x, y, texture);
+    constructor(scene: Phaser.Scene, monsterInfo) {
+        super(scene, monsterInfo.x, monsterInfo.y, monsterInfo.monster_type);
         scene.sys.updateList.add(this);
         scene.sys.displayList.add(this);
         scene.physics.world.enableBody(this);
         this.setImmovable(true);
-        this.name = name;
-        this.level = level
-        this.monster_type = monster_type;
-        this.exp_provide = exp_provide;
-        this.max_hp = max_hp;
-        this.hp = hp;
-        this.atk = atk;
-        this.def = def;
+        this.name = monsterInfo.name;
+        this.level = monsterInfo.level
+        this.monster_type = monsterInfo.monster_type;
+        this.exp_provide = monsterInfo.exp_provide;
+        this.max_hp = monsterInfo.max_hp;
+        this.hp = monsterInfo.hp;
+        this.atk = monsterInfo.atk;
+        this.def = monsterInfo.def;
         // debugger
         scene.anims.create({
           key: "slime-vetory",
           frameRate: 5,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 4,
             end: 6
           }),
@@ -35,7 +35,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-idel-down",
           frameRate: 5,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 0,
             end: 2
           }),
@@ -44,7 +44,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-idel-up",
           frameRate: 5,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 43,
             end: 43
           })
@@ -52,7 +52,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-idel-sideway",
           frameRate: 5,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 39,
             end: 39
           })
@@ -63,7 +63,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-attack-sideway",
           frameRate: 20,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start:24,
             end: 27
           })
@@ -71,7 +71,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-attack-up",
           frameRate: 20,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 28,
             end: 31
           })
@@ -79,7 +79,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-attack-down",
           frameRate: 20,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 19,
             end: 23
           })
@@ -90,7 +90,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-walk-sideway",
           frameRate: 10,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 12,
             end: 15
           }),
@@ -99,7 +99,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-walk-up",
           frameRate: 10,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 16,
             end: 19
           }),
@@ -108,7 +108,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-walk-down",
           frameRate: 10,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 8,
             end: 11
           }),
@@ -120,7 +120,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-hit-sideway",
           frameRate: 15,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 36,
             end: 39
           }),
@@ -128,7 +128,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-hit-up",
           frameRate: 15,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 32,
             end: 35
           }),
@@ -136,7 +136,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
           key: "slime-hit-down",
           frameRate: 15,
-          frames: scene.anims.generateFrameNumbers(texture, {
+          frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
             start: 40,
             end: 43
           }),
