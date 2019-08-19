@@ -7,3 +7,7 @@ export const modalToggle = modalState => dispatch => {
 export const monsterHpToggle = state => dispatch => {
   dispatch(actions.monsterHpToggle(state))
 }
+
+export const uiToggle = state => dispatch => {
+  dispatch(actions.uiToggle(state))
+}

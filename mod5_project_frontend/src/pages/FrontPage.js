@@ -15,7 +15,7 @@ class Frontpage extends React.Component {
           <Segment className="frostglass">
                 <Login routingProps={this.props}/>
             <Divider className="textColor" horizontal>Or</Divider>
-              <Button onClick={this.handleSignup} content='Sign up' icon='signup' size='big' />
+              <Button onClick={this.handleSignup} color="green" content='Sign up' icon='signup' size='big' />
           </Segment>
         </Grid.Column>
     </Grid>

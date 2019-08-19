@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux"
 import Game from '../components/Game'
 import Inventory from '../components/Inventory'
 import Chat from '../components/Chat'
@@ -34,21 +35,21 @@ class GamePage extends Component {
               <Segment className="transparent">
               </Segment>
             </Grid.Column>
-            <Grid.Column width={10} textAlign="center">
-              <Segment className="Game-Component transparent" >
+            <Grid.Column width={10} textAlign="center" >
+              <Segment className="Game-Component transparent">
                 <Game routingProps={this.props}/>
               </Segment>
-              <Segment className="frostglass">
+              <Segment className={this.props.uiState}>
                 <HeroStatus />
               </Segment>
             </Grid.Column>
             <Grid.Column width={3} textAlign="center">
               <Segment className="transparent">
               </Segment>
-              <Segment className="frostglass">
+              <Segment className={this.props.uiState}>
                 <Inventory/>
               </Segment>
-              <Segment className="frostglass">
+              <Segment className={this.props.uiState}>
                 <Grid column={1} textAlign="center">
                   <Grid.Column width={16} >
                     <Tab menu={{ color: "grey", inverted: true, borderless: true, attached: false, tabular: false }} panes={panes} />
@@ -81,4 +82,14 @@ class GamePage extends Component {
   }
 }
 
-export default GamePage;
+const mapStateToProps = state => {
+  return {
+    uiState: state.utilityReducer.ui_toggle
+  }
+}
+
+
+export default connect(
+    mapStateToProps,
+    null
+  )(GamePage);

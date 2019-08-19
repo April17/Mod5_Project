@@ -5,9 +5,9 @@ import withAuth from '../hocs/withAuth'
 import Character from '../components/Character'
 import EditAccount from '../components/EditAccount'
 import CharacterCreation from '../components/CharacterCreation'
-import {initGame} from '../redux/adapters/heroStatusAdapters'
-import {deleteAccount} from '../redux/adapters/currentUserAdapters'
-import {modalToggle} from '../redux/adapters/utilityAdapters'
+import { initGame } from '../redux/adapters/heroStatusAdapters'
+import { deleteAccount } from '../redux/adapters/currentUserAdapters'
+import { monsterHpToggle, modalToggle, uiToggle } from '../redux/adapters/utilityAdapters'
 import { Button, Header, Image, Modal, Grid, Segment, Icon } from 'semantic-ui-react'
 import xiaoLaJi from '../assets/active_resources/xiao_la_ji.gif'
 import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
@@ -28,6 +28,8 @@ class ProfilePage extends Component {
       localStorage.clear()
       this.props.history.push("/")
     }
+    this.props.uiToggle("frostglass hide")
+    this.props.monsterHpToggle("No-Space hide")
   }
 
   genCharacters = () => {
@@ -89,13 +91,13 @@ class ProfilePage extends Component {
                   </Grid.Row>
                   <Grid.Column width={16}>
                     <Segment className="transparent">
-                      <Modal dimmer="blurring" open={this.props.modalState.edit_account_modal} trigger={<Button name="edit_account_modal" value={true} onClick={this.handleModalToogle} color='green' size='small' >Edit Account</Button>} >
-                        <Modal.Header>Edit Account</Modal.Header>
-                        <Modal.Content>
+                      <Modal className="frostglass" dimmer="blurring" open={this.props.modalState.edit_account_modal} trigger={<Button name="edit_account_modal" value={true} onClick={this.handleModalToogle} color='green' size='small' >Edit Account</Button>} >
+                        <Modal.Header className="transparent textColor" >Edit Account</Modal.Header>
+                        <Modal.Content className="transparent" >
                           <Grid columns={2} divided>
                             <Grid.Row stretched>
                               <Grid.Column>
-                                <Segment>
+                                <Segment className="transparent" >
                                   <Image src={xiaoLaJi} size='medium' wrapped />
                                 </Segment>
                               </Grid.Column>
@@ -138,9 +140,9 @@ class ProfilePage extends Component {
                   </div>
                 </Segment>
                 <Segment className="transparent">
-                  <Modal dimmer="blurring" open={this.props.modalState.create_character_modal} trigger={<Button name="create_character_modal" value={true} color='green' size='medium' onClick={this.handleModalToogle}>Create Character</Button>} closeOnDimmerClick={false} >
-                    <Modal.Header>Character Creation</Modal.Header>
-                    <Modal.Content>
+                  <Modal className="frostglass" dimmer="blurring" open={this.props.modalState.create_character_modal} trigger={<Button name="create_character_modal" value={true} color='green' size='medium' onClick={this.handleModalToogle}>Create Character</Button>} closeOnDimmerClick={false} >
+                    <Modal.Header className="transparent textColor">Character Creation</Modal.Header>
+                    <Modal.Content className="transparent">
                       <Grid columns={1}>
                         <Grid.Column>
                           <Image src={heroPreview} size='small' centered />
@@ -168,7 +170,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   initGame: initGame,
   deleteAccount: deleteAccount,
-  modalToggle: modalToggle
+  modalToggle: modalToggle,
+  uiToggle: uiToggle,
+  monsterHpToggle: monsterHpToggle
 }
 
 export default withAuth(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfilePage)));

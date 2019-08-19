@@ -28,6 +28,10 @@ class Signup extends React.Component{
     })
   }
 
+  handleClick = () => {
+    this.props.history.push("/")
+  }
+
   render() {
     return(
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -44,26 +48,26 @@ class Signup extends React.Component{
                   </Header>
                   </Form.Field>
                   <Form.Field>
-                    <div class="ui left icon input">
-                      <i class="user icon"></i>
+                    <div className="ui left icon input">
+                      <i className="user icon"></i>
                       <input name="username" onChange={this.handleChange} placeholder='Username' />
                     </div>
                   </Form.Field>
                   <Form.Field>
-                    <div class="ui left icon input">
-                      <i class="user outline icon"></i>
+                    <div className="ui left icon input">
+                      <i className="user outline icon"></i>
                       <input name="name" onChange={this.handleChange} placeholder='Display Name' />
                     </div>
                   </Form.Field>
                   <Form.Field>
-                    <div class="ui left icon input">
-                      <i class="lock icon"></i>
+                    <div className="ui left icon input">
+                      <i className="lock icon"></i>
                       <input type="password" name="password" onChange={this.handleChange} placeholder='Password' />
                     </div>
                   </Form.Field>
                   <Form.Field>
-                    <div class="ui left icon input">
-                      <i class="lock icon"></i>
+                    <div className="ui left icon input">
+                      <i className="lock icon"></i>
                       <input type="password" name="password_confirmation" onChange={this.handleChange} placeholder='Confirm Password' />
                     </div>
                   </Form.Field>
@@ -71,7 +75,7 @@ class Signup extends React.Component{
                 </Segment>
               </Form>
               <Divider className="textColor" horizontal>Or</Divider>
-              <Button onClick={this.handleSignup} content='Login' size='big' />
+              <Button onClick={this.handleClick} color="teal" content='Login' size='big' />
             </Segment>
           </Grid.Column>
       </Grid>

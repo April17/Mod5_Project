@@ -28,18 +28,27 @@ class EditAccount extends React.Component{
     return(
       <Grid.Column textAlign='center'>
         <Form>
-          <Segment>
+          <Segment className="transparent">
             <Form.Field>
-              <Header as='h3'>{this.props.user.username}</Header>
+              <Header className="textColor" as='h3'>{this.props.user.username}</Header>
             </Form.Field>
             <Form.Field>
-              <input name="name" onChange={this.handleChange} placeholder='Display Name' />
+              <div class="ui left icon input">
+                <i class="user outline icon"></i>
+                <input name="name" onChange={this.handleChange} placeholder='Display Name' />
+              </div>
             </Form.Field>
             <Form.Field>
-              <input type="password" name="password" onChange={this.handleChange} placeholder='Password' />
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="password" onChange={this.handleChange} placeholder='Password' />
+              </div>
             </Form.Field>
             <Form.Field>
-              <input type="password" name="password_confirmation" onChange={this.handleChange} placeholder='Confirm Password' />
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="password_confirmation" onChange={this.handleChange} placeholder='Confirm Password' />
+              </div>
             </Form.Field>
             <Button name="edit_account_modal" value={false} color='red' onClick={this.props.handleModalToogle}>Cancel</Button>
             <Button name="edit_account" value={false} color='green' type='submit' onClick={this.handleSubmit}>Submit</Button>

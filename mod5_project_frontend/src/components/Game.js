@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import {KeyGenerator} from '../utility/utilities'
 import { updateHeroStatus } from '../redux/adapters/heroStatusAdapters'
 import { updateMonsterStatus } from '../redux/adapters/monsterStatusAdapters'
-import { monsterHpToggle } from '../redux/adapters/utilityAdapters'
+import { monsterHpToggle, uiToggle } from '../redux/adapters/utilityAdapters'
 import { addLog } from '../redux/adapters/feedAdapters'
 import Phaser from 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
@@ -15,7 +15,6 @@ import { slimeMovement } from '../phaser/SlimeMovement'
 import { levelSystem } from '../phaser/GameMechanic'
 import { ColliderMonster } from '../phaser/ColliderMonster'
 import { ColliderObject } from '../phaser/ColliderObject'
-import xiaoLaJi from '../assets/active_resources/xiao_la_ji.gif'
 import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
@@ -155,6 +154,7 @@ class Game extends Component {
 
   initializeGame = () => {
     this.setState({ initialize: true })
+    this.props.uiToggle("frostglass show")
   }
 
   render() {
@@ -166,10 +166,7 @@ class Game extends Component {
           { !initialize &&
             <React.Fragment>
               <div onClick={this.initializeGame} id="gameInit" className="flex">
-                <div>
-                  <img src={xiaoLaJi} alt="xiao_la_ji"/>
-                </div>
-                <button className="massive ui red button">
+                <button className="massive ui red button play-button">
                   Play
                 </button>
               </div>
@@ -192,7 +189,8 @@ const mapDispatchToProps = {
   updateHeroStatus,
   updateMonsterStatus,
   addLog,
-  monsterHpToggle
+  monsterHpToggle,
+  uiToggle
 }
 
 export default connect(

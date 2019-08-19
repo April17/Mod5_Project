@@ -49,8 +49,8 @@ class CharacterCreation extends React.Component{
   render() {
     return(
       <Grid.Column textAlign='center'>
-        <Form >
-          <Segment>
+        <Form className="textColor">
+          <Segment className="transparent">
             <Form.Field>
               <Grid columns={3} textAlign='center'>
                 <Grid.Column textAlign='center'>
