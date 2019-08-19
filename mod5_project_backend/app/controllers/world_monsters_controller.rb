@@ -1,0 +1,2 @@
+class WorldMonstersController < ApplicationController
+end

@@ -12,7 +12,6 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
       t.integer :x, :default => 300
       t.integer :y, :default => 300
       t.integer :user_id
-      t.integer :world_id
 
       t.timestamps
     end

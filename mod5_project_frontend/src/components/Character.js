@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import {deleteCharacter} from '../redux/adapters/currentUserAdapters'
+import { getNewWorld } from '../redux/adapters/worldAdapters'
 import hero1 from '../assets/active_resources/Hero1.gif'
 
 
@@ -15,6 +16,7 @@ class Character extends Component {
     let modal = document.querySelector(".delete_character_modal")
     if (event.target.id !== this.props.characterInfo.id.toString()) {
       if (!modal) {
+        this.props.getNewWorld({character_id: this.props.characterInfo.id})
         this.props.onSelect(this.props.characterInfo)
       }
     }
@@ -90,6 +92,7 @@ class Character extends Component {
 
 
 const mapDispatchToProps = {
+  getNewWorld: getNewWorld,
   deleteCharacter: deleteCharacter
 }
 

@@ -56,12 +56,14 @@ class ProfilePage extends Component {
   }
 
   render() {
-    if (!this.props.user) {
+    if (!this.props.user || !this.props.user.characters[0].name) {
       return(
-        <div>
-          <img src={xiaoLaJi2} alt="xiaoLaJi2"/>
-          <p> Getting your Information </p>
-        </div>
+        <Grid columns={1} className="play-button" >
+          <Grid.Column textAlign="center">
+            <Image src={xiaoLaJi2} size='medium' wrapped />
+          </Grid.Column>
+            <Header className="textColor" as='h3'>Getting your Information.......</Header>
+        </Grid>
       )
     }
     return (

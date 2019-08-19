@@ -7,6 +7,7 @@ import { monsterHpToggle, uiToggle } from '../redux/adapters/utilityAdapters'
 import { addLog } from '../redux/adapters/feedAdapters'
 import Phaser from 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
+import { Header, Image, Grid } from 'semantic-ui-react'
 import { Hero } from "../phaser/Hero"
 import { Slime } from "../phaser/Slime"
 import { Chest } from "../phaser/Chest"
@@ -20,6 +21,8 @@ import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
 import slimetile from '../assets/active_resources/chara_slime.png'
 import dungeonSprites from '../assets/active_resources/tiles_dungeon_v1.png'
+import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
+
 import '../assets/style/Game.css'
 
 
@@ -75,7 +78,7 @@ class Game extends Component {
             /////////// End Map /////////////////////
 
             /////////// Character ///////////////////
-            hero = new Hero(this, "hero", that.props.characterInfo)
+            hero = new Hero(this, "hero", that.props.characterInfo).setSize(16, 16)
             slime = new Slime(this,
                               400,
                               300,
@@ -158,7 +161,17 @@ class Game extends Component {
   }
 
   render() {
-    // console.log(this.state);
+    console.log(this.props.worldInfo);
+    if (!this.props.worldInfo.name) {
+      return(
+        <Grid columns={1} className="play-button" >
+          <Grid.Column >
+            <Image src={xiaoLaJi2} size='medium' wrapped />
+          </Grid.Column>
+            <Header className="textColor" as='h3'>Finding World for you.......</Header>
+        </Grid>
+      )
+    }
     const { initialize, game } = this.state
     return (
       <div className="Game">
@@ -181,7 +194,8 @@ class Game extends Component {
 
 const mapStateToProps = state => {
   return {
-    characterInfo: state.status
+    characterInfo: state.status,
+    worldInfo: state.worldInfo.worldInfo
   }
 }
 

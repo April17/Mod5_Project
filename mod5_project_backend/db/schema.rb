@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_200919) do
+ActiveRecord::Schema.define(version: 2019_08_19_161619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 2019_08_08_200919) do
     t.integer "x", default: 300
     t.integer "y", default: 300
     t.integer "user_id"
-    t.integer "world_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,8 +42,8 @@ ActiveRecord::Schema.define(version: 2019_08_08_200919) do
     t.string "name"
     t.string "effect"
     t.string "key"
-    t.integer "status"
-    t.integer "rarity"
+    t.integer "status", default: 0
+    t.integer "rarity", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_08_08_200919) do
   create_table "monsters", force: :cascade do |t|
     t.string "name"
     t.string "monster_type"
+    t.integer "level", default: 1
     t.integer "exp_provide", default: 100
     t.integer "max_hp", default: 1000
     t.integer "hp", default: 200
@@ -59,7 +59,8 @@ ActiveRecord::Schema.define(version: 2019_08_08_200919) do
     t.integer "def", default: 20
     t.integer "x", default: 350
     t.integer "y", default: 350
-    t.integer "world_id"
+    t.integer "population", default: 0
+    t.integer "population_cap", default: 3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,9 +73,24 @@ ActiveRecord::Schema.define(version: 2019_08_08_200919) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "world_characters", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "world_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "world_monsters", force: :cascade do |t|
+    t.integer "monster_id"
+    t.integer "world_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "worlds", force: :cascade do |t|
     t.string "name"
-    t.integer "capacity"
+    t.integer "capacity", default: 5
+    t.integer "current_user_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

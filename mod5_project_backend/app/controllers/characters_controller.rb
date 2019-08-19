@@ -17,7 +17,6 @@ class CharactersController < ApplicationController
     character = Character.new(character_params)
     character.user = user
     character.hp = character.max_hp
-    character.world_id = 1
     if character.save
       user = character.user
       render json: user, include: "**"

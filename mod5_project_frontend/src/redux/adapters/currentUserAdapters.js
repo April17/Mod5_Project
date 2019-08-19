@@ -92,7 +92,6 @@ export const deleteAccount = (route) => dispatch => {
         console.log(data.errors);
       }
     })
-  //push to Front Page
 }
 
 export const createCharacter = (newCharacterInfo) => dispatch => {
@@ -137,5 +136,4 @@ export const deleteCharacter = (characterId) => dispatch => {
         console.log(data.errors);
       }
     })
-  //fetch New user Info
 }
