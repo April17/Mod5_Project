@@ -5,18 +5,26 @@ const defaultState = {
     {
       id: 0,
       name: "",
+      level: 1,
+      exp_next_level: 100,
+      exp: 0,
+      max_hp: 100,
       hp: 1,
-      atk: 0,
-      def: 0,
-      x: 0,
-      y: 0,
-      items:[
+      atk: 10,
+      def: 10,
+      x: 500,
+      y: 500,
+      character_items:[
         {
-          id: 0,
-          name: "",
-          effect: "",
-          key: "",
-          status: ""
+          item_id: 0,
+          quantity: 0,
+          item: {
+            id: 0,
+            name: "",
+            effect: "",
+            key: "",
+            status: ""
+          }
         }
       ]
     }

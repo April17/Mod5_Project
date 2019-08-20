@@ -1,4 +1,5 @@
 export class Hero extends Phaser.Physics.Arcade.Sprite {
+    id = 0;
     name = "player 1";
     max_hp = 0;
     hp = 0;
@@ -14,6 +15,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
       scene.sys.updateList.add(this);
       scene.sys.displayList.add(this);
       scene.physics.world.enableBody(this);
+      this.id = characterInfo.id
       this.name = characterInfo.name;
       this.max_hp = characterInfo.max_hp
       this.hp = characterInfo.hp;

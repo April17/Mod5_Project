@@ -13,7 +13,7 @@ class Item extends Component {
         </Feed.Label>
         <Feed.Content>
           <Feed.Summary>
-              <Popup content={this.props.itemData.effect} trigger={<Feed.User>{this.props.itemData.name}</Feed.User>} /> x{this.props.itemData.quantity}
+              <Popup content={this.props.itemData.item.effect} trigger={<Feed.User>{this.props.itemData.item.name}</Feed.User>} /> x{this.props.itemData.quantity}
           </Feed.Summary>
         </Feed.Content>
       </Feed.Event>

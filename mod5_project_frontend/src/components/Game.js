@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
-import {KeyGenerator} from '../utility/utilities'
 import { updateHeroStatus } from '../redux/adapters/heroStatusAdapters'
-import { updateMonsterStatus } from '../redux/adapters/monsterStatusAdapters'
+import { updateMonsterStatus, requestItemDrop } from '../redux/adapters/monsterStatusAdapters'
 import { monsterHpToggle, uiToggle } from '../redux/adapters/utilityAdapters'
 import { addLog } from '../redux/adapters/feedAdapters'
 import Phaser from 'phaser'
@@ -13,10 +12,9 @@ import { Hero } from "../phaser/Hero"
 import { Chest } from "../phaser/Chest"
 import { heroControl } from '../phaser/HeroControl'
 // import { slimeMovement } from '../phaser/SlimeMovement'
-import { levelSystem } from '../phaser/GameMechanic'
+import { levelSystem, monsterSpawner } from '../phaser/GameMechanic'
 // import { ColliderMonster } from '../phaser/ColliderMonster'
 import { ColliderObject } from '../phaser/ColliderObject'
-import { monsterSpawner } from '../phaser/GameMechanic'
 import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
@@ -32,7 +30,6 @@ import '../assets/style/Game.css'
 let hero;
 let cursors;
 let that;
-let key;
 let currentScene
 // let chest1Img = new Image()
 class Game extends Component {
@@ -48,7 +45,7 @@ class Game extends Component {
         physics: {
           default: "arcade",
           arcade: {
-            debug: true
+            debug: false
           }
         },
         render: {
@@ -69,7 +66,6 @@ class Game extends Component {
           },
           create: function() {
             currentScene = this
-            key = new KeyGenerator()
             ///////////// Map ///////////////////////
             const map = this.make.tilemap({ key: "map" });
             const tileset = map.addTilesetImage("ts_dungeon", "ts-tiles");
@@ -86,7 +82,7 @@ class Game extends Component {
             that.props.worldInfo.monsters.forEach(function(monster){
               const spawnPoint = {x: monster.x, y: monster.y}
               for (monster.population; monster.population <monster.population_cap; monster.population++) {
-                monsterSpawner(currentScene, that, monster, hero, key, world_layer, spawnPoint)
+                monsterSpawner(currentScene, that, monster, hero, world_layer, spawnPoint)
               }
             })
 
@@ -110,7 +106,6 @@ class Game extends Component {
             window.hero = hero
             window.scene = this
             window.chest1 = chest1
-            window.key = key
             ////////////// End Window Object Debugger ////////////
 
             /////////// Camera and Controls ///////////////////
@@ -126,7 +121,7 @@ class Game extends Component {
             // if (slime.active === true) {
             //   slimeMovement(that, slime, this, hero)
             // }
-            levelSystem(hero, that, key)
+            levelSystem(hero, that)
           }
         }
       }
@@ -188,7 +183,8 @@ const mapDispatchToProps = {
   updateMonsterStatus,
   addLog,
   monsterHpToggle,
-  uiToggle
+  uiToggle,
+  requestItemDrop
 }
 
 export default connect(

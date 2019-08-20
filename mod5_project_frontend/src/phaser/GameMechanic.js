@@ -11,7 +11,7 @@ export const levelSystem = (hero, game, key) => {
     hero.atk = Math.round(hero.atk + hero.level * 0.5)
     hero.def = hero.def + hero.level
     hero.hp = hero.max_hp
-    game.props.addLog({summary: `-Congratulations! ${hero.name} is now Level ${hero.level}.`, key: key.counter()})
+    game.props.addLog({summary: `-Congratulations! ${hero.name} is now Level ${hero.level}.`})
   }
 }
 
@@ -28,11 +28,11 @@ export const damageSystem = (attacker, defender) => {
   // console.log("damage", damage);
 }
 
-export const monsterSpawner = (scene, game, monster, hero, key, world_layer, spawnPoint) => {
+export const monsterSpawner = (scene, game, monster, hero, world_layer, spawnPoint) => {
   monster.x = Phaser.Math.Between((spawnPoint.x-50), (spawnPoint.x+50))
   monster.y = Phaser.Math.Between((spawnPoint.y-50), (spawnPoint.y+50))
   monster.hp = monster.max_hp
   let currentMonster = new Slime(scene, monster).setSize(16, 16)
-  new ColliderMonster(game, scene, hero, currentMonster, key, world_layer, spawnPoint)
+  new ColliderMonster(game, scene, hero, currentMonster, world_layer, spawnPoint)
   scene.physics.add.collider(currentMonster, world_layer);
 }

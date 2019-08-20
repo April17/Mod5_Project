@@ -1,9 +1,9 @@
 import { damageSystem, monsterSpawner } from './GameMechanic'
 
 export class ColliderMonster {
-  constructor (game, scene, hero, monster, key, world_layer, spawnPoint) {
+  constructor (game, scene, hero, monster, world_layer, spawnPoint) {
     const monsterClassName = monster.constructor.name
-    let monsterStatus = {name: monster.name, monster_type: monster.monster_type, exp_provide: monster.exp_provide, max_hp: monster.max_hp, hp: monster.hp, atk: monster.atk, def: monster.def}
+    let monsterStatus = {id: monster.id, name: monster.name, monster_type: monster.monster_type, exp_provide: monster.exp_provide, max_hp: monster.max_hp, hp: monster.hp, atk: monster.atk, def: monster.def}
     scene.physics.world.addCollider(hero, monster, (hero: Hero, monster: monsterClassName) => {
      if (hero.attacking === true) {
        damageSystem(hero, monster)
@@ -59,10 +59,11 @@ export class ColliderMonster {
      if (monster.hp < 0) {
        monster.destroy()
        game.props.monsterHpToggle("No-Space hide")
+       game.props.requestItemDrop({monster_id: monster.id, character_id: hero.id})
        hero.exp = hero.exp + monster.exp_provide
-       game.props.addLog({summary: `-${hero.name} obtain ${monster.exp_provide} EXP.`, key: key.counter()})
+       game.props.addLog({summary: `-${hero.name} obtain ${monster.exp_provide} EXP.`})
        hero.x = hero.x + 0.01
-       setTimeout(function(){monsterSpawner(scene, game, monster, hero, key, world_layer, spawnPoint)}, 3000)
+       setTimeout(function(){monsterSpawner(scene, game, monster, hero, world_layer, spawnPoint)}, 3000)
      }
    })
  }

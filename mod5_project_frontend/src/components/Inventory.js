@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { filterDuplicate } from '../utility/utilities'
 import { Grid, Header, Segment, Feed } from 'semantic-ui-react'
 import Item from './Item'
 
 class Inventory extends Component {
 
   genItems = () => {
-    const filteredItems = filterDuplicate(this.props.items, "name")
-    return filteredItems.map(item => <Item key={item.id} itemData={item}/>)
+    return this.props.character_items.map(item => <Item key={item.item_id} itemData={item}/>)
   }
 
   render(){
@@ -29,7 +27,7 @@ class Inventory extends Component {
 
 const mapStateToProps = state => {
   return {
-    items: state.status.items
+    character_items: state.status.unique_character_owned_items
   }
 }
 

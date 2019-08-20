@@ -8,4 +8,9 @@ class Character < ApplicationRecord
   has_many :items, through: :character_items
 
   validates :name, presence: true
+
+  def unique_character_owned_items
+    self.character_items.select('distinct on (item_id) *')
+  end
+
 end

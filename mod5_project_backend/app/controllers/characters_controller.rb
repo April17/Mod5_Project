@@ -3,13 +3,13 @@ class CharactersController < ApplicationController
 
   def show
     character = Character.find_by(id: params[:id])
-    render json: character, include: "**"
+    render json: character, include: "**",  character_id: character.id
   end
 
   def update
     character = Character.find_by(id: params[:id])
     character.update(character_params)
-    render json: character, include: "**"
+    # render json: character, include: "**"
   end
 
   def create

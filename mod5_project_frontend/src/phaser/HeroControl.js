@@ -14,7 +14,7 @@ export const heroControl = (game, hero, cursors) => {
                     def: hero.def,
                     x: hero.body.x.toFixed(0),
                     y: hero.body.y.toFixed(0),
-                    items: hero.items}
+                    }
   const speed = 100;
   const prevVelocity = hero.body.velocity.clone();
   hero.body.setVelocity(0);
