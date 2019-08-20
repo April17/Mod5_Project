@@ -1,3 +1,7 @@
+import { Slime } from "./Slime"
+import { ColliderMonster } from './ColliderMonster'
+import Phaser from 'phaser'
+
 export const levelSystem = (hero, game, key) => {
   if (hero.exp >= hero.exp_next_level) {
     hero.exp = hero.exp - hero.exp_next_level
@@ -18,8 +22,17 @@ export const damageSystem = (attacker, defender) => {
     damage = attacker.atk - damageReduction
   }
   defender.hp = Math.round(defender.hp - damage)
-  // console.log("defender level", defender.level);
+  // console.log(`[${defender.name}] defender HP`, defender.hp);
   // console.log("attacker atk", attacker.atk);
   // console.log("damageReduction", damageReduction);
   // console.log("damage", damage);
+}
+
+export const monsterSpawner = (scene, game, monster, hero, key, world_layer, spawnPoint) => {
+  monster.x = Phaser.Math.Between((spawnPoint.x-50), (spawnPoint.x+50))
+  monster.y = Phaser.Math.Between((spawnPoint.y-50), (spawnPoint.y+50))
+  monster.hp = monster.max_hp
+  let currentMonster = new Slime(scene, monster).setSize(16, 16)
+  new ColliderMonster(game, scene, hero, currentMonster, key, world_layer, spawnPoint)
+  scene.physics.add.collider(currentMonster, world_layer);
 }

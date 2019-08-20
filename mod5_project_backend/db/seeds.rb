@@ -17,13 +17,24 @@ april = Character.create(name:"April", level: 1, exp_next_level: 100, exp: 0, ma
 february = Character.create(name:"February", level: 5, exp_next_level: 1200, exp: 1100, max_hp: 2500, hp: 2500, atk: 200, def: 200, x: 300, y: 300, user: fan)
 
 small_hp_potion = Item.create(name:"Small HP Potion", effect: "Recover 100 HP", key: "hp", rarity: 1, status: 100)
+large_hp_potion = Item.create(name:"Large HP Potion", effect: "Recover 1000 HP", key: "hp", rarity: 1, status: 1000)
+
 
 WorldCharacter.create(world: playground, character: april)
 
 WorldMonster.create(world: playground, monster: sam_slime)
 WorldMonster.create(world: playground, monster: tom_slime)
 
-CharacterItem.create(character: april, item: small_hp_potion)
+5.times do
+  CharacterItem.create(character: april, item: small_hp_potion)
+end
+
+5.times do
+  CharacterItem.create(character: april, item: large_hp_potion)
+end
+
+MonsterItem.create(monster: sam_slime, item: small_hp_potion)
+MonsterItem.create(monster: tom_slime, item: large_hp_potion)
 
 
 

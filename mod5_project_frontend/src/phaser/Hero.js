@@ -7,6 +7,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
     level = 0;
     exp_next_level = 0;
     exp = 0;
+    items = []
     attacking = false;
     constructor(scene: Phaser.Scene, texture: string, characterInfo ) {
       super(scene, characterInfo.x, characterInfo.y, texture);
@@ -21,6 +22,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
       this.level = characterInfo.level;
       this.exp_next_level = characterInfo.exp_next_level;
       this.exp = characterInfo.exp;
+      this.items = characterInfo.items;
 
       scene.anims.create({
         key: "vetory",

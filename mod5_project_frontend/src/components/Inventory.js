@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Header, Segment, Image } from 'semantic-ui-react'
-import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
+import { filterDuplicate } from '../utility/utilities'
+import { Grid, Header, Segment, Feed } from 'semantic-ui-react'
+import Item from './Item'
 
 class Inventory extends Component {
+
+  genItems = () => {
+    const filteredItems = filterDuplicate(this.props.items, "name")
+    return filteredItems.map(item => <Item key={item.id} itemData={item}/>)
+  }
 
   render(){
     return(
       <Grid columns={1} textAlign="center">
         <Grid.Column width={16} textAlign='center'>
           <Header as='h3'>Inventory</Header>
-          <Segment className="transparent">
-            <Header as="h2">Under Development</Header>
-            <Image src={xiaoLaJi2} size='small' centered/>
+          <Segment className="frostglass">
+            <Feed>
+              {this.genItems()}
+            </Feed>
           </Segment>
         </Grid.Column>
       </Grid>
@@ -22,7 +29,7 @@ class Inventory extends Component {
 
 const mapStateToProps = state => {
   return {
-    player: state.status
+    items: state.status.items
   }
 }
 

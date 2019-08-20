@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :monster_items
   resources :world_monsters
   resources :world_characters
   resources :character_items

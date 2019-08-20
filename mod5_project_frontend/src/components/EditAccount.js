@@ -50,8 +50,8 @@ class EditAccount extends React.Component{
                 <input type="password" name="password_confirmation" onChange={this.handleChange} placeholder='Confirm Password' />
               </div>
             </Form.Field>
-            <Button name="edit_account_modal" value={false} color='red' onClick={this.props.handleModalToogle}>Cancel</Button>
             <Button name="edit_account" value={false} color='green' type='submit' onClick={this.handleSubmit}>Submit</Button>
+            <Button name="edit_account_modal" value={false} color='red' onClick={this.props.handleModalToogle}>Cancel</Button>
           </Segment>
         </Form>
       </Grid.Column>

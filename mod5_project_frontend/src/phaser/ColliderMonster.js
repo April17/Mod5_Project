@@ -1,7 +1,7 @@
-import { damageSystem } from './GameMechanic'
+import { damageSystem, monsterSpawner } from './GameMechanic'
 
 export class ColliderMonster {
-  constructor (game, scene, hero, monster, key) {
+  constructor (game, scene, hero, monster, key, world_layer, spawnPoint) {
     const monsterClassName = monster.constructor.name
     let monsterStatus = {name: monster.name, monster_type: monster.monster_type, exp_provide: monster.exp_provide, max_hp: monster.max_hp, hp: monster.hp, atk: monster.atk, def: monster.def}
     scene.physics.world.addCollider(hero, monster, (hero: Hero, monster: monsterClassName) => {
@@ -62,6 +62,7 @@ export class ColliderMonster {
        hero.exp = hero.exp + monster.exp_provide
        game.props.addLog({summary: `-${hero.name} obtain ${monster.exp_provide} EXP.`, key: key.counter()})
        hero.x = hero.x + 0.01
+       setTimeout(function(){monsterSpawner(scene, game, monster, hero, key, world_layer, spawnPoint)}, 3000)
      }
    })
  }

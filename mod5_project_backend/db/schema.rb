@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_161619) do
+ActiveRecord::Schema.define(version: 2019_08_20_110440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 2019_08_19_161619) do
     t.string "key"
     t.integer "status", default: 0
     t.integer "rarity", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "monster_items", force: :cascade do |t|
+    t.integer "monster_id"
+    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

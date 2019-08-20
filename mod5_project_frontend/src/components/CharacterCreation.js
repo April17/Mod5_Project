@@ -105,8 +105,8 @@ class CharacterCreation extends React.Component{
                 </Grid.Column>
               </Grid>
             </Form.Field>
-            <Button name="create_character_modal" value={false} color='red' onClick={this.props.handleModalToogle} >Cancel</Button>
             <Button color='green' type='submit' onClick={this.handleSubmit} >Create</Button>
+            <Button name="create_character_modal" value={false} color='red' onClick={this.props.handleModalToogle} >Cancel</Button>
           </Segment>
         </Form>
       </Grid.Column>

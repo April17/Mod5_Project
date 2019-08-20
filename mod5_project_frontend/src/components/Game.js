@@ -9,13 +9,14 @@ import Phaser from 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
 import { Header, Image, Grid } from 'semantic-ui-react'
 import { Hero } from "../phaser/Hero"
-import { Slime } from "../phaser/Slime"
+// import { Slime } from "../phaser/Slime"
 import { Chest } from "../phaser/Chest"
 import { heroControl } from '../phaser/HeroControl'
-import { slimeMovement } from '../phaser/SlimeMovement'
+// import { slimeMovement } from '../phaser/SlimeMovement'
 import { levelSystem } from '../phaser/GameMechanic'
-import { ColliderMonster } from '../phaser/ColliderMonster'
+// import { ColliderMonster } from '../phaser/ColliderMonster'
 import { ColliderObject } from '../phaser/ColliderObject'
+import { monsterSpawner } from '../phaser/GameMechanic'
 import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
@@ -29,8 +30,6 @@ import '../assets/style/Game.css'
 // import { GamingScene } from "./GamingScene";
 
 let hero;
-let slime;
-let slime2
 let cursors;
 let that;
 let key;
@@ -84,12 +83,18 @@ class Game extends Component {
             /////////// Character ///////////////////
             hero = new Hero(this, "hero", that.props.characterInfo).setSize(16, 16)
 
-
             that.props.worldInfo.monsters.forEach(function(monster){
-              let currentMonster = new Slime(currentScene, monster).setSize(16, 16)
-              new ColliderMonster(that, currentScene, hero, currentMonster, key)
-              currentScene.physics.add.collider(currentMonster, world_layer);
+              const spawnPoint = {x: monster.x, y: monster.y}
+              for (monster.population; monster.population <monster.population_cap; monster.population++) {
+                monsterSpawner(currentScene, that, monster, hero, key, world_layer, spawnPoint)
+              }
             })
+
+            // that.props.worldInfo.monsters.forEach(function(monster){
+            //   let currentMonster = new Slime(currentScene, monster).setSize(16, 16)
+            //   new ColliderMonster(that, currentScene, hero, currentMonster, key)
+            //   currentScene.physics.add.collider(currentMonster, world_layer);
+            // })
             ////////// End Character ///////////////
 
             ////////// Object ///////////////
@@ -103,7 +108,6 @@ class Game extends Component {
 
             ////////////// Window Object Debugger ////////////
             window.hero = hero
-            window.slime = slime
             window.scene = this
             window.chest1 = chest1
             window.key = key
@@ -144,11 +148,11 @@ class Game extends Component {
   render() {
     if (!this.props.worldInfo.name) {
       return(
-        <Grid columns={1} className="play-button" >
+        <Grid columns={1} className="loading" >
           <Grid.Column >
-            <Image src={xiaoLaJi2} size='medium' wrapped />
-          </Grid.Column>
+            <Image src={xiaoLaJi2} wrapped />
             <Header className="textColor" as='h3'>Finding World for you.......</Header>
+          </Grid.Column>
         </Grid>
       )
     }
