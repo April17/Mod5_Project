@@ -3,7 +3,12 @@ const defaultState = {
   create_character_modal: false,
   delete_accout_modal: false,
   monster_hp_toggle: "No-Space hide",
-  ui_toggle: "frostglass hide"
+  ui_toggle: "frostglass hide",
+  cooldownState: {
+    small_HP: false,
+    large_HP: false,
+    atk_potion: false
+  }
 }
 export default (state = defaultState, action) => {
 
@@ -14,6 +19,8 @@ export default (state = defaultState, action) => {
       return {...state, monster_hp_toggle: action.payload}
     case 'UI_TOGGLE':
       return {...state, ui_toggle: action.payload}
+    case 'COOLDOWN_TOGGLE':
+      return {...state, cooldownState: {...state.cooldownState, ...action.payload}}
     default:
       return state
   }

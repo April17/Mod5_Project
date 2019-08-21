@@ -42,8 +42,10 @@ ActiveRecord::Schema.define(version: 2019_08_20_110440) do
     t.string "name"
     t.string "effect"
     t.string "key"
+    t.string "icon_name"
     t.integer "status", default: 0
     t.integer "rarity", default: 0
+    t.integer "cooldown", default: 1000
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_110440) do
     t.integer "y", default: 350
     t.integer "population", default: 0
     t.integer "population_cap", default: 3
+    t.integer "respawn_cooldown", default: 3000
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

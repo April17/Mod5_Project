@@ -1,5 +1,5 @@
 class WorldsController < ApplicationController
-  skip_before_action :authorized
+  # skip_before_action :authorized
 
   def create
     current_character = Character.find_by(id: params[:character_id])

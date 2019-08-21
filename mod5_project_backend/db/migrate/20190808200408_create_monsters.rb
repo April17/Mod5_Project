@@ -13,6 +13,7 @@ class CreateMonsters < ActiveRecord::Migration[5.2]
       t.integer :y, :default => 350
       t.integer :population, :default => 0
       t.integer :population_cap, :default => 3
+      t.integer :respawn_cooldown, :default => 3000
 
       t.timestamps
     end

@@ -1,5 +1,5 @@
 class CharactersController < ApplicationController
-  skip_before_action :authorized
+  # skip_before_action :authorized
 
   def show
     character = Character.find_by(id: params[:id])

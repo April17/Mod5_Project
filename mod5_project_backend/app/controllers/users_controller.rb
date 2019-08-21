@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized
+  # skip_before_action :authorized
 
   def show
     user = User.find_by(id: params[:id])

@@ -2,6 +2,19 @@ import { Slime } from "./Slime"
 import { ColliderMonster } from './ColliderMonster'
 import Phaser from 'phaser'
 
+let keyDownK = true
+let keyDownL = true
+let keyDownI = true
+let counterK = 0;
+let counterL = 0;
+let counterI = 0;
+
+const keyMap = {
+  "small_HP": {key: "K", keyDown: keyDownK, counter: counterK},
+  "large_HP": {key: "L", keyDown: keyDownL, counter: counterL},
+  "atk_potion": {key: "I", keyDown: keyDownI, counter: counterI}
+}
+
 export const levelSystem = (hero, game, key) => {
   if (hero.exp >= hero.exp_next_level) {
     hero.exp = hero.exp - hero.exp_next_level
@@ -35,4 +48,46 @@ export const monsterSpawner = (scene, game, monster, hero, world_layer, spawnPoi
   let currentMonster = new Slime(scene, monster).setSize(16, 16)
   new ColliderMonster(game, scene, hero, currentMonster, world_layer, spawnPoint)
   scene.physics.add.collider(currentMonster, world_layer);
+}
+
+export const itemKeyMap = (hero, item, cursors, heroStatus, game) => {
+  if (item) {
+    if (cursors[keyMap[item.item.icon_name].key].isDown && keyMap[item.item.icon_name].keyDown && item.quantity > 0){
+      game.props.cooldownToggle({[item.item.icon_name]: true})
+      if (item.item.key === "hp") {
+        healthPotion(hero, item, game, heroStatus)
+      } else if (item.item.key === "atk_boost") {
+        atkPotion(hero, item, game, heroStatus)
+      }
+      keyMap[item.item.icon_name].keyDown = false
+    }
+  }
+  if (cursors[keyMap[item.item.icon_name].key].isDown && keyMap[item.item.icon_name].keyDown === false) {
+    if (keyMap[item.item.icon_name].counter === 0) {
+      item.quantity --
+      game.props.useItem({character_id: hero.id, item_id: item.item_id})
+      setTimeout(function(){
+        keyMap[item.item.icon_name].keyDown = true
+        game.props.cooldownToggle({[item.item.icon_name]: false})
+        keyMap[item.item.icon_name].counter = 0}, item.item.cooldown);
+      keyMap[item.item.icon_name].counter ++
+    }
+  }
+}
+
+
+const atkPotion = (hero, item, game, heroStatus) => {
+  hero.atk = hero.atk + item.item.status
+  console.log(hero.at);
+  game.props.updateHeroStatus({...heroStatus, atk: hero.atk})
+}
+
+const healthPotion = (hero, item, game, heroStatus) => {
+  if (hero.hp < hero.max_hp) {
+    hero.hp = hero.hp + item.item.status
+  if (hero.hp > hero.max_hp) {
+    hero.hp = hero.max_hp
+  }
+  game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
+  }
 }

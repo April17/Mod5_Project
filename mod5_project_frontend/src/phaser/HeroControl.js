@@ -1,8 +1,7 @@
+import { itemKeyMap } from './GameMechanic'
 let prevX = 0;
 let prevY = 0;
-let keyDownK = true;
-let keyDownL = true;
-let counter = 0;
+
 export const heroControl = (game, hero, cursors) => {
   let heroStatus = {id: hero.id,
                     name: hero.name,
@@ -79,50 +78,61 @@ export const heroControl = (game, hero, cursors) => {
     hero.setSize(16, 16)
     hero.attacking = false
   }
-  if (hero.items[0]) {
-    if (cursors.K.isDown && keyDownK && hero.items[0].quantity > 0){
-      if (hero.hp < hero.max_hp) {
-        hero.hp = hero.hp + 100
-      if (hero.hp > hero.max_hp) {
-        hero.hp = hero.max_hp
-      }
-      game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
-      }
-      keyDownK = false
-    }
-  }
-  if (cursors.K.isUp && keyDownK === false) {
-    if (counter === 0) {
-      hero.items[0].quantity --
-      game.props.useItem({character_id: hero.id, item_id: hero.items[0].item_id})
-      setTimeout(function(){
-        keyDownK = true
-        counter = 0}, 1000);
-      counter ++
-    }
-  }
-  if (hero.items[1]) {
-    if (cursors.L.isDown && keyDownL && hero.items[1].quantity > 0){
-      if (hero.hp < hero.max_hp) {
-        hero.hp = hero.hp + 1000
-      if (hero.hp > hero.max_hp) {
-        hero.hp = hero.max_hp
-      }
-      game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
-      }
-      keyDownL = false
-    }
-  }
-  if (cursors.L.isUp && keyDownL === false) {
-    if (counter === 0) {
-      hero.items[1].quantity --
-      game.props.useItem({character_id: hero.id, item_id: hero.items[1].item_id})
-      setTimeout(function(){
-        keyDownL = true
-        counter = 0}, 5000);
-      counter ++
-    }
-  }
+
+  hero.items.forEach(function(item){
+    itemKeyMap(hero, item, cursors, heroStatus, game)
+  })
+
+
+  // if (hero.items[0]) {
+  //   if (cursors.K.isDown && keyDownK && hero.items[0].quantity > 0){
+  //     game.props.cooldownToggle({[hero.items[0].item.icon_name]: true})
+  //     if (hero.hp < hero.max_hp) {
+  //       hero.hp = hero.hp + 100
+  //     if (hero.hp > hero.max_hp) {
+  //       hero.hp = hero.max_hp
+  //     }
+  //     game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
+  //     }
+  //     keyDownK = false
+  //   }
+  // }
+  // if (cursors.K.isUp && keyDownK === false) {
+  //   if (counter === 0) {
+  //     hero.items[0].quantity --
+  //     game.props.useItem({character_id: hero.id, item_id: hero.items[0].item_id})
+  //     setTimeout(function(){
+  //       keyDownK = true
+  //       game.props.cooldownToggle({[hero.items[0].item.icon_name]: false})
+  //       counter = 0}, hero.items[0].item.cooldown);
+  //     counter ++
+  //   }
+  // }
+  //
+  // if (hero.items[1]) {
+  //   if (cursors.L.isDown && keyDownL && hero.items[1].quantity > 0){
+  //     game.props.cooldownToggle({[hero.items[1].item.icon_name]: true})
+  //     if (hero.hp < hero.max_hp) {
+  //       hero.hp = hero.hp + 1000
+  //     if (hero.hp > hero.max_hp) {
+  //       hero.hp = hero.max_hp
+  //     }
+  //     game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
+  //     }
+  //     keyDownL = false
+  //   }
+  // }
+  // if (cursors.L.isUp && keyDownL === false) {
+  //   if (counter === 0) {
+  //     hero.items[1].quantity --
+  //     game.props.useItem({character_id: hero.id, item_id: hero.items[1].item_id})
+  //     setTimeout(function(){
+  //       keyDownL = true
+  //       game.props.cooldownToggle({[hero.items[1].item.icon_name]: false})
+  //       counter = 0}, hero.items[1].item.cooldown);
+  //     counter ++
+  //   }
+  // }
   if (cursors.A.isUp || cursors.D.isUp) {
     if (prevX !== hero.body.x) {
       game.props.updateHeroStatus({...heroStatus, x: hero.body.x.toFixed(0)})

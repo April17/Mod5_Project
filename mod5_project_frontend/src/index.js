@@ -12,9 +12,16 @@ import { ActionCableProvider } from 'react-actioncable-provider';
 import { API_WS_ROOT } from './actioncable';
 import * as serviceWorker from './serviceWorker';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+//
+// const store = createStore(
+//   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+//   rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(
+      applyMiddleware(thunk)
+    ));
 
 ReactDOM.render((
   <Provider store={store}>

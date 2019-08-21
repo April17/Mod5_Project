@@ -8,6 +8,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
   hp = 0;
   atk = 0;
   def = 0;
+  respawn_cooldown = 3000;
   constructor(scene: Phaser.Scene, monsterInfo) {
     super(scene, monsterInfo.x, monsterInfo.y, monsterInfo.monster_type);
     scene.sys.updateList.add(this);
@@ -23,6 +24,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
     this.hp = monsterInfo.hp;
     this.atk = monsterInfo.atk;
     this.def = monsterInfo.def;
+    this.respawn_cooldown = monsterInfo.respawn_cooldown
     // debugger
     scene.anims.create({
       key: "slime-vetory",

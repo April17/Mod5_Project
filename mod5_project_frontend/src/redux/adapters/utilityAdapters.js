@@ -12,3 +12,7 @@ export const monsterHpToggle = state => dispatch => {
 export const uiToggle = state => dispatch => {
   dispatch(actions.uiToggle(state))
 }
+
+export const cooldownToggle = state => dispatch => {
+  dispatch(actions.cooldownToggle(state))
+}

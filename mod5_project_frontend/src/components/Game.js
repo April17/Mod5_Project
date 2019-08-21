@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { updateHeroStatus, useItem } from '../redux/adapters/heroStatusAdapters'
 import { updateMonsterStatus, requestItemDrop } from '../redux/adapters/monsterStatusAdapters'
-import { monsterHpToggle, uiToggle } from '../redux/adapters/utilityAdapters'
+import { monsterHpToggle, uiToggle, cooldownToggle } from '../redux/adapters/utilityAdapters'
 import { addLog } from '../redux/adapters/feedAdapters'
 import Phaser from 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
@@ -101,8 +101,9 @@ class Game extends Component {
             const camera = this.cameras.main;
             camera.startFollow(hero);
             camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-            cursors = this.input.keyboard.addKeys("W, A, S, D, J, K, L");
+            cursors = this.input.keyboard.addKeys("W, A, S, D, J, K, L, I");
             this.scale.setZoom(4.2)
+            window.cursors = cursors
             /////////// End Camera and Controls ///////////////////
           },
           update: function(time, delta) {
@@ -174,7 +175,8 @@ const mapDispatchToProps = {
   monsterHpToggle,
   uiToggle,
   requestItemDrop,
-  useItem
+  useItem,
+  cooldownToggle
 }
 
 export default connect(

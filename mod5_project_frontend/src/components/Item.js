@@ -1,19 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Feed, Popup } from 'semantic-ui-react'
-import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
+import { Feed, Popup, Image, Segment, Dimmer, Loader} from 'semantic-ui-react'
+import small_HP from '../assets/active_resources/naichalaji.jpg'
+import large_HP from '../assets/active_resources/xiaolaji.gif'
+import atk_potion from '../assets/active_resources/xiao_la_ji.gif'
+
+const iconMap = {
+  "small_HP": small_HP,
+  "large_HP": large_HP,
+  "atk_potion": atk_potion
+}
+
 
 class Item extends Component {
+
+  itemInfo = () => {
+    return (this.props.itemData.item.effect + `(cooldown: ${this.props.itemData.item.cooldown/1000} sec)`)
+  }
 
   render(){
     return(
       <Feed.Event>
         <Feed.Label>
-          <img src={xiaoLaJi2} alt="xiaoLaJi"/>
+          <Segment className="transparent No-Space">
+            <Dimmer className="frostglass No-Space" id={this.props.itemData.item.icon_name} active={this.props.cooldownState[this.props.itemData.item.icon_name]} inverted>
+              <Loader />
+            </Dimmer>
+              <Image src={iconMap[this.props.itemData.item.icon_name]} alt={this.props.itemData.item.icon_name} fluid circular/>
+          </Segment>
         </Feed.Label>
         <Feed.Content>
           <Feed.Summary>
-              <Popup content={this.props.itemData.item.effect} trigger={<Feed.User>{this.props.itemData.item.name}</Feed.User>} /> x{this.props.itemData.quantity}
+              <Popup content={this.itemInfo()} trigger={<Feed.User>{this.props.itemData.item.name}</Feed.User>} /> x{this.props.itemData.quantity}
           </Feed.Summary>
         </Feed.Content>
       </Feed.Event>
@@ -21,8 +39,10 @@ class Item extends Component {
   }
 }
 
-const mapDispatchToProps = {
-
+const mapStateToProps = state => {
+  return {
+    cooldownState: state.utilityReducer.cooldownState
+  }
 }
 
-export default connect(null, mapDispatchToProps)(Item)
+export default connect(mapStateToProps, null)(Item)

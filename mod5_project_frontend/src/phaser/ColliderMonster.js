@@ -63,7 +63,7 @@ export class ColliderMonster {
        hero.exp = hero.exp + monster.exp_provide
        game.props.addLog({summary: `-${hero.name} obtain ${monster.exp_provide} EXP.`})
        hero.x = hero.x + 0.01
-       setTimeout(function(){monsterSpawner(scene, game, monster, hero, world_layer, spawnPoint)}, 3000)
+       setTimeout(function(){monsterSpawner(scene, game, monster, hero, world_layer, spawnPoint)}, monster.respawn_cooldown)
      }
    })
  }
