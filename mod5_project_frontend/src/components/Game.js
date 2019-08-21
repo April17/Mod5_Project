@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
-import { updateHeroStatus } from '../redux/adapters/heroStatusAdapters'
+import { updateHeroStatus, useItem } from '../redux/adapters/heroStatusAdapters'
 import { updateMonsterStatus, requestItemDrop } from '../redux/adapters/monsterStatusAdapters'
 import { monsterHpToggle, uiToggle } from '../redux/adapters/utilityAdapters'
 import { addLog } from '../redux/adapters/feedAdapters'
@@ -8,12 +8,9 @@ import Phaser from 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
 import { Header, Image, Grid } from 'semantic-ui-react'
 import { Hero } from "../phaser/Hero"
-// import { Slime } from "../phaser/Slime"
 import { Chest } from "../phaser/Chest"
 import { heroControl } from '../phaser/HeroControl'
-// import { slimeMovement } from '../phaser/SlimeMovement'
 import { levelSystem, monsterSpawner } from '../phaser/GameMechanic'
-// import { ColliderMonster } from '../phaser/ColliderMonster'
 import { ColliderObject } from '../phaser/ColliderObject'
 import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
@@ -21,17 +18,13 @@ import herotile from '../assets/active_resources/chara_hero.png'
 import slimetile from '../assets/active_resources/chara_slime.png'
 import dungeonSprites from '../assets/active_resources/tiles_dungeon_v1.png'
 import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
-
 import '../assets/style/Game.css'
-
-
-// import { GamingScene } from "./GamingScene";
 
 let hero;
 let cursors;
 let that;
 let currentScene
-// let chest1Img = new Image()
+
 class Game extends Component {
   constructor(props) {
     super(props)
@@ -86,11 +79,6 @@ class Game extends Component {
               }
             })
 
-            // that.props.worldInfo.monsters.forEach(function(monster){
-            //   let currentMonster = new Slime(currentScene, monster).setSize(16, 16)
-            //   new ColliderMonster(that, currentScene, hero, currentMonster, key)
-            //   currentScene.physics.add.collider(currentMonster, world_layer);
-            // })
             ////////// End Character ///////////////
 
             ////////// Object ///////////////
@@ -105,6 +93,7 @@ class Game extends Component {
             ////////////// Window Object Debugger ////////////
             window.hero = hero
             window.scene = this
+            window.game = that
             window.chest1 = chest1
             ////////////// End Window Object Debugger ////////////
 
@@ -112,7 +101,7 @@ class Game extends Component {
             const camera = this.cameras.main;
             camera.startFollow(hero);
             camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-            cursors = this.input.keyboard.addKeys("W, A, S, D, J, K");
+            cursors = this.input.keyboard.addKeys("W, A, S, D, J, K, L");
             this.scale.setZoom(4.2)
             /////////// End Camera and Controls ///////////////////
           },
@@ -184,7 +173,8 @@ const mapDispatchToProps = {
   addLog,
   monsterHpToggle,
   uiToggle,
-  requestItemDrop
+  requestItemDrop,
+  useItem
 }
 
 export default connect(

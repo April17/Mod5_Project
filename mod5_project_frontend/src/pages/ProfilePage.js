@@ -56,7 +56,18 @@ class ProfilePage extends Component {
   }
 
   render() {
-    if (!this.props.user || !this.props.user.characters[0].name) {
+    console.log(this.props.user);
+    if (!this.props.user) {
+      return(
+        <Grid columns={1} className="loading" >
+          <Grid.Column textAlign="center">
+            <Image src={xiaoLaJi2} wrapped />
+            <Header className="textColor" as='h3'>Getting your Information.......</Header>
+          </Grid.Column>
+        </Grid>
+      )
+    }
+    if (!this.props.user.name ) {
       return(
         <Grid columns={1} className="loading" >
           <Grid.Column textAlign="center">

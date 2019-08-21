@@ -34,6 +34,8 @@ export default (state = defaultState, action) => {
       return {...action.payload, unique_character_owned_items:[...state.unique_character_owned_items]}
     case 'ITEM_PICKUP':
       return {...state, unique_character_owned_items: action.payload}
+    case 'USE_ITEM':
+      return {...state, unique_character_owned_items: action.payload}
     default:
       return state
   }

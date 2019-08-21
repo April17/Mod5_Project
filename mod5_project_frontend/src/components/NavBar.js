@@ -21,7 +21,7 @@ class NavBar extends Component {
     return (
       <Menu className="navbar">
         <Menu.Item name='browse'>
-          <Header as="h3">Dungeon Online</Header>
+          <Header as="h3">Dungeon Offline</Header>
         </Menu.Item>
         {this.props.user ?
           ( <Menu.Item name='browse'>

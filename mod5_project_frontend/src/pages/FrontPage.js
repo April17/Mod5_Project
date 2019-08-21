@@ -11,7 +11,7 @@ class Frontpage extends React.Component {
     return (
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header className="textColor" as='h1' textAlign='center' >Welcome to Dungeon Online</Header>
+          <Header className="textColor" as='h1' textAlign='center' >Welcome to Dungeon Offline</Header>
           <Segment className="frostglass">
                 <Login routingProps={this.props}/>
             <Divider className="textColor" horizontal>Or</Divider>

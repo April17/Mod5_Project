@@ -17,3 +17,20 @@ export const updateHeroStatus = status => dispatch => {
   }
   fetch(`${API_ROOT}/characters/${status.id}`, config)
 };
+
+export const useItem = data => dispatch => {
+  const config = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: localStorage.token
+    },
+    body: JSON.stringify(data)
+  }
+  fetch(`${API_ROOT}/character_items/${data.item_id}`, config)
+    .then(rsp => rsp.json())
+    .then(newInventory => dispatch(actions.useItem(newInventory))
+)
+
+}

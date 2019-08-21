@@ -1,6 +1,6 @@
 import actions from "../actions/monsterStatusActions";
+import { addLog } from './feedAdapters'
 import { API_ROOT } from '../../actioncable';
-
 
 export const updateMonsterStatus = status => dispatch => {
   dispatch(actions.updateMonsterStatusAction(status));
@@ -23,6 +23,7 @@ export const requestItemDrop = data => dispatch => {
         return null
       } else {
         dispatch(actions.dropedItem(data))
+        dispatch(addLog({summary: `-${data[0].character_name} obtain ${data[0].item.name}.`}))
       }
     })
 }

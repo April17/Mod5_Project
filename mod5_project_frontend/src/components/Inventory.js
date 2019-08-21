@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { addLog } from '../redux/adapters/feedAdapters'
 import { Grid, Header, Segment, Feed } from 'semantic-ui-react'
 import Item from './Item'
 
@@ -31,4 +32,8 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(Inventory)
+const mapDispatchToProps = {
+  addLog: addLog
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inventory)

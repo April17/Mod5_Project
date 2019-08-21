@@ -1,9 +1,10 @@
 let prevX = 0;
 let prevY = 0;
-let keyDown = true;
+let keyDownK = true;
+let keyDownL = true;
 let counter = 0;
 export const heroControl = (game, hero, cursors) => {
-  let heroStatus = {id: game.props.characterInfo.id,
+  let heroStatus = {id: hero.id,
                     name: hero.name,
                     level: hero.level,
                     exp_next_level: hero.exp_next_level,
@@ -13,8 +14,8 @@ export const heroControl = (game, hero, cursors) => {
                     atk: hero.atk,
                     def: hero.def,
                     x: hero.body.x.toFixed(0),
-                    y: hero.body.y.toFixed(0),
-                    }
+                    y: hero.body.y.toFixed(0)}
+  hero.items = game.props.characterInfo.unique_character_owned_items
   const speed = 100;
   const prevVelocity = hero.body.velocity.clone();
   hero.body.setVelocity(0);
@@ -78,21 +79,47 @@ export const heroControl = (game, hero, cursors) => {
     hero.setSize(16, 16)
     hero.attacking = false
   }
-  if (cursors.K.isDown && keyDown){
-    if (hero.hp < hero.max_hp) {
-      hero.hp = hero.hp + 100
-    if (hero.hp > hero.max_hp) {
-      hero.hp = hero.max_hp
+  if (hero.items[0]) {
+    if (cursors.K.isDown && keyDownK && hero.items[0].quantity > 0){
+      if (hero.hp < hero.max_hp) {
+        hero.hp = hero.hp + 100
+      if (hero.hp > hero.max_hp) {
+        hero.hp = hero.max_hp
+      }
+      game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
+      }
+      keyDownK = false
     }
-    game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
-    }
-    keyDown = false
   }
-  if (cursors.K.isUp && keyDown === false) {
+  if (cursors.K.isUp && keyDownK === false) {
     if (counter === 0) {
+      hero.items[0].quantity --
+      game.props.useItem({character_id: hero.id, item_id: hero.items[0].item_id})
       setTimeout(function(){
-        keyDown = true
-        counter = 0}, 3000);
+        keyDownK = true
+        counter = 0}, 1000);
+      counter ++
+    }
+  }
+  if (hero.items[1]) {
+    if (cursors.L.isDown && keyDownL && hero.items[1].quantity > 0){
+      if (hero.hp < hero.max_hp) {
+        hero.hp = hero.hp + 1000
+      if (hero.hp > hero.max_hp) {
+        hero.hp = hero.max_hp
+      }
+      game.props.updateHeroStatus({...heroStatus, hp: hero.hp})
+      }
+      keyDownL = false
+    }
+  }
+  if (cursors.L.isUp && keyDownL === false) {
+    if (counter === 0) {
+      hero.items[1].quantity --
+      game.props.useItem({character_id: hero.id, item_id: hero.items[1].item_id})
+      setTimeout(function(){
+        keyDownL = true
+        counter = 0}, 5000);
       counter ++
     }
   }

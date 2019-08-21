@@ -8,7 +8,6 @@ import PlayerLog from '../components/PlayerLog'
 import HeroStatus from '../components/HeroStatus'
 import { Grid, Segment, Tab, Form, Input, Button } from 'semantic-ui-react'
 import  '../assets/style/GamePage.css'
-// import PhaserReactAdapter from '../components/PhaserReactAdapter'
 
 const panes = [
     { menuItem: 'Chat', render: () => <Tab.Pane className="frostglass" attached={false} ><Chat/></Tab.Pane> },
@@ -17,6 +16,12 @@ const panes = [
 
 
 class GamePage extends Component {
+
+  componentDidMount(){
+    if (!localStorage.token) {
+      this.props.history.push("/")
+    }
+  }
 
 
   render() {

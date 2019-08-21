@@ -44,7 +44,7 @@ class Signup extends React.Component{
                 <Segment className="transparent" raised>
                   <Form.Field>
                   <Header className="textColor" as='h3' color='black' textAlign='center'>
-                      Dungeon Online
+                      Dungeon Offline
                   </Header>
                   </Form.Field>
                   <Form.Field>

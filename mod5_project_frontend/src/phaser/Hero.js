@@ -24,7 +24,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
       this.level = characterInfo.level;
       this.exp_next_level = characterInfo.exp_next_level;
       this.exp = characterInfo.exp;
-      this.items = characterInfo.items;
+      this.items = characterInfo.unique_character_owned_items;
 
       scene.anims.create({
         key: "vetory",

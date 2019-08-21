@@ -14,7 +14,7 @@ const defaultState = {
       def: 10,
       x: 500,
       y: 500,
-      character_items:[
+      unique_character_owned_items:[
         {
           item_id: 0,
           quantity: 0,
@@ -38,7 +38,7 @@ export default (state = defaultState, action) => {
     case 'LOGIN_FAIL':
       return {...state}
     case 'LOGOUT':
-      return null
+      return defaultState
     default:
       return state
   }
