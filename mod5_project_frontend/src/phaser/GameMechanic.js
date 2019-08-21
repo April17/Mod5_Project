@@ -2,17 +2,21 @@ import { Slime } from "./Slime"
 import { ColliderMonster } from './ColliderMonster'
 import Phaser from 'phaser'
 
-let keyDownK = true
-let keyDownL = true
-let keyDownI = true
-let counterK = 0;
-let counterL = 0;
-let counterI = 0;
+let keyDown1 = true
+let keyDown2 = true
+let keyDown3 = true
+let keyDown4 = true
+
+let counter1 = 0;
+let counter2 = 0;
+let counter3 = 0;
+let counter4 = 0;
 
 const keyMap = {
-  "small_HP": {key: "K", keyDown: keyDownK, counter: counterK},
-  "large_HP": {key: "L", keyDown: keyDownL, counter: counterL},
-  "atk_potion": {key: "I", keyDown: keyDownI, counter: counterI}
+  "small_HP": {key: "ONE", keyDown: keyDown1, counter: counter1},
+  "large_HP": {key: "TWO", keyDown: keyDown2, counter: counter2},
+  "atk_potion": {key: "THREE", keyDown: keyDown3, counter: counter3},
+  "super_atk_potion": {key: "FOUR", keyDown: keyDown4, counter: counter4}
 }
 
 export const levelSystem = (hero, game, key) => {

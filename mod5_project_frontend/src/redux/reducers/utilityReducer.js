@@ -7,7 +7,8 @@ const defaultState = {
   cooldownState: {
     small_HP: false,
     large_HP: false,
-    atk_potion: false
+    atk_potion: false,
+    super_atk_potion: false
   }
 }
 export default (state = defaultState, action) => {

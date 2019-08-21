@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Feed, Popup, Image, Segment, Dimmer, Loader} from 'semantic-ui-react'
-import small_HP from '../assets/active_resources/naichalaji.jpg'
-import large_HP from '../assets/active_resources/xiaolaji.gif'
-import atk_potion from '../assets/active_resources/xiao_la_ji.gif'
+import hp_potion from '../assets/active_resources/naichalaji.jpg'
+import atk_potion from '../assets/active_resources/xiaolaji.gif'
+import super_atk_potion from '../assets/active_resources/xiao_la_ji.gif'
 
 const iconMap = {
-  "small_HP": small_HP,
-  "large_HP": large_HP,
-  "atk_potion": atk_potion
+  "small_HP": hp_potion,
+  "large_HP": hp_potion,
+  "atk_potion": atk_potion,
+  "super_atk_potion": super_atk_potion
 }
 
 

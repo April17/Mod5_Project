@@ -101,7 +101,7 @@ class Game extends Component {
             const camera = this.cameras.main;
             camera.startFollow(hero);
             camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-            cursors = this.input.keyboard.addKeys("W, A, S, D, J, K, L, I");
+            cursors = this.input.keyboard.addKeys("W, A, S, D, J, ONE, TWO, THREE, FOUR");
             this.scale.setZoom(4.2)
             window.cursors = cursors
             /////////// End Camera and Controls ///////////////////
