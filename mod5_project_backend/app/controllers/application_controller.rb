@@ -10,8 +10,7 @@ class ApplicationController < ActionController::API
   end
 
   def secret
-    # Rails.application.credentials.my_app_secret
-    "forglorious"
+    Rails.application.credentials.my_app_secret
   end
 
   def token

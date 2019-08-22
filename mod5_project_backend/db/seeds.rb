@@ -20,7 +20,7 @@ february = Character.create(name:"February", level: 5, exp_next_level: 1200, exp
 small_hp_potion = Item.create(name:"Small HP Potion", effect: "Recover 100 HP", key: "hp", icon_name: "small_HP", rarity: 1, status: 100, cooldown: 1000)
 large_hp_potion = Item.create(name:"Large HP Potion", effect: "Recover 1000 HP", key: "hp", icon_name: "large_HP", rarity: 2, status: 1000, cooldown: 3000)
 atk_damage_potion = Item.create(name:"Attack Damage Potion", effect: "Add 100 Atk", key: "atk_boost", icon_name: "atk_potion", rarity: 3, status: 1000, cooldown: 5000)
-super_damage_potion = Item.create(name:"Attack Damage Potion", effect: "Add 10000 Atk", key: "atk_boost", icon_name: "super_atk_potion", rarity: 4, status: 10000, cooldown: 10000)
+super_damage_potion = Item.create(name:"Super Attack Damage Potion", effect: "Add 10000 Atk", key: "atk_boost", icon_name: "super_atk_potion", rarity: 4, status: 10000, cooldown: 10000)
 
 
 

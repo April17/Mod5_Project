@@ -17,6 +17,7 @@ class App extends Component {
           <Route exact path="/signup"   component={Pages.Signup} />
           <Route exact path="/profile"  component={Pages.ProfilePage} />
           <Route exact path="/"         component={Pages.FrontPage} />
+          <Route                        component={Pages.FourOFour} />
         </Switch>
       </div>
     );

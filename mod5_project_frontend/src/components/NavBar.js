@@ -17,13 +17,12 @@ class NavBar extends Component {
   }
 
   render() {
-
     return (
       <Menu className="navbar">
         <Menu.Item name='browse'>
           <Header as="h3">Dungeon Offline</Header>
         </Menu.Item>
-        {this.props.user ?
+        {this.props.user.name ?
           ( <Menu.Item name='browse'>
               <Header as="h4">Welcome back {this.props.user.name}</Header>
             </Menu.Item> ) :
@@ -31,13 +30,13 @@ class NavBar extends Component {
         }
         <Menu.Menu position='right'>
         {
-          this.props.user ? (
+          this.props.user.name ? (
             <Fragment>
               <Menu.Item name='account'>
                 <Link to="/profile">Account</Link>
               </Menu.Item>
               <Menu.Item name='logout'>
-                <Link onClick={this.onLogout} to="#logout">Logout</Link>
+                <Link onClick={this.onLogout} to="/">Logout</Link>
               </Menu.Item>
             </Fragment>
           ) : (

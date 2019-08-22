@@ -1,5 +1,5 @@
 const defaultState = {
-  chat: [ {summary: "-Welcome Back to Doungeon Online."},
+  chat: [ {summary: "-Welcome Back to Doungeon Offline."},
           {summary: "-Chat is under Development ATM."},],
   log: []
 }
