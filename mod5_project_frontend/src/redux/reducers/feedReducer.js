@@ -1,7 +1,6 @@
 const defaultState = {
   chat: [ {summary: "-Welcome Back to Doungeon Online."},
-          {summary: "-Chat is under Development ATM."},
-          {summary: "-[April]: Hi guys", key: 1}],
+          {summary: "-Chat is under Development ATM."},],
   log: []
 }
 
@@ -12,8 +11,7 @@ export default (state = defaultState, action) => {
       state.log = [...state.log, action.payload]
       return state
     case 'ADD_CHAT':
-      state.chat = [...state.chat, action.payload]
-      return state
+      return {...state, chat: [...state.chat, action.payload]}
     default:
       return state
   }

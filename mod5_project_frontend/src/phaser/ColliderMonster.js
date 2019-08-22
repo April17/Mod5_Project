@@ -33,6 +33,9 @@ export class ColliderMonster {
      } else {
        if (hero.hp > 50) {
          damageSystem(monster, hero)
+         if (hero.hp < 50) {
+           hero.hp = 50
+         }
        }
        if (hero.body.facing === 13) {
          hero.flipX = true

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
+import { gameInputToggle } from "../redux/adapters/utilityAdapters"
+import { addChat } from "../redux/adapters/feedAdapters"
 import Game from '../components/Game'
 import Inventory from '../components/Inventory'
 import Chat from '../components/Chat'
@@ -17,10 +19,33 @@ const panes = [
 
 class GamePage extends Component {
 
+  state = {
+    chatData: ""
+  }
+
   componentDidMount(){
     if (!localStorage.token) {
       this.props.history.push("/")
     }
+  }
+
+  handleFocus = () => {
+    this.props.gameInputToggle(false)
+  }
+
+  handleChange = (event) => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+  handleBlur = () => {
+    this.props.gameInputToggle(true)
+  }
+
+  handleSubmit = (event) => {
+    const message = {summary: `-[${this.props.playerName}]: ${this.state.chatData}`}
+    this.props.addChat(message)
+    this.setState({chatData: ""})
+    event.target.reset()
   }
 
 
@@ -60,17 +85,17 @@ class GamePage extends Component {
                     <Tab menu={{ color: "grey", inverted: true, borderless: true, attached: false, tabular: false }} panes={panes} />
                   </Grid.Column>
                   <Grid.Column width={16} id="chatform">
-                    <Form>
+                    <Form onSubmit={this.handleSubmit} >
                       <Form.Field inline>
                         <Grid column={2}  >
                           <Grid.Column width={10} className="No-Space" textAlign="right">
                             <Segment className="No-Space">
-                              <Input size='mini' placeholder='Message....' />
+                              <Input name="chatData" onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange} size='mini' placeholder='Message....' />
                             </Segment>
                           </Grid.Column>
                           <Grid.Column width={6} className="No-Space" textAlign="center">
                             <Segment className="No-Space">
-                              <Button primary size='mini' >Send</Button>
+                              <Button primary size='mini' type='submit' >Send</Button>
                             </Segment>
                           </Grid.Column>
                         </Grid>
@@ -89,12 +114,17 @@ class GamePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    uiState: state.utilityReducer.ui_toggle
+    uiState: state.utilityReducer.ui_toggle,
+    playerName: state.status.name
   }
 }
 
+const mapDispatchToProps = {
+  gameInputToggle: gameInputToggle,
+  addChat: addChat
+}
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   )(GamePage);

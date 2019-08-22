@@ -38,7 +38,7 @@ class Game extends Component {
         physics: {
           default: "arcade",
           arcade: {
-            debug: false
+            debug: true
           }
         },
         render: {
@@ -107,6 +107,7 @@ class Game extends Component {
             /////////// End Camera and Controls ///////////////////
           },
           update: function(time, delta) {
+            this.input.manager.keyboard.enabled = that.props.gameInputToggle
             heroControl(that, hero, cursors)
             // if (slime.active === true) {
             //   slimeMovement(that, slime, this, hero)
@@ -164,7 +165,8 @@ class Game extends Component {
 const mapStateToProps = state => {
   return {
     characterInfo: state.status,
-    worldInfo: state.worldInfo.worldInfo
+    worldInfo: state.worldInfo.worldInfo,
+    gameInputToggle: state.utilityReducer.gameInputToggle
   }
 }
 

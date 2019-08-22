@@ -16,3 +16,7 @@ export const uiToggle = state => dispatch => {
 export const cooldownToggle = state => dispatch => {
   dispatch(actions.cooldownToggle(state))
 }
+
+export const gameInputToggle = state => dispatch => {
+  dispatch(actions.gameInputToggle(state))
+}
