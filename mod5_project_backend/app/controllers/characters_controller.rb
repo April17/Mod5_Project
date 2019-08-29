@@ -18,6 +18,7 @@ class CharactersController < ApplicationController
     character.user = user
     character.hp = character.max_hp
     if character.save
+      CharacterItem.create(character: character, item_id: 3)
       user = character.user
       render json: user, include: "**"
     else

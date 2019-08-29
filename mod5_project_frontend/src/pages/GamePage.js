@@ -42,10 +42,12 @@ class GamePage extends Component {
   }
 
   handleSubmit = (event) => {
-    const message = {summary: `-[${this.props.playerName}]: ${this.state.chatData}`}
-    this.props.addChat(message)
-    this.setState({chatData: ""})
-    event.target.reset()
+    if (this.state.chatData !== "" ) {
+      const message = {summary: `-[${this.props.playerName}]: ${this.state.chatData}`}
+      this.props.addChat(message)
+      this.setState({chatData: ""})
+      event.target.reset()
+    }
   }
 
 

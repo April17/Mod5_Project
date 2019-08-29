@@ -10,6 +10,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
     exp = 0;
     items = []
     attacking = false;
+    hit = false;
     constructor(scene: Phaser.Scene, texture: string, characterInfo ) {
       super(scene, characterInfo.x, characterInfo.y, texture);
       scene.sys.updateList.add(this);
