@@ -14,6 +14,7 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route exact path="/game"     component={Pages.GamePage} />
+          <Route exact path="/about"    component={Pages.About} />
           <Route exact path="/signup"   component={Pages.Signup} />
           <Route exact path="/profile"  component={Pages.ProfilePage} />
           <Route exact path="/"         component={Pages.FrontPage} />
