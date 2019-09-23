@@ -16,6 +16,8 @@ import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
 import slimetile from '../assets/active_resources/chara_slime.png'
+import goblintile from '../assets/active_resources/chara_goblin.png'
+import trolltile from '../assets/active_resources/chara_troll.png'
 import dungeonSprites from '../assets/active_resources/tiles_dungeon_v1.png'
 import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
 import '../assets/style/Game.css'
@@ -53,9 +55,9 @@ class Game extends Component {
             this.load.tilemapTiledJSON("map", mapinfo);
             this.load.spritesheet("hero", herotile, {frameHeight: 48, frameWidth: 48});
             this.load.spritesheet("slime", slimetile, {frameHeight: 48, frameWidth: 48});
+            this.load.spritesheet("troll", trolltile, {frameHeight: 48, frameWidth: 48});
+            this.load.spritesheet("goblin", goblintile, {frameHeight: 48, frameWidth: 48});
             this.load.spritesheet("chest1", dungeonSprites, {frameHeight: 16, frameWidth: 16});
-            // this.textures.addSpriteSheet("chest1", chest1Img, {frameHeight: 32, frameWidth: 32});
-            // chest1Img.src = chesttile1
           },
           create: function() {
             currentScene = this

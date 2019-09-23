@@ -27,7 +27,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
     this.respawn_cooldown = monsterInfo.respawn_cooldown
     // debugger
     scene.anims.create({
-      key: "slime-vetory",
+      key: `${monsterInfo.monster_type}-vetory`,
       frameRate: 5,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 4,
@@ -37,7 +37,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
     });
     ///////// Idel //////////////
     scene.anims.create({
-      key: "slime-idel-down",
+      key: `${monsterInfo.monster_type}-idel-down`,
       frameRate: 5,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 0,
@@ -46,7 +46,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
       repeat: -1
     });
     scene.anims.create({
-      key: "slime-idel-up",
+      key: `${monsterInfo.monster_type}-idel-up`,
       frameRate: 5,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 43,
@@ -54,7 +54,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
       })
     });
     scene.anims.create({
-      key: "slime-idel-sideway",
+      key: `${monsterInfo.monster_type}-idel-sideway`,
       frameRate: 5,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 39,
@@ -65,7 +65,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
 
     ///////// Attack //////////////
     scene.anims.create({
-      key: "slime-attack-sideway",
+      key: `${monsterInfo.monster_type}-attack-sideway`,
       frameRate: 20,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start:24,
@@ -73,7 +73,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
       })
     });
     scene.anims.create({
-      key: "slime-attack-up",
+      key: `${monsterInfo.monster_type}-attack-up`,
       frameRate: 20,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 28,
@@ -81,7 +81,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
       })
     });
     scene.anims.create({
-      key: "slime-attack-down",
+      key: `${monsterInfo.monster_type}-attack-down`,
       frameRate: 20,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 19,
@@ -92,7 +92,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
 
     ///////// Walk //////////////
     scene.anims.create({
-      key: "slime-walk-sideway",
+      key: `${monsterInfo.monster_type}-walk-sideway`,
       frameRate: 10,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 12,
@@ -101,7 +101,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
       repeat: -1
     });
     scene.anims.create({
-      key: "slime-walk-up",
+      key: `${monsterInfo.monster_type}-walk-up`,
       frameRate: 10,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 16,
@@ -110,7 +110,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
       repeat: -1
     });
     scene.anims.create({
-      key: "slime-walk-down",
+      key: `${monsterInfo.monster_type}-walk-down`,
       frameRate: 10,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 8,
@@ -122,7 +122,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
 
     //////// Hit ///////////////
     scene.anims.create({
-      key: "slime-hit-sideway",
+      key: `${monsterInfo.monster_type}-hit-sideway`,
       frameRate: 15,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 36,
@@ -130,7 +130,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
       }),
     });
     scene.anims.create({
-      key: "slime-hit-up",
+      key: `${monsterInfo.monster_type}-hit-up`,
       frameRate: 15,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 32,
@@ -138,7 +138,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
       }),
     });
     scene.anims.create({
-      key: "slime-hit-down",
+      key: `${monsterInfo.monster_type}-hit-down`,
       frameRate: 15,
       frames: scene.anims.generateFrameNumbers(monsterInfo.monster_type, {
         start: 40,
