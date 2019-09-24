@@ -12,7 +12,7 @@ import { Chest } from "../phaser/Chest"
 import { heroControl } from '../phaser/HeroControl'
 import { levelSystem, monsterSpawner } from '../phaser/GameMechanic'
 import { ColliderObject } from '../phaser/ColliderObject'
-import mapinfo from '../assets/active_resources/World.json'
+import mapinfo from '../assets/active_resources/WorldV2.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
 import slimetile from '../assets/active_resources/chara_slime.png'
@@ -65,6 +65,7 @@ class Game extends Component {
             const map = this.make.tilemap({ key: "map" });
             const tileset = map.addTilesetImage("ts_dungeon", "ts-tiles");
             map.createStaticLayer("bot_layer", tileset, 0, 0);
+            map.createStaticLayer("bot_layer2", tileset, 0, 0);
             const world_layer = map.createStaticLayer("world_layer", tileset, 0, 0);
             const top_layer = map.createStaticLayer("top_layer", tileset, 0, 0);
             world_layer.setCollisionByProperty({ collides: true });
