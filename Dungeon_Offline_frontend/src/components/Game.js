@@ -12,7 +12,7 @@ import { Chest } from "../phaser/Chest"
 import { heroControl } from '../phaser/HeroControl'
 import { levelSystem, monsterSpawner } from '../phaser/GameMechanic'
 import { ColliderObject } from '../phaser/ColliderObject'
-import mapinfo from '../assets/active_resources/WorldV2.json'
+import mapinfo from '../assets/active_resources/World.json'
 import maptile from '../assets/active_resources/ts_dungeon.png'
 import herotile from '../assets/active_resources/chara_hero.png'
 import slimetile from '../assets/active_resources/chara_slime.png'
