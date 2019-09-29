@@ -1,18 +1,10 @@
 import React from 'react'
-import { Header, Image, Divider, Grid, Segment, Comment, Message, Feed, Icon } from 'semantic-ui-react'
-import { withRouter, Link } from 'react-router-dom'
-import xiaoLaJi2 from '../assets/active_resources/xiaolaji.gif'
+import { Header, Divider, Grid, Segment } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom'
 
 
 
 class About extends React.Component {
-
-  componentDidMount(){
-    const that = this
-    // setTimeout(function(){
-    //   that.props.history.push("/")
-    // }, 3000)
-  }
 
   render() {
     return (
