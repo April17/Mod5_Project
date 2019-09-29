@@ -85,7 +85,7 @@ class Game extends Component {
             ////////// End Character ///////////////
 
             ////////// Object ///////////////
-            const chest1 = new Chest(this, 450, 350, "chest1", "chest1").setFrame(334)
+            const chest1 = new Chest(this, 312, 26, "chest1", "chest1").setFrame(334)
             ////////// End Object ///////////////
 
             ///////// Collider  ////////////////

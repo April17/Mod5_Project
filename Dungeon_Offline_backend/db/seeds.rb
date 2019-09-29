@@ -12,10 +12,10 @@ playground = World.create(name: "Playground0", capacity: 1)
 
 sam_slime = Monster.create(name:"Sam", monster_type:"slime", level: 1, exp_provide: 1000, population_cap: 10, max_hp: 300, hp: 300, atk: 10, def: 20, x: 270, y: 1330, respawn_cooldown: 3000)
 tom_slime = Monster.create(name:"Tom", monster_type:"goblin", level: 5, exp_provide: 2000, max_hp: 3000, hp: 3000, atk: 50, def: 40, x: 440, y: 700, respawn_cooldown: 5000)
-master_slime = Monster.create(name:"King_Samy", monster_type:"troll", level: 20, exp_provide: 20000, population_cap: 1, max_hp: 30000, hp: 30000, atk: 200, def: 100, x: 400, y: 300, respawn_cooldown: 10000)
+master_slime = Monster.create(name:"King_Samy", monster_type:"troll", level: 20, exp_provide: 20000, population_cap: 1, max_hp: 30000, hp: 30000, atk: 200, def: 100, x: 312, y: 196, respawn_cooldown: 10000)
 
-april = Character.create(name:"April", level: 1, exp_next_level: 100, exp: 0, max_hp: 1500, hp: 1500, atk: 100, def: 200, x: 450, y: 550, user: fan)
-february = Character.create(name:"February", level: 5, exp_next_level: 1200, exp: 1100, max_hp: 2500, hp: 2500, atk: 200, def: 200, x: 450, y: 550, user: fan)
+april = Character.create(name:"April", level: 1, exp_next_level: 100, exp: 0, max_hp: 1500, hp: 1500, atk: 100, def: 200, x: 270, y: 1460, user: fan)
+february = Character.create(name:"February", level: 5, exp_next_level: 1200, exp: 1100, max_hp: 2500, hp: 2500, atk: 200, def: 200, x: 270, y: 1460, user: fan)
 
 small_hp_potion = Item.create(name:"HP Potion(S)", effect: "Recover 100 HP", key: "hp", icon_name: "small_HP", rarity: 1, status: 100, cooldown: 1000)
 large_hp_potion = Item.create(name:"HP Potion(L)", effect: "Recover 1000 HP", key: "hp", icon_name: "large_HP", rarity: 2, status: 1000, cooldown: 3000)
