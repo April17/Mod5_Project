@@ -10,8 +10,8 @@ fan = User.create(name: "Fan Fan", username:"mfqmfq2", password: "123456")
 
 playground = World.create(name: "Playground0", capacity: 1)
 
-sam_slime = Monster.create(name:"Sam", monster_type:"slime", level: 1, exp_provide: 1000, max_hp: 300, hp: 300, atk: 10, def: 20, x: 270, y: 1330, respawn_cooldown: 3000)
-tom_slime = Monster.create(name:"Tom", monster_type:"goblin", level: 5, exp_provide: 2000, max_hp: 3000, hp: 3000, atk: 50, def: 40, x: 500, y: 450, respawn_cooldown: 5000)
+sam_slime = Monster.create(name:"Sam", monster_type:"slime", level: 1, exp_provide: 1000, population_cap: 10, max_hp: 300, hp: 300, atk: 10, def: 20, x: 270, y: 1330, respawn_cooldown: 3000)
+tom_slime = Monster.create(name:"Tom", monster_type:"goblin", level: 5, exp_provide: 2000, max_hp: 3000, hp: 3000, atk: 50, def: 40, x: 440, y: 700, respawn_cooldown: 5000)
 master_slime = Monster.create(name:"King_Samy", monster_type:"troll", level: 20, exp_provide: 20000, population_cap: 1, max_hp: 30000, hp: 30000, atk: 200, def: 100, x: 400, y: 300, respawn_cooldown: 10000)
 
 april = Character.create(name:"April", level: 1, exp_next_level: 100, exp: 0, max_hp: 1500, hp: 1500, atk: 100, def: 200, x: 450, y: 550, user: fan)
