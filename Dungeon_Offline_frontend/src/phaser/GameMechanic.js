@@ -82,7 +82,6 @@ export const itemKeyMap = (hero, item, cursors, heroStatus, game) => {
 
 const atkPotion = (hero, item, game, heroStatus) => {
   hero.atk = hero.atk + item.item.status
-  console.log(hero.at);
   game.props.updateHeroStatus({...heroStatus, atk: hero.atk})
 }
 
