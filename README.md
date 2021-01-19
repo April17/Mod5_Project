@@ -1,6 +1,6 @@
 # Module 5: Dungeon Offline
-# Video Demo
-#https://www.youtube.com/watch?v=nCkT6MDTnR0&t=2s
+## Video Demo
+https://www.youtube.com/watch?v=nCkT6MDTnR0&t=2s
 
 Dungeon Offline is a tiled based RPG game made by React, Redux, Phaser 3, IonPhaser and Ruby on Rails. The goal of this project is to show how React and Phaser works with each other. To accomplish the goal, game logic is all done by Phaser 3 and all game UI is done by React.
 
